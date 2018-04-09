@@ -1,9 +1,9 @@
 \documentclass[
-    12pt,
-    oneside,
-    a4paper,
-    english,
-    brazil
+	12pt,
+	oneside,
+	a4paper,
+	english,
+	brazil
 ]{abntex2}
 
 \usepackage{lmodern}
@@ -35,6 +35,22 @@ Bacharelado em Ciência da Computação}
 Departamento de Informática da Universidade Estadual de Maringá, como requisito 
 parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 
+\makeatletter
+\hypersetup{
+		pdftitle={\@title},
+		pdfauthor={\@author},
+		pdfsubject={\imprimirpreambulo},
+		pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{projeto de pesquisa},
+		colorlinks=true,	% false: boxed links; true: colored links
+		linkcolor=blue,		% color of internal links
+		citecolor=blue,		% color of links to bibliography
+		filecolor=magenta,	% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+
 \setlength{\parindent}{1.3cm}
 \setlength{\parskip}{0.2cm}
 
@@ -47,4 +63,15 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 \imprimirfolhaderosto{}
 
 \textual{}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+\chapter{Introdução}
+
+\postextual
+
+\bibliography{referencias}
+
 \end{document}
