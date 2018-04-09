@@ -1,0 +1,76 @@
+\newenvironment{changemargin}[2]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{0pt}%
+			\setlength{\leftmargin}{#1}%
+			\setlength{\rightmargin}{#2}%
+			\setlength{\listparindent}{\parindent}%
+		\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+			}%
+	\item[]}{\end{list}}
+
+\renewcommand{\imprimircapa}{
+	\begin{capa}
+
+		\begin{changemargin}{-0.5cm}{0cm}
+			\begin{minipage}[c][][c]{.15\textwidth} 
+				\includegraphics[width=\textwidth]{uem.jpg}
+			\end{minipage}
+			\begin{minipage}[c][][c]{.6\textwidth}
+				\center
+				\imprimirinstituicao
+			\end{minipage}
+			\begin{minipage}[c][][c]{.2\textwidth}
+				\includegraphics[width=\textwidth]{din.jpg}
+			\end{minipage}
+		\end{changemargin}
+		
+		\vspace*{3.5cm}
+
+		\begin{center}
+			\large{\MakeUppercase{\imprimirautor}}
+			
+			\vspace*{4cm}        
+			
+			\ABNTEXchapterfont{\MakeUppercase{\textbf{\LARGE{\imprimirtitulo}}}}
+			
+			\vfill
+			
+			\large{\imprimirlocal}
+
+			\large{\imprimirdata}
+		\end{center}
+	\end{capa}
+}
+
+\renewcommand{\imprimirfolhaderosto}{
+	\begin{center}
+		\large{\MakeUppercase{\imprimirautor}}
+
+		\vfill
+
+		\ABNTEXchapterfont{\MakeUppercase{\textbf{\LARGE{\imprimirtitulo}}}}
+
+		\vfill
+
+		{
+			\hspace{.45\textwidth}
+			\begin{minipage}{.5\textwidth}
+				\normalsize\imprimirpreambulo
+
+				\vspace{.5cm}
+
+				\imprimirorientadorRotulo~\imprimirorientador
+			\end{minipage}
+		}
+
+		\vfill
+
+		\large{\imprimirlocal}
+		
+		\large{\imprimirdata}
+		\newpage
+	\end{center}
+}
+
+\newcommand{\source}[1]{\caption*{Fonte: {#1}} }
