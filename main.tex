@@ -66,7 +66,7 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
-\cleardoublepage
+\cleardoublepage{}
 
 \chapter{Introdução}
 
@@ -87,6 +87,69 @@ autor, previsões de longo prazo são mais difíceis e suscetíveis a fatores
 externos, entretanto previsões de curto e médio prazo permitem normalmente a 
 modelagem utilizando métodos estatísticos, muitas vezes suficientes a tarefa 
 empregada.
+
+Em contrapartida podemos citar técnicas de aprendizado de máquinas que estão se 
+tornando cada vez mais notórias pelos bons resultados que obtêm onde são 
+aplicadas, no caso de de redes neurais artificiais podemos obter resultados 
+superiores aos métodos estatísticos comumente empregado conforme analisado por 
+\citeonline{zhang}, o autor ainda apresenta outros exemplos onde a utilização de 
+redes neurais obtiveram bons resultados, considerando ainda que o estudo já esta 
+datado podemos encontrar em publicações mais resultados ainda melhores.
+
+E em se tratando de previsões uma fonte de informação comumente utilizado são as 
+séries temporais, segundo \citeonline{wiley} essas séries são compostas de 
+observações sequenciais ao longo do tempo. Por exemplo podemos observar um 
+exemplo de série na figura-\ref{serie0}. Sendo essas observações separadas 
+unicamente pelo tempo pode-se obter os dados em diferentes intervalos, podendo 
+por exemplo ser observações diárias, semanais ou ainda anuais.
+
+A relevância das previsões são percebidas em aplicações onde esta é aplicada 
+diretamente no processo de tomada de decisão, podendo auxiliar desde a 
+organização de um negócio ao entendimento do comportamento de uma população.
+
+\chapter{Previsão}
+Segundo \citeonline{wiley} podemos separar o processo de previsão em diversas 
+atividades, colocadas e detalhadas a seguir:
+
+\begin{itemize}
+	\item Definição do problema\\
+		Envolve definir e entender a tarefa de previsão a ser realizada,
+		considerando o prazo a ser previsto e definindo os dados necessários e
+		quanto será o intervalo de uma previsão e outra.
+	\item Coleta dos dados\\
+		Conforme definido na etapa anterior ocorrerá nessa atividade a coleta
+		dos dados.
+	\item Análise dos dados\\
+		Atividade de alta importância para a seleção do modelo mais adequado,
+		nessa etapa é utilizada de observações gráficas e extração de dados para
+		identificar padrões que ajudem. Ainda ocorrerá a identificação de 
+		observações problemáticas e marcadas.
+	\item Seleção e verificação do modelo\\
+		Consiste da seleção e verificação de como o modelo escolhido se comporta 
+		com os dados fornecidos. Para verificar o comportamento será utilizado 
+		métricas que permitam comparar o resultado obtidos com outros modelos.
+	\item Avaliação do modelo\\
+		Etapa para avaliar como o modelo se comportará com novos dados obtidos, 
+		normalmente é realizado a partir de dados separados obtidos das mesmas 
+		informações utilizada em etapas anteriores, porem uma parte separada 
+		somente para este fim.
+	\item Publicação do modelo\\
+		Com o modelo devidamente selecionado e avaliado o processo é instalado 
+		em ambiente de produção, tendo que observar as alterações necessárias 
+		para que novos dados sejam inseridos corretamente.
+	\item Monitoramento da performance do modelo\\
+		Uma ultima atividade e esta ocorrerá de forma recorrente, pois deve-se 
+		continuamente avaliar como o modelo aplicado se comporta em relação ao 
+		ambiente, já que o ambiente é algo volátil.
+\end{itemize}
+
+Vale-se notar que após a tarefa de avaliação se essa resultar em um valor 
+insatisfatório deve-se retornar a fase anterior e refeita a avaliação até que um 
+modelo que obedeça as especificações seja encontrado.
+
+\chapter{Séries temporais}
+
+\section{Dados}
 
 \postextual
 
