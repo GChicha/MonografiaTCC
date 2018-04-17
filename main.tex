@@ -138,7 +138,7 @@ atividades, colocadas e detalhadas a seguir:
 		em ambiente de produção, tendo que observar as alterações necessárias 
 		para que novos dados sejam inseridos corretamente.
 	\item Monitoramento da performance do modelo\\
-		Uma ultima atividade e esta ocorrerá de forma recorrente, pois deve-se 
+		Uma ultima atividade que ocorrerá de forma recorrente, deve-se 
 		continuamente avaliar como o modelo aplicado se comporta em relação ao 
 		ambiente, já que o ambiente é algo volátil.
 \end{itemize}
@@ -148,6 +148,43 @@ insatisfatório deve-se retornar a fase anterior e refeita a avaliação até qu
 modelo que obedeça as especificações seja encontrado.
 
 \chapter{Séries temporais}
+
+Como já colocado anteriormente, séries temporais são observações sucessivas ao 
+longo do tempo. Vale-se notar que esse tipo de série se caracteriza pelo fato de 
+suas observações serem dependentes da observação anterior. Essas séries ainda 
+podem demonstrar características como tendência e sazonalidade, sendo que a 
+primeira confere a série um comportamento lento que pode levar a observações 
+futuras como valores menores ou maiores e a segunda característica confere a ela 
+padrão que apresente ciclos, podendo ser estes semanais, mensais, anuais ou um 
+período qualquer de tempo.
+
+Uma série é descrita matematicamente pelo conjunto $\{X(t): x \in T\}$, podendo 
+ser $t$ um tempo contínuo ou discreto, sendo o primeiro quando se possui as 
+observações de todos $t$ possíveis e a segunda quando entre uma observação e 
+outra existe um período igual de tempo.
+
+Uma série temporal classicamente é decomposta seguindo a 
+equação-\ref{eq:timeseries}, sendo $t$ usado para denotar o tempo, $T$ nos 
+fornece a tendência e $C$ a componente sazonal ou cíclica, já $R$ é a componente 
+aleatória e normalmente é caracterizada por possuir média zero, denota-se ainda 
+como ruído branco.
+
+\begin{equation}
+	\label{eq:timeseries}
+	X_t = T_t + C_t + R_t
+\end{equation}
+
+\subsection{Tendência}
+
+Segundo \citeonline{ehlers} não existe uma definição precisa de tendência, mas 
+normalmente é associado ao comportamento de mudança das observações em período 
+de longo prazo. Uma série com tendência pode ser descrita com um função também 
+sendo a forma apresentada na equação-\ref{eq:tendencia}
+
+\begin{equation}
+	\label{eq:tendencia}
+	X_t = \alpha + \beta{}t + \epsilon{}_t
+\end{equation}
 
 \section{Dados}
 
