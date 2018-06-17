@@ -14,6 +14,10 @@
 \usepackage{graphicx}
 \usepackage{microtype}
 \usepackage{amsfonts}
+\usepackage{csquotes}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
 
 \usepackage{caption}
 
@@ -104,7 +108,7 @@ abastecimento de energia a uma região.
 E em se tratando de previsões, uma fonte de informação comumente utilizado são 
 as séries temporais, segundo \citeonline{wiley} essas séries são compostas de 
 observações sequenciais ao longo do tempo. Por exemplo podemos observar o 
-exemplo de série na figura-\ref{serie0}. Sendo essas observações separadas 
+exemplo de série na \autoref{serie0}. Sendo essas observações separadas 
 unicamente pelo tempo pode-se obter os dados em diferentes intervalos, como 
 observações diárias, semanais ou ainda anuais.
 
@@ -209,8 +213,8 @@ intervalo igual de tempo, normalmente dado na forma de uma sequencia, $T = \{1,
 2, \ldots, n\}$, sendo $n$ o número de observações.
 
 Segundo \citeonline{ehlers} uma série temporal classicamente é decomposta 
-seguindo a equação~\ref{eq:timeseries}, sendo $t$ usado para denotar o tempo, 
-$T$ nos fornece a tendência e $C$ a componente sazonal ou cíclica, já $R$ é a 
+seguindo a \autoref{eq:timeseries}, sendo $t$ usado para denotar o tempo, $T$ 
+nos fornece a tendência e $C$ a componente sazonal ou cíclica, já $R$ é a 
 componente aleatória e normalmente é caracterizada por possuir média zero, 
 denominada como ruído branco.
 
@@ -234,15 +238,15 @@ então usamos a definição de fracamente estacionaria para definir estacinaried
 de uma série, formalmente definimos uma série fracamente estacionária por 
 possuir função média constante.
 
-A figura~\ref{fig:co2diff} é um exemplo de série estacionária encontrada 
-utilizando o processo de diferenciação descrita na seção~\ref{sec:diff}.
+A \autoref{fig:co2diff} é um exemplo de série estacionária encontrada utilizando 
+o processo de diferenciação descrita na \autoref{sec:diff}.
 
 \subsection{Tendência}
 
 Segundo \citeonline{ehlers} não existe uma definição precisa de tendência, mas 
 normalmente é associado ao comportamento de mudança das observações em período 
 de longo prazo. Uma série com tendência pode ser descrita como um função 
-apresentada na equação~\ref{eq:tendencia}, $\alpha$ e $\beta{}$ coeficientes da 
+apresentada na \autoref{eq:tendencia}, $\alpha$ e $\beta{}$ coeficientes da 
 função e $\epsilon{}_t$ o erro. Sendo que $\beta{}$ define a taxa de crescimento 
 da série, assim podemos entender $\beta$ da forma $\beta = x_t - x_{t-1}$.
 
@@ -253,7 +257,7 @@ da série, assim podemos entender $\beta$ da forma $\beta = x_t - x_{t-1}$.
 
 Este entendimento de série com tendencia segundo \citeonline{ehlers} permite 
 encontrar uma função polinomial que represente a série, no caso esta função 
-teria a forma da equação~\ref{eq:tendenciaSerie}.
+teria a forma da \autoref{eq:tendenciaSerie}.
 
 \begin{equation}
     \label{eq:tendenciaSerie}
@@ -261,9 +265,9 @@ teria a forma da equação~\ref{eq:tendenciaSerie}.
 \end{equation}
 
 Para exemplificar uma série temporal real que apresente tendência e sazonalidade 
-podemos apresentar o gráfico na figura~\ref{fig:co2}, este apresenta a mudança 
-na concentração de CO2 na atmosfera, no caso esta é uma série de um dado natural 
-e é fácil notar o comportamento tendencioso e sua sazonalidade, que no caso é 
+podemos apresentar o gráfico na \autoref{fig:co2}, este apresenta a mudança na 
+concentração de CO2 na atmosfera, no caso esta é uma série de um dado natural e 
+é fácil notar o comportamento tendencioso e sua sazonalidade, que no caso é 
 anual.
 
 \begin{figure}
@@ -278,27 +282,27 @@ anual.
 Em algumas séries a tendência pode não estar muito clara devido a flutuações, 
 nesses casos é comum a aplicação de um filtro que tem como objetivo obter uma 
 série suavizada que possibilite observar a tendência, esse filtro é da forma da 
-equação~\ref{eq:filtro}.
+\autoref{eq:filtro}.
 
 \begin{equation}
     \label{eq:filtro}
     y_t = \sum_{j = -q}^{s}{a_{j}x_{t+j}}
 \end{equation}
 
-Na equação~\ref{eq:filtro} $a_j$ é um coeficiente a ser aplicada a cada termo da 
+Na \autoref{eq:filtro} $a_j$ é um coeficiente a ser aplicada a cada termo da 
 soma de forma a aplicar um peso a este, sendo observado que $\sum{a_j} = 1$.
 Podemos obter no caso mais simples $a_j = \frac{1}{2q + 1}$ e teremos $y_j$ 
-conforme a equação~\ref{eq:yjfiltro}.
+conforme a \autoref{eq:yjfiltro}.
 
 \begin{equation}
     \label{eq:yjfiltro}
     y_t = \frac{1}{2q + 1}\sum_{j=-q}^{q}{x_{t+j}}
 \end{equation}
 
-A equação~\ref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias 
-móveis. A aplicação do filtro de médias móveis na série das leituras de CO2 
-apresentada anteriormente com $q$ igual a $2$ resulta na série apresentada 
-figura~\ref{fig:co2filtrado}.
+A \autoref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias móveis. A 
+aplicação do filtro de médias móveis na série das leituras de CO2 apresentada 
+anteriormente com $q$ igual a $2$ resulta na série apresentada 
+\autoref{fig:co2filtrado}.
 
 \begin{figure}
     \centering
@@ -314,7 +318,7 @@ figura~\ref{fig:co2filtrado}.
 Outra tarefa a ser observada em relação ao entendimento de tendência é a forma 
 qual é removida, para sua remoção o método mais simples para tal é fazer a 
 subtração por elemento com o seu antecessor, da forma como descrito na 
-equação~\ref{eq:diferenciacao}, normalmente uma única diferenciação é suficiente 
+\autoref{eq:diferenciacao}, normalmente uma única diferenciação é suficiente 
 porem em séries com componente sazonal podem vir a ser necessárias mais de uma 
 porem em um \textit{lag} diferente.
 
@@ -324,7 +328,7 @@ porem em um \textit{lag} diferente.
 \end{equation}
 
 Para dar um exemplo de diferenciação volto a série das leituras do CO2 e agora 
-realizando uma diferenciação, o resultado é visto na figura~\ref{fig:co2diff}, 
+realizando uma diferenciação, o resultado é visto na \autoref{fig:co2diff}, 
 especificamente neste exemplo percebemos que a série se aproximou de um ruido 
 branco porem ainda percebemos a componente de sazonalidade.
 
@@ -340,7 +344,7 @@ branco porem ainda percebemos a componente de sazonalidade.
 
 Conforme definido por \citeonline{ehlers} sazonalidade caracteriza repetições de 
 comportamento de uma série em um período $s$ de tempo. Podemos expressar uma 
-série sazonal usando a equação-\ref{eq:sazonal}
+série sazonal usando a \autoref{eq:sazonal}
 
 
 \section{Modelos probabilísticos}
@@ -353,15 +357,15 @@ esse modelo a partir das observações que temos de forma a generalizar para as
 futuras.
 
 O modelo comumente utilizado para essa tarefa é o ARIMA, descrito por 
-\citeonline{box}, descreve a série em três parâmetros $(p,d,q)$, sendo cada um 
-associado a um processo, sendo $p$ associado a processos autoregressivos, $r$ a 
-processos integrativos e $q$ a de médias móveis.
+\citeonline{box}, caracteriza a série em três parâmetros $(p,d,q)$, sendo cada 
+um associado a um processo, sendo $p$ associado a processos auto-regressivos, 
+$r$ a processos integrativos e $q$ a de médias móveis.
 
 \subsection{Função de autocorrelação}
 
 Na tarefa para obter os parâmetros precisamos identificar o comportamento da 
 série, uma ferramenta para isso é a função de autocorrelação descrita em 
-equação~\ref{eq:autocorrelacao} para a defasagem $k$.
+\autoref{eq:autocorrelacao} para a defasagem $k$.
 
 \begin{equation}
     \label{eq:autocorrelacao}
@@ -370,15 +374,17 @@ equação~\ref{eq:autocorrelacao} para a defasagem $k$.
 \end{equation}
 
 Segundo \citeonline{ehlers} a função de autocorrelação quando plotada para os 
-$k$ primeiros coeficientes é chamado de correlograma e este é usado para as 
-análises, para exemplo pode ser visto a figura~\ref{fig:correlogramaCo2} onde é 
-disposto as 25 primeiras \textit{lags} para as leituras de CO2 na atmosfera, 
-ainda segundo \citeonline{ehlers} temos de definir ao correlograma ainda os 
-limites de confiança, com o qual podemos considerar tudo que esteja acima desse 
-como uma correlação que deve ser analisada e abaixo desse limite será 
-desconsiderada, assim se todos as correlações estarem abaixo desse limite 
-podemos considerar a série como um ruído branco, para encontrar esse limite 
-\citeonline{ehlers} estipula a função $\pm{}1,96/:$.
+$k$ primeiros coeficientes é chamado de correlograma e este é uma ferramenta 
+importante para as análises, como exemplo pode ser visto a 
+\autoref{fig:correlogramaCo2} na qual é disposto as 25 primeiras defasagens das 
+leituras de concentração de CO2 na atmosfera, ainda segundo \citeonline{ehlers} 
+temos de definir ao correlograma o seu intervalo de confiança, com o qual 
+podemos considerar tudo que esteja acima desse como uma correlação que deve ser 
+analisada e abaixo desse limite será desconsiderada, assim se todos as 
+correlações estarem abaixo desse limite podemos considerar a série como um ruído 
+branco, para encontrar esse intervalo \citeonline{ehlers} recomenda utilizar a 
+seguinte equação $\pm{}1,96/\sqrt{n}$, onde $n$ é o número de observações da 
+série.
 
 \begin{figure}
     \centering
@@ -386,6 +392,193 @@ podemos considerar a série como um ruído branco, para encontrar esse limite
     CO2}\label{fig:correlogramaCo2}
     \includegraphics[width=.6\linewidth]{images/acf_co2.png}
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
+\end{figure}
+
+Pela \autoref{fig:correlogramaCo2} podemos concluir que as leituras do CO2 
+apresentam uma tendencia, e ainda por apresentar os valores todos positivos 
+percebemos que essa tendencia é crescente. Como a série possui tendência temos 
+de fazer uma diferenciação, como disposto na \autoref{sec:diff}, para remoção 
+dessa componente, vemos a série após essa diferenciação na \autoref{fig:co2diff} 
+e o correlograma após a diferenciação pode ser visto na 
+\autoref{fig:acfco2diff}, nesse novo gráfico é percebido que a componente da 
+tendencia foi realmente removida após uma diferenciação entretanto agora é bem 
+mais perceptível a componente sazonal da série, vemos isso pela alternância das 
+correlações observadas no correlograma.
+
+\begin{figure}
+    \centering
+    \caption{Gráfico de função de autocorrelação da diferenciação da série de 
+    CO2}\label{fig:acfco2diff}
+    \includegraphics[width=.6\linewidth]{images/acf_co2_diff.png}
+    \source{Elaborado pelo autor a partir de \citeonline{co2data}}
+\end{figure}
+
+% TODO: Citar as seções onde o correlograma é apresentada em outros cenários
+
+\subsection{ARIMA}
+
+\section{Aprendizado de Máquina}
+
+Segundo \citeonline{machineLearning} aprendizado de máquina é descrito como a 
+habilidade de algorítimos reconhecer padrões em um conjunto de dados.
+
+Esses padrões a serem encontrados permitirão que tarefas como as seguintes seja, 
+realizadas:
+\begin{itemize}
+    \item Classificação\\
+        É a tarefa de mapear uma entrada à uma \textit{tag}, como no exemplo na 
+        classificação dos números apresentada no inicio da seção. Podemos 
+        encontrar ainda exemplos do uso de aprendizado de máquina para 
+        classificação em diversos outros trabalhos, como 
+        \citeonline{artigoClassificacao} que utilizou redes neurais artificiais 
+        para realizar a classificação de imagens.
+    \item Regressão\\
+        Já a tarefa de regressão é aplicada quando precisamos mapear um conjunto 
+        de valores a uma saída em $ \mathbb{R} $, \citeonline{regressao} 
+        utilizou redes neurais artificiais para encontrar um modelo que 
+        permitisse a previsão da demanda de uso de energia elétrica, mapeando o 
+        carga atual e informações climáticas a carga futura.
+\end{itemize}
+
+Um exemplo de uso de aprendizado de máquina é a identificação de caracteres 
+numéricos escritos a mão, esse exemplo é apresentado por 
+\citeonline{machineLearning} e o descreve como um problema de classificação onde 
+uma imagem de dimensões $28 \times 28$ pixeis é dada como entrada em um 
+algorítimo e este deve atribuir uma classificação que descreve qual o número que 
+a figura representa, um conjunto de exemplo dessas imagens pode ser visto na 
+\autoref{fig:numeroClassi}.
+
+\begin{figure}
+    \centering
+    \caption{Exemplo de entrada para o algorítimo de 
+    classificação}\label{fig:numeroClassi}
+    \includegraphics[width=.6\linewidth]{images/numeroClassificacao.png}
+    \source{\citeonline{machineLearning}}
+\end{figure}
+
+\subsection{Redes Neurais artificiais}
+
+Segundo \citeonline{haykin} a pesquisa em redes neurais artificiais é motivada 
+pelo entendimento que o cérebro humano realiza o processamento de uma forma 
+completamente diferente dos computadores convencionais. Essa forma de de 
+realizar o processamento realizado pelo celebro é altamente complexa, não linear 
+e altamente paralela. A unidade de processamento e organização básica de um 
+celebro são os neurônios, e segundo \citeonline{haykin} este é várias vezes mais 
+rápido na realização de tarefas como reconhecimento de padrões que os 
+computadores digitais.
+
+Os animais já nascem com o cérebro possuindo certa estruturas que estes vão 
+precisar durante sua vida, porem este é concebido ainda de maneira muito 
+plastica, ou seja, possuindo ainda a capacidade de durante sua fase de 
+aprendizado ser capaz de se adaptar ao contexto em que vai se desenvolver. Este 
+mesmo conceito de plasticidade também será utilizado para a modelagem de redes 
+neurais artificiais~\cite{haykin}.
+
+\subsubsection{\textit{Perceptron}}
+
+Como já colocado, as redes neurais possuem um elemento de processamento, este é 
+em redes artificiais chamado de \textit{perceptron}, descrito primeiramente por
+
+% TODO: Algorítimo
+% TODO: MLP
+% TODO: Back Propaggation
+% TODO: Descida de Gradiente
+% TODO: Redes Recorrentes
+% TODO: - LSTM
+% TODO: - - Usos
+
+\subsubsection{MLP}
+
+\subsubsection{Adam}
+
+\chapter{Resultados e conclusões}
+
+Como forma de demonstrar e avaliar a capacidade dos métodos de previsão 
+colocados neste trabalho escolhemos uma série temporal que representa as vendas 
+semanais de uma rede farmácias germânica para avaliação, os dados foram obtidos 
+online\footnote{Kaggle \url{https://www.kaggle.com/c/rossmann-store-sales}}.
+
+Foram realizadas algumas etapas de pré processamento dos dados antes de obtermos 
+a série temporal necessária para a realização da previsão. Primeiramente foi 
+necessária a seleção de uma loja aleatoriamente, já que o conjunto de dados 
+obtidos nos traz dados de diversas lojas que compõe a rede. Foi selecionada 
+então de forma aleatória a loja de ID 67. Após selecionado foi então obtida uma 
+série temporal multivariada, entretanto a proposta deste trabalho é a avaliação 
+de previsões em séries univariadas, ou seja, embora o conjunto de entrada possua 
+mais informação que aquelas que serão utilizadas para previsão, estas serão 
+ignoradas. Então a série será composta somente dos números diários da quantidade 
+de vendas realizadas. O gráfico que apresenta a série a ser encontrado o modelo 
+é vista na \autoref{fig:serieRossman}.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico de observações das vendas diárias}\label{fig:serieRossman}
+    \includegraphics[width=.6\textwidth]{images/graficoRossman.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico contendo 3 semanas de observações para visualização do 
+    comportamento semanal da série}\label{fig:serieRossmanSemana}
+    \includegraphics[width=.6\textwidth]{images/graficoRossmanSemana.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+Observamos ainda na \autoref{fig:serieRossman} a existência de observações ditas 
+\textit{outliers}, leituras que estão fora do padrão esperado, isso ocorre 
+devido as observações serem diárias e a rede de farmácia não possuir expediente 
+aos domingos, pode ser visto de forma mais clara na 
+\autoref{fig:serieRossmanSemana}, nesses dias as leituras aparecerão zeradas e 
+assim gerando uma série que embora com maior números de observações possuirá uma 
+instabilidade, que aumenta consideravelmente a complexidade da previsão, para 
+transpor esse problema foi realizada a conversão de observações diárias para 
+semanais, somando a quantidade de vendas realizada em uma semana em única 
+observação agora semanal, que é vista na \autoref{fig:serieRossmanSemanal}.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico de observações semanais de 
+    vendas}\label{fig:serieRossmanSemanal}
+    \includegraphics[width=.6\textwidth]{images/graficoRossmanSemanal.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+\section{Aprendizado de máquina}
+
+\begin{figure}
+    \centering
+    \caption{Representação gráfica da rede neural artificial utilizada para 
+    avaliação}\label{fig:redeNeural}
+    \begin{tikzpicture}[
+            neuron/.style={circle, very thick, minimum size=15mm},
+            input/.style={draw=blue!60},
+            hidden/.style={draw=gray!60},
+            output/.style={draw=red!60},]
+
+        % Nodes entrada
+        \node[neuron, input]  (entrada1)   at (0, 5cm)   {$X_{t-1}$};
+        \node[neuron, input]  (entrada2)   at (0, 1cm)   {$X_{t}$};
+
+        % Nodes escondidos
+        \node[neuron, hidden] (escondido1) at (3cm, 6cm) {$H_1$};
+        \node[neuron, hidden] (escondido2) at (3cm, 4cm) {$H_2$};
+        \node[neuron, hidden] (escondido3) at (3cm, 2cm) {$\LARGE{\vdots}$};
+        \node[neuron, hidden] (escondido4) at (3cm, 0)   {$H_{12}$};
+
+        % Nodes Saída
+        \node[neuron, output] (saida)      at (6cm, 3cm) {$y_t$};
+
+        \foreach \dest in {1,...,4}
+            \path[->] (entrada1) edge (escondido\dest);
+
+        \foreach \dest in {1,...,4}
+            \path[->] (entrada2) edge (escondido\dest);
+
+        \foreach \dest in {1,...,4}
+            \path[->] (escondido\dest) edge (saida);
+    \end{tikzpicture}
+    \source{Elaborado pelo autor}
 \end{figure}
 
 \postextual
