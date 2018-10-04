@@ -1,9 +1,9 @@
 \documentclass[
-	12pt,
-	oneside,
-	a4paper,
-	english,
-	brazil
+    12pt,
+    oneside,
+    a4paper,
+    english,
+    brazil
 ]{abntex2}
 
 \usepackage{lmodern}
@@ -42,17 +42,17 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 
 \makeatletter
 \hypersetup{
-		pdftitle={\@title},
-		pdfauthor={\@author},
-		pdfsubject={\imprimirpreambulo},
-		pdfcreator={LaTeX with abnTeX2},
-		pdfkeywords={abnt}{latex}{abntex}{abntex2}{projeto de pesquisa},
-		colorlinks=true,	% false: boxed links; true: colored links
-		linkcolor=blue,		% color of internal links
-		citecolor=blue,		% color of links to bibliography
-		filecolor=magenta,	% color of file links
-		urlcolor=blue,
-		bookmarksdepth=4
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfcreator={LaTeX with abnTeX2},
+    pdfkeywords={abnt}{latex}{abntex}{abntex2}{projeto de pesquisa},
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=blue,         % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=blue,
+    bookmarksdepth=4
 }
 \makeatother
 
@@ -93,29 +93,30 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 
 Segundo \citeonline{wiley} prever é a tarefa de predizer valores futuros ou 
 eventos, é de grande importância para diversos setores incluindo governos e 
-industrias, podendo ser parte crucial na tomada de decisão fica evidente a 
-necessidade de se realizar boas previsões. No entanto, autores e organizações 
-renomadas já realizaram previsões que se demonstraram erradas, como exemplo 
-podemos citar The New York Times que previu em 1966 que em 2000 existiriam 
-somente 220.000 computadores nos Estados Unidos.
+industrias. Podendo ser parte crucial na tomada de decisão fica evidente a 
+necessidade de se realizar boas previsões. No entanto, autores e organizações já 
+realizaram previsões que se demonstraram erradas, como exemplo podemos citar The 
+New York Times que previu em 1966 que em 2000 existiriam somente 220.000 
+computadores nos Estados Unidos.
 
 Ainda conforme \citeonline{wiley} as previsões são classificadas como sendo de 
-curto, médio e longo prazo. Quando denominada de curto é previsto somente poucas 
-observações a frente, podendo ser contados em horas, dias ou semanas. Já 
-previsões de médio prazo podem se estender por algumas observações no futuro com 
-os passos podendo ser dados em meses ou anos, enquanto períodos maiores serão 
-chamados de longo prazo. Ainda segundo o autor, predições de médio e longo prazo 
-são mais difíceis e suscetíveis a fatores externos.
+curto, médio e longo prazo, sendo o prazo definido na frequência das 
+observações.  Quando denominada de curto é previsto somente poucas observações a 
+frente. Já previsões de médio prazo podem se estender por algumas observações no 
+futuro, enquanto períodos maiores serão chamados de longo prazo. Ainda conforme 
+o autor, predições de médio e longo prazo são mais difíceis e suscetíveis a 
+fatores externos.
 
 Em \citeonline{giebel2011state} o autor realiza a predição da geração de energia 
 eólica, a produção é dada em função da capacidade na região instalada, o vento, 
 no entanto, é um elemento volátil e sendo assim existirá momentos quais o uso de 
-outras fontes será necessária, no entanto, é preciso ter certo conhecimento 
-prévio, pois, o ligamento de uma usina como aquelas movidas a gasóleo podem 
-levar até duas horas. Logo prever duas horas a frente pode ser crucial para 
-garantir o abastecimento de energia a uma região, podendo impactar no cotidiano 
-e economia de uma população.
+outras fontes será necessária, contudo, é preciso ter certo conhecimento prévio, 
+pois, o ligamento de uma usina como aquelas movidas a gasóleo podem levar até 
+duas horas. Logo prever duas horas a frente pode ser crucial para garantir o 
+abastecimento de energia a uma região, podendo impactar no cotidiano e economia 
+de uma população.
 
+% FIXME Quero retirar essa parte
 Empresas se beneficiam de diversas formas ao aplicar previsões no seu processo 
 de tomada de decisão, em especial, durante tarefa de manutenção do estoque com 
 vista em maximizar a satisfação dos clientes e obtenção de lucros, ao suprir a 
@@ -123,7 +124,7 @@ demanda por seus produtos, impedindo que clientes se frustem em caso de
 desabastecimento, e impedir excedentes não vendidos. Considerando esta 
 necessidade, se propôs com base nos dados de vendas elaborar modelos que sejam 
 capazes de prever demandas futuras, fornecendo dados para corroborar na compra e 
-manutenção dos estoques, a informação se organizará na forma de uma série 
+manutenção dos estoques, esta informação se organiza na forma de uma série 
 temporal.
 
 % FIXME: Tá esquisito
@@ -134,7 +135,7 @@ Sendo essas observações separadas unicamente pelo tempo pode-se obter os dados
 em diferentes intervalos, como observações diárias, semanais ou ainda anuais.  
 Conforme \citeonline{ehlers} devido a caraterística estocástica, uma observação 
 é dada em função da anterior, é possível elaborar modelos que descrevem o 
-comportamento e permitem a prever os valores futuros.
+comportamento e permitam a predição dos valores futuros.
 
 \begin{figure}[ht]
     \centering
@@ -156,16 +157,17 @@ neurais artificiais por serem capazes de obter bons resultados conforme
 analisado por \citeonline{zhang}, o autor ainda apresenta outros exemplos quais 
 os autores obtiveram resultados superiores ao método estatístico.
 
-No \autoref{chap:fundTeor}, será apresentada a definição da atividade de 
-previsão seguido dos principais métodos de previsão de séries temporais 
-empregadas, sendo o primeiro, ARIMA, com abordagem estatística e o segundo 
-usando com base em métodos de aprendizado de máquina, sendo especificamente 
-descrito as redes neurais artificiais de múltiplas camadas. Após apresentado os 
-métodos, no \autoref{chap:desenv} conforme objetivos estabelecidos serão 
-propostos dois modelos, um utilizando o modelo probabilístico e o outro tendo 
-base o modelo neural. Com base nos modelos obtidos serão apresentados os 
-resultados no \autoref{chap:result} e finalizando com a discussão das métricas 
-obtidas no \autoref{chap:concl}.
+Esta monografia se organiza da seguinte forma, na \autoref{chap:fundTeor} será 
+apresentada a definição da atividade de previsão seguido dos principais métodos 
+de previsão de séries temporais empregadas, sendo o primeiro, ARIMA, com 
+abordagem estatística e o segundo usando com base em métodos de aprendizado de 
+máquina, sendo especificamente descrito as redes neurais artificiais de 
+múltiplas camadas. Após apresentado os métodos, no \autoref{chap:desenv} 
+conforme objetivos estabelecidos serão propostos dois modelos, um utilizando o 
+modelo probabilístico e o outro tendo base o modelo de inspiração biológica. Com 
+base nos modelos obtidos serão apresentados os resultados no 
+\autoref{chap:result} e finalizando com a discussão das métricas obtidas no 
+\autoref{chap:concl}.
 
 \chapter{Fundamentação teórica}\label{chap:fundTeor}
 
@@ -173,40 +175,41 @@ obtidas no \autoref{chap:concl}.
 Segundo \citeonline{wiley} podemos separar o processo de previsão em diversas 
 atividades, colocadas e detalhadas a seguir:
 
-\begin{itemize}
-	\item Definição do problema\\
-		Envolve definir e entender a tarefa de previsão a ser realizada,
+\begin{enumerate}
+    \item Definição do problema\\
+        Envolve definir e entender a tarefa de previsão a ser realizada, 
         considerando o prazo a ser previsto e definindo os dados necessários.
-	\item Coleta dos dados\\
-		Conforme definido na etapa anterior ocorrerá nessa atividade a coleta
-		dos dados.
-	\item Análise dos dados\\
-		Atividade de alta importância para a seleção do modelo mais adequado,
+    \item Coleta dos dados\\
+        Conforme definido na etapa anterior ocorrerá nessa atividade a coleta
+        dos dados.
+    \item Análise dos dados\\
+        Atividade de alta importância para a seleção do modelo mais adequado, 
         nessa etapa é utilizada de observações gráficas e extração de 
         características para identificar padrões que corroborem na escolha dos 
         parâmetros. Ainda ocorrerá a identificação de observações problemáticas 
         e corrigidas.
-	\item Seleção e verificação do modelo\\
+    \item Seleção e verificação do modelo\\
         Conforme analisado será selecionado o modelo, analisando também o 
         comportamento com os dados fornecidos. Como método de verificação será 
         utilizado métricas que permitam comparar com outros modelos.
-	\item Avaliação do modelo\\
+    \item Avaliação do modelo\\
         Etapa para avaliar como o modelo se comportará com novos dados, 
         normalmente é realizado com observações extraídas dos dados utilizados 
         nas etapas anteriores, porem a parte separada terá somente esta 
         finalidade.
-	\item Publicação do modelo\\
+    \item Publicação do modelo\\
         Com o modelo devidamente selecionado e avaliado é instalado em ambiente 
         de produção, tendo que observar as alterações necessárias para que novos 
         dados sejam inseridos corretamente.
     \item Monitoramento do desempenho do modelo\\
         Deve-se continuamente avaliar como o modelo aplicado se comporta em 
         relação ao ambiente, já que o ambiente é algo volátil.
-\end{itemize}
+\end{enumerate}
 
-Vale-se notar que após a tarefa de avaliação se essa resultar em um valor 
-insatisfatório deve-se retornar a fase anterior e refeita a avaliação até que um 
-modelo que obedeça às especificações seja encontrado.
+As atividades normalmente são empregadas em ordem semelhante a exposta. Vale-se 
+ainda observar que após a tarefa de avaliação, se essa resultar em um valor 
+insatisfatório, deve-se retornar a fase anterior e refeita a avaliação até que 
+um modelo que obedeça às especificações seja encontrado.
 
 \section{Séries temporais}
 
@@ -216,8 +219,8 @@ suas observações serem dependentes das observações anteriores. Demonstram
 características como tendência e sazonalidade, sendo que a primeira capaz de 
 conferir a série um comportamento lento que pode levar a observações futuras com 
 valores menores ou maiores e a segunda característica impõe a ela padrão que 
-apresente ciclos, podendo ser estes semanais, mensais, anuais ou um período 
-qualquer de tempo.
+apresente ciclos, sendo estes dados em função do tempo, comumente tomando como 
+períodos semanais, mensais ou anuais.
 
 Uma série é descrita matematicamente pelo conjunto $\{X(t): t \in T\}$, podendo 
 ser $t$ um tempo contínuo ou discreto, sendo continuo quando se possui as 
@@ -232,8 +235,8 @@ nos fornece a tendência, $C$ a sazonalidade, já $R$ é a componente aleatória
 caracterizada por possuir média zero, denotada como ruído branco.
 
 \begin{equation}
-	\label{eq:timeseries}
-	X_t = T_t + C_t + R_t
+    \label{eq:timeseries}
+    X_t = T_t + C_t + R_t
 \end{equation}
 
 \subsection{Série estacionária}
@@ -243,14 +246,15 @@ Um conceito importante em séries é o caráter estacionário, e segundo
 distribuição de probabilidade conjunta de $X(t_1), \ldots, X(t_k)$ igual de 
 $X(t_1 + \tau), \ldots, X(t_k + \tau)$.
 
-Ainda segundo \citeonline{ehlers} a definição dada é dificilmente aplicada, 
-então usamos a definição de fracamente estacionaria para definir se é 
-estacionária, definindo então com base no critério de possuir função média 
-constante.
+Ainda segundo \citeonline{ehlers} a definição estrita dada é dificilmente 
+aplicada, então usualmente é aplicada a definição de fracamente estacionaria 
+para definir se é estacionária, definindo então com base no critério de possuir 
+função média constante.
 
 Em outras palavras, o deslocamento da origem do tempo $t$ por uma quantidade 
 $\tau$ não exerce efeito na distribuição conjunta da série, assim o valor 
-esperado para a série em determinado não será dada em função do tempo.
+esperado para a série em determinado não será dada unicamente em função do 
+tempo.
 
 A \autoref{fig:co2diff} é um exemplo de série estacionária encontrada utilizando 
 o processo de diferenciação que será descrita na \autoref{sec:diff}.
@@ -265,13 +269,13 @@ $\epsilon{}_t$ o erro. Sendo que $\beta{}$ define a taxa de crescimento da
 série, assim podemos entender $\beta$ da forma $\beta = x_t - x_{t-1}$.
 
 \begin{equation}
-	\label{eq:tendencia}
-	X_t = \alpha + \beta{}t + \epsilon{}_t
+    \label{eq:tendencia}
+    X_t = \alpha + \beta{}t + \epsilon{}_t
 \end{equation}
 
 Este entendimento de série com tendencia segundo \citeonline{ehlers} permite 
-encontrar uma função polinomial que represente a série, no caso esta função 
-teria a forma da \autoref{eq:tendenciaSerie}.
+encontrar uma função polinomial que represente a série, no caso esta toma a 
+forma da \autoref{eq:tendenciaSerie}.
 
 \begin{equation}
     \label{eq:tendenciaSerie}
@@ -293,10 +297,10 @@ anual.
 
 \subsubsection{Filtros}
 
-Em algumas séries a tendência pode não estar evidente devido à flutuações, 
-nesses casos é comum a aplicação de um filtro que tem como objetivo obter uma 
-série suavizada que possibilite observar a tendência, esse filtro é da forma da 
-\autoref{eq:filtro}\cite{ehlers}.
+Em algumas séries a tendência pode não estar evidente devido à flutuações, sendo 
+assim necessária a aplicação de filtros que tem como objetivo obter uma série 
+suavizada que possibilite observar a tendência, um desses filtros é apresentado 
+na \autoref{eq:filtro}\cite{ehlers}.
 
 \begin{equation}
     \label{eq:filtro}
@@ -429,8 +433,6 @@ isso pela alternância das correlações observadas no correlograma.
 %cenários
 
 \subsection{ARIMA}
-
-
 
 \section{Aprendizado de Máquina}
 
