@@ -46,10 +46,10 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
     pdfauthor={\@author},
     pdfsubject={\imprimirpreambulo},
     pdfcreator={LaTeX with abnTeX2},
-    pdfkeywords={abnt}{latex}{abntex}{abntex2}{projeto de pesquisa},
+    pdfkeywords={séries temporais}{arima}{aprendizado de máquina}{redes neurais},
     colorlinks=true,        % false: boxed links; true: colored links
-    linkcolor=blue,         % color of internal links
-    citecolor=blue,         % color of links to bibliography
+    linkcolor=red,         % color of internal links
+    citecolor=green,         % color of links to bibliography
     filecolor=magenta,      % color of file links
     urlcolor=blue,
     bookmarksdepth=4
@@ -94,9 +94,10 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 Segundo \citeonline{wiley} prever é a tarefa de predizer valores futuros ou
 eventos, é de grande importância para diversos setores incluindo governos e
 industrias. Sendo parte crucial na tomada de decisão fica evidente a
-necessidade de se realizar boas previsões. No entanto, autores e organizações
-já realizaram previsões que se demonstraram erradas, como exemplo podemos citar
-o The New York Times que previu em 1966 que em 2000 existiriam somente 220.000
+necessidade de se realizar boas previsões. No entanto, essa tarefa muitas vezes
+pode ser extremamente complexa, muitos autores e organizações já realizaram
+previsões que se demonstraram erradas, como exemplo podemos citar o The New
+York Times que previu em 1966 que em 2000 existiriam somente 220.000
 computadores nos Estados Unidos.
 
 Ainda conforme \citeonline{wiley} as previsões são classificadas como sendo de
@@ -107,25 +108,23 @@ no futuro, enquanto períodos maiores serão chamados de longo prazo. Ainda
 conforme o autor, predições de médio e longo prazo são mais difíceis e
 suscetíveis a fatores externos.
 
-Em \citeonline{giebel2011state} o autor realiza a predição da geração de
-energia eólica, a produção é dada em função da capacidade na região instalada,
-o vento, no entanto, é um elemento volátil e sendo assim existirá momentos
-quais o uso de outras fontes será necessária, contudo, é preciso ter certo
-conhecimento prévio, pois, o ligamento de uma usina como aquelas movidas a
-gasóleo podem levar até duas horas. Logo prever duas horas a frente pode ser
-crucial para garantir o abastecimento de energia a uma região, podendo impactar
-no cotidiano e economia de uma população.
+% FIXME Acredito que deveria estar nos trabalhos relacionados
+%Em \citeonline{giebel2011state} o autor realiza a predição da geração de
+%energia eólica, a produção é dada em função da capacidade na região instalada,
+%o vento, no entanto, é um elemento volátil e sendo assim existirá momentos
+%quais o uso de outras fontes será necessária, contudo, é preciso ter certo
+%conhecimento prévio, pois, o ligamento de uma usina como aquelas movidas a
+%gasóleo podem levar até duas horas. Logo prever duas horas a frente pode ser
+%crucial para garantir o abastecimento de energia a uma região, podendo
+%impactar no cotidiano e economia de uma população.
 
-% FIXME Quero retirar essa parte
-Empresas se beneficiam de diversas formas ao aplicar previsões no seu processo
-de tomada de decisão, em especial, durante tarefa de manutenção do estoque com
-vista em maximizar a satisfação dos clientes e obtenção de lucros, ao suprir a
-demanda por seus produtos, impedindo que clientes se frustem em caso de
-desabastecimento, e impedir excedentes não vendidos. Considerando esta
-necessidade, se propôs com base nos dados de vendas elaborar modelos que sejam
-capazes de prever demandas futuras, fornecendo dados para corroborar na compra
-e manutenção dos estoques, esta informação se organiza na forma de uma série
-temporal.
+Para a realização da previsão é necessário ter uma grande compreensão do que se
+quer prever, sendo necessário organizar a informação de uma forma a evidenciar
+a dependência dos dados com seus estados anteriores, para isso podemos
+apresentar essas informações na forma de uma série temporal e a partir dessa
+realizar medições e produzir modelos, que deverão ser capazes de expressar
+matematicamente o comportamento da série em função de suas observações
+anteriores, permitindo obter predições de estados futuros.
 
 % FIXME: Tá esquisito
 As séries temporais, segundo \citeonline{wiley} são compostas de observações
@@ -133,9 +132,8 @@ sequenciais ao longo do tempo, como exemplo, podemos observar a série na
 \autoref{serie0}, que foi gerada utilizando um processo de caminhada aleatória.
 Sendo essas observações separadas unicamente pelo tempo pode-se obter os dados
 em diferentes intervalos, como observações diárias, semanais ou ainda anuais.
-Conforme \citeonline{ehlers} devido a caraterística estocástica, uma observação
-é dada em função da anterior, sendo assim possível elaborar modelos que
-descrevem o comportamento e permitam a predição dos valores futuros.
+Conforme \citeonline{ehlers} devido a caraterística estocástica uma observação
+é definida por ser dada em função de suas antecessoras.
 
 \begin{figure}[ht]
     \centering
@@ -144,19 +142,34 @@ descrevem o comportamento e permitam a predição dos valores futuros.
     \source{Elaborado pelo autor}
 \end{figure}
 
+Considerando então que a série apresentará comportamento estocástico podemos
+propor modelos que serão capazes de aproximar o comportamento da série, e os
+modelos comumente utilizados nessa tarefa são aqueles probabilísticos, mais
+especificamente o proposto por \citeonline{box} conhecido por ARIMA\@. Em
+contrapartida podemos apresentar modelos utilizando aprendizado de máquina para
+expressar essas séries que vem se apresentando como uma alternativa poderosa em
+muitas aplicações.
+
+Com o constante interesse na aplicação e identificação das capacidades de
+técnicas de aprendizado é evidente a importância de observar como esse
+modelo se compara com aqueles estatísticos. Como forma de identificar essa
+diferença e buscar compreender as técnicas esse trabalho realizou a previsão de
+uma série de característica econômica utilizando ambas metodologias.
+
 % TODO: Introduzir modelos ARIMA com exemplos de artigos
 
-Em contrapartida, técnicas de aprendizado de máquinas estão se tornando cada
-vez mais notórias pelos bons resultados que oferecem. \citeonline{artigoEx3}
-aplicou métodos de aprendizado de máquina possibilitando a previsão com bons
-resultados.  Pelo fato dos modelos estatísticos fornecerem resultados
-satisfatórios para predições e estarem bem difundidos na comunidade acadêmica,
-é comum que trabalhos como \citeonline{artigoEx4} compare os resultados obtidos
-a partir de aprendizado de máquina com modelos de abordagem estatísticas. Para
-modelos de aprendizado se destaca aqueles com uso de redes neurais artificiais
-por serem capazes de obter bons resultados conforme analisado por
-\citeonline{zhang}, o autor ainda apresenta outros exemplos quais os autores
-obtiveram resultados superiores ao método estatístico.
+% FIXME Mais adequado na parte de trabalhos relacionados
+%vez mais notórias pelos bons resultados que oferecem. \citeonline{artigoEx3}
+%Em contrapartida, técnicas de aprendizado de máquinas estão se tornando cada
+%aplicou métodos de aprendizado de máquina possibilitando a previsão com bons
+%resultados.  Pelo fato dos modelos estatísticos fornecerem resultados
+%satisfatórios para predições e estarem bem difundidos na comunidade acadêmica,
+%é comum que trabalhos como \citeonline{artigoEx4} compare os resultados
+%obtidos a partir de aprendizado de máquina com modelos de abordagem
+%estatísticas. Para modelos de aprendizado se destaca aqueles com uso de redes
+%neurais artificiais por serem capazes de obter bons resultados conforme
+%analisado por \citeonline{zhang}, o autor ainda apresenta outros exemplos
+%quais os autores obtiveram resultados superiores ao método estatístico.
 
 Esta monografia se organiza da seguinte forma, na \autoref{chap:fundTeor} será
 apresentada a definição da atividade de previsão seguido dos principais métodos
@@ -167,7 +180,7 @@ múltiplas camadas. Após apresentado os métodos, no \autoref{chap:desenv}
 conforme objetivos estabelecidos serão propostos dois modelos, um utilizando o
 modelo probabilístico e o outro tendo base o modelo de inspiração biológica.
 Com base nos modelos obtidos serão apresentados os resultados no
-\autoref{chap:result} e finalizando com a discussão das métricas obtidas no
+\autoref{chap:result} e finalizando com a discussão dos resultados obtidos no
 \autoref{chap:concl}.
 
 \chapter{Fundamentação teórica}\label{chap:fundTeor}
@@ -218,7 +231,7 @@ Como já disposto anteriormente, séries temporais são observações sucessivas
 longo do tempo. Retomamos ainda que essas séries se caracterizam pelo fato de
 suas observações serem dependentes das observações anteriores. Demonstram
 características como tendência e sazonalidade, sendo que a primeira capaz de
-conferir a série um comportamento lento que pode levar a observações futuras
+conferir a série um lento comportamento que pode levar a observações futuras
 com valores menores ou maiores e a segunda característica confere a ela padrão
 que pode vir a apresentar ciclos dados em função do tempo, comumente tomando
 períodos semanais, mensais ou anuais.
@@ -265,22 +278,29 @@ Em outras palavras, o deslocamento da origem do tempo $t$ por uma quantidade
 $\tau$ não exerce efeito na distribuição conjunta da série, assim o valor
 esperado para a série em determinado momento não será dada em função do tempo.
 
+%TODO Adicionar referência ao Livro Time Series by exmples
+
+%TODO Adicionar referência ao teste de Dockey Fuller
+
+
 A \autoref{fig:co2diff} é um exemplo de série estacionária encontrada ao
 aplicar o processo de diferenciação na série apresentada na \autoref{fig:co2},
-este processo está descrito na \autoref{sec:diff}.
+este processo está descrito na \autoref{sec:diff}. Segundo
+\citeonline{tsExample} embora exista testes como o de Dikey Fuller descrito em
+\citeonline{dickey} para a prova de estacionáriedade, é suficiente a observação
+gráfica da série.
 
 \subsection{Tendência}
 
-Segundo \citeonline{ehlers} não existe uma definição precisa de tendência, mas
+Segundo \citeonline{ehlers} não existe uma definição exata de tendência, mas
 normalmente é associado ao comportamento de mudança das observações ao longo de
 um vasto período. Uma série com tendência pode ser descrita como uma função
-apresentada na \autoref{eq:tendencia}, $\alpha$ e $\beta{}$ coeficientes e
-$\epsilon{}_t$ o erro. Sendo que $\beta{}$ define a taxa de crescimento da
-série, assim podemos entender $\beta$ da forma $\beta = x_t - x_{t-1}$.
+apresentada na \autoref{eq:tendencia}, $\alpha$ e $\beta$ coeficientes e
+$\epsilon_t$ o erro. Sendo que $\beta$ define a taxa de crescimento da série,
+assim podemos entender $\beta$ da forma $\beta = x_t - x_{t-1}$.
 
 \begin{equation}
-    \label{eq:tendencia}
-    X_t = \alpha + \beta{}t + \epsilon{}_t
+    \label{eq:tendencia} X_t = \alpha + \beta_t + \epsilon_t
 \end{equation}
 
 Este entendimento de série com tendencia segundo \citeonline{ehlers} já permite
@@ -295,8 +315,8 @@ forma da \autoref{eq:tendenciaSerie}.
 Para exemplificar uma série temporal real que apresente tendência e
 sazonalidade podemos apresentar o gráfico na \autoref{fig:co2}, este apresenta
 a mudança na concentração de $CO_2$ na atmosfera, no caso esta é uma série de
-um dado natural e é fácil notar a tendência de crescimento e sua sazonalidade
-com período anual.
+característica natural, é fácil notar a tendência de crescimento e sua
+sazonalidade de periodicidade anual.
 
 \begin{figure}
     \centering
@@ -307,10 +327,10 @@ com período anual.
 
 \subsubsection{Filtros}
 
-Em algumas séries a tendência pode não estar evidente devido à flutuações,
-sendo assim necessária a aplicação de filtros que tem como objetivo obter uma
-série suavizada que possibilite observar a tendência, um desses filtros é
-apresentado na \autoref{eq:filtro}\cite{ehlers}.
+Em algumas séries a tendência pode não estar evidente devido à flutuações, por
+conta disso pode vir a ser necessário a aplicação de filtros que tem como
+objetivo obter uma série suavizada que possibilite observar a tendência, um
+desses filtros é apresentado na \autoref{eq:filtro}\cite{ehlers}.
 
 \begin{equation}
     \label{eq:filtro}
@@ -329,7 +349,7 @@ conforme a \autoref{eq:yjfiltro}.
 
 A \autoref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias móveis. A
 aplicação do filtro de médias móveis na série das leituras de $CO_2$ resulta na
-\autoref{fig:co2filtrado}, que demonstra de forma independente a tendência da
+\autoref{fig:co2filtrado}, que evidencia de forma independente a tendência da
 série após removido a sazonalidade.
 
 \begin{figure}
@@ -345,7 +365,7 @@ série após removido a sazonalidade.
 
 Outra tarefa a ser observada em relação ao entendimento de tendência é a forma
 qual é removida, para sua remoção o método mais simples para tal é fazer a
-subtração do elemento com o seu antecessor, da forma como descrito na
+subtração do valor observado com o seu antecessor, da forma como descrito na
 \autoref{eq:diferenciacao}, normalmente uma única diferenciação é suficiente
 porem em séries com componente sazonal podem vir a ser necessárias mais de uma
 em um \textit{lag} diferente.
@@ -369,20 +389,20 @@ sazonal.
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
-%\subsection{Sazonalidade}
-%
-%Conforme definido por \citeonline{ehlers} sazonalidade caracteriza repetições de
-%comportamento de uma série em um período $s$ de tempo. Podemos expressar uma
-%série sazonal usando a \autoref{eq:sazonal}
+\subsection{Sazonalidade}
 
-% TODO: Falta um tanto aqui
+Conforme definido por \citeonline{ehlers} sazonalidade caracteriza repetições
+de comportamento de uma série em um período $s$ de tempo. Normalmente é
+facilmente observado na representação gráfica da série.
 
 \section{Modelos probabilísticos}
 
 Como já disposto, as séries temporais podem ser previstas utilizando de modelos
 estatísticos, isso segundo \citeonline{ehlers} ocorre devido ao seu caráter
 estocástico por conta de cada observação possuir correlação com as observações
-antecessoras.
+imediatamente antecessoras diferentemente de séries determinísticas, quais tem
+seu estado definido por uma função matemática ou um sistema onde a saída só é
+dependente das entradas atuais.
 
 O modelo comumente utilizado para essa tarefa é o ARIMA, descrito por
 \citeonline{box}, caracteriza a série em três parâmetros $(p,d,q)$, sendo cada
@@ -395,8 +415,15 @@ entre eles a analise da função de autocorrelação.
 \subsection{Função de autocorrelação}\label{sec:corre}
 
 Durante a parametrização precisaremos identificar o comportamento da série, uma
-ferramenta para isso é a função de autocorrelação descrita em
-\autoref{eq:autocorrelacao} para a defasagem $k$.
+ferramenta para isso é a função de autocorrelação, com base na correlação entre
+duas séries $X$ e $Y$, podemos obter a correlação de uma série com defasagem
+$k$, sendo essa defasagem a distância entre o valor analisado $X_t$ a
+observação $X_{t-k}$.
+
+Assim podemos obter a função de autocorrelação para uma série de 100 elementos
+ao considerar que a série $X$ é os 99 primeiros elementos e $Y$ os 99 últimos
+elementos. Assim a função de autocorrelação será dada segundo
+\autoref{eq:autocorrelacao}.
 
 \begin{equation}
     \label{eq:autocorrelacao}
@@ -448,6 +475,73 @@ correlograma.
 %cenários
 
 \subsection{ARIMA}
+
+O modelo ARIMA já introduzido na seção anterior possui três parâmetros
+essenciais $(p,q,d)$ sendo $p$ repensável por definir o numero de observações
+considerados no processo auto regressivo, $q$ o numero de diferenciações
+necessárias para a remoção da tendencia e $d$ o numero de termos no processo de
+medias móveis.
+
+\subsubsection{AR -- Processo auto regressivo}
+
+% TODO Melhor descrição da forma que é encontrado os coeficientes e a
+% utilização do ACF e PACF para identificação do p
+
+Segundo \citeonline{ehlers} um processo $X_t$ é chamado auto regressivo de
+ordem $p$, ou $AR(p)$, quando temos $X_t$ dado segundo a
+\autoref{eq:aregressivo}.
+
+\begin{equation}
+    \label{eq:aregressivo}
+    X_t = \alpha_1X_{t-1}+\epsilon_t
+\end{equation}
+
+Como observado na \autoref{eq:aregressivo} é um modelo útil se for razoável
+assumir que o valor atual depende somente de seus antecessores imediatos mais
+um erro aleatório.
+
+\subsubsection{MA -- Processo de médias móveis}
+
+% TODO Melhor descrição da forma que é encontrado os coeficientes e a
+% utilização do ACF e PACF para identificação do q
+
+Segundo \citeonline{timeseriesExample} o processo de médias móveis é dado como
+a média dos termos passados e correntes e pode ser descrito matematicamente
+segunda a \autoref{eq:pmediasmoveis}.
+
+\begin{equation}
+    \label{eq:pmediasmoveis}
+    X_t = \epsilon_t - \theta_1\epsilon_{t-1} - \theta_2\epsilon_{t-2} - \theta_{q}\epsilon_{t-q}
+\end{equation}
+
+Onde os valores de $\theta$ serão dados após análise da série.
+
+\subsubsection{ARMA -- Modelo misto}
+
+Combinando o processo AR e MA podemos obter um modelo extremamente útil para
+descrever séries temporais. E a união dos modelos pode ser expressa pela
+\autoref{eq:arma}.
+
+%\begin{equation}
+%    \label{eq:arma}
+%    X_t = 
+
+\subsubsection{Integração}
+
+Em séries não estacionarias, segundo a definição dada na
+\autoref{sec:estacionaria}, é necessário a transformação em uma série
+estacionaria, isso pode ser simplesmente realizado utilizando o método descrito
+na \autoref{sec:diferenciacao}, assim podemos aplicar de forma adequada o
+procedimento de \citeonline{box} para produzir um modelo probabilístico que
+poderá ser utilizado na atividade de previsão da série.
+
+% TODO Referencias??
+Normalmente uma diferenciação é suficiente para remover a tendencia de uma
+série e a transformar em uma série estacionária, entretanto em séries que
+apresentem a componente sazonal pode vir a ser necessária a aplicação de duas
+ou mais diferenciações e em casos da aplicação de modelos SARIMA essa
+diferenciação é aplicada com uma intervalo $l$, com esse valor sendo dado pela
+sazonalidade da série.
 
 \section{Aprendizado de Máquina}
 
