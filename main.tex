@@ -522,9 +522,10 @@ Combinando o processo AR e MA podemos obter um modelo extremamente útil para
 descrever séries temporais. E a união dos modelos pode ser expressa pela
 \autoref{eq:arma}.
 
-%\begin{equation}
-%    \label{eq:arma}
-%    X_t = 
+\begin{equation}
+    \label{eq:arma}
+    X_t = \mu + \sum_{j=-q}^{q}\sum_{i = 1}^{p} \phi{}x_{t-i}+\epsilon_t+\sum{i = 0}{q}\theta_i\epsilon_{t-i}
+\end{equation}
 
 \subsubsection{Integração}
 
@@ -543,13 +544,56 @@ ou mais diferenciações e em casos da aplicação de modelos SARIMA essa
 diferenciação é aplicada com uma intervalo $l$, com esse valor sendo dado pela
 sazonalidade da série.
 
+\subsection{Seleção do modelo}
+
+De acordo com \citeonline{box} a identificação do modelo pode ser feita
+a partir da análise gráfica da FAC e PACF, podendo contar com a ajuda de outros
+testes para validação da estacionariedade da série.
+
+O modo que \citeonline{box} desenvolveu análise o comportamento da correlação
+de forma que para identificar a ordem do AR, $p$, é suficiente analisar se o
+gráfico do FAC apresenta decaimento exponencial e PACF apresenta uma quebra a
+partir do elemento $p$ do gráfico. Já a identificação da ordem do processo de
+médias móveis é feita de modo análogo, porem o $q$ é dado pela elemento que
+apresenta a quebra no gráfico do FACP enquanto o gráfico do FAC apresenta
+decaimento exponencial.
+
+Se não for possível identificar a série a partir deste procedimento, pode ser
+que a série apresente tendencia ou sazonalidade. No caso de existir tendência é
+necessária a realização de uma ou mais diferenciação na série, $d$, com essa nova
+série agora estacionaria é refeito as verificações e determinadas as ordens.
+
+No caso acima o modelo obtido ou é da forma $AR(p)$ ou $MA(q)$ porem em casos
+de modelos hibridos os gráficos devem apresentar comportamento de decaimento a
+partir do $p$ para o FAC e $q$ para FACP\@.
+
+Porem, segundo \citeonline{vinay} essa forma nos fornece modelos que servem
+somente como uma boa aproximação, para determinação de um modelo realmente
+eficiente pode ser necessário a execução de um grande número de testes
+exaustivos e selecionar aquele modelo que apresente modelo parcimonioso e que
+gere um bom resultado.
+
+\subsection{Determinação dos coeficientes}
+Por fim, para completa construção do modelo apresentado na \autoref{eq:arima} é
+necessario a obtenção dos coeficientes tanto do processo autoregressivo tanto
+do de médias movéis. Para essa tarefa \citeonline{vinay} apresenta a
+\autoref{eq:coef} que serve tanto para determinação dos coeficientes de ambos
+processos.
+
+\begin{equation}
+    \label{eq:coef}
+    \alpha = inv(M_A^T M_A) M_A^T M_B
+\end{equation}
+
+A matriz $M_A$ e $M_B$ são dadas da seguinte forma.
+
 \section{Aprendizado de Máquina}
 
 Segundo \citeonline{machineLearning} aprendizado de máquina é descrito como a
 habilidade de algorítimos reconhecer padrões em um conjunto de dados.
 
-Esses padrões a serem encontrados permitirão que tarefas como as seguintes
-seja, realizadas:
+Essa detecção de padrões permitem, por exemplo, a realização das seguintes
+atividades.
 \begin{itemize}
     \item Classificação\\
         É a tarefa de mapear uma entrada a uma \textit{tag}, como no exemplo na
@@ -567,11 +611,18 @@ seja, realizadas:
         carga futura.
 \end{itemize}
 
+E sendo ainda hoje considerada a era da informação, e os dados que antes eram
+acessíveis somente a corporações estão hoje disponíveis, isso tudo acompanhado
+do aumento de fonte dados que vão desde estatísticas de acessos a um site a
+sensores espalhados pelo globo. Logo, o estudo desses dados e a capacidade de
+se tomar decisões embasadas vem se tornando cada vez mais
+relevante.\cite{ethem}
+
 Um exemplo de uso de aprendizado de máquina é a identificação de caracteres
 numéricos escritos a mão, esse exemplo é apresentado por
 \citeonline{machineLearning} e o descreve como um problema de classificação no
 qual uma imagem de dimensões $28 \times 28$ pixeis é dada como entrada em um
-algorítimo e este deve atribuir uma classificação que descreve qual o número
+sistema e este deve atribuir uma classificação que descreve qual o número
 que a figura representa, um conjunto de exemplo dessas imagens pode ser visto
 na \autoref{fig:numeroClassi}.
 
@@ -579,9 +630,21 @@ na \autoref{fig:numeroClassi}.
     \centering
     \caption{Exemplo de entrada para o algorítimo de
         classificação}\label{fig:numeroClassi}
-    \includegraphics[width=.6\linewidth]{images/numeroClassificacao.png}
+    \includegraphics[width=.5\linewidth]{images/numeroClassificacao.png}
     \source{\citeonline{machineLearning}}
 \end{figure}
+
+No exemplo apresentado na \autoref{fig:numeroClassi} podemos entender a
+atividade como um sistema onde $x$ é a entrada e $\hat{y}$ a saída do sistemas,
+de forma matemática podemos expressar da forma vista na \autoref{eq:sisCla}. A
+saída será na forma de um conjunto de números variando de 0 a 1 expressando a
+probabilidade de $x$ pertencer a a classe $\hat{y}_i$ onde $i$ é o índice do
+conjunto.
+
+\begin{equation}
+    \label{eq:sisCla}
+    f(x) = \hat{y}
+\end{equation}
 
 \subsection{Redes Neurais artificiais}
 
@@ -623,6 +686,8 @@ entradas, $x_i$.
 \subsubsection{MLP}
 
 \subsubsection{Adam}
+
+\section{Métricas de avaliação}
 
 \chapter{Desenvolvimento}\label{chap:desev}
 
@@ -725,7 +790,9 @@ semanal apresentado na \autoref{fig:serieRossmanSemanal} teremos a seguinte
 
 \section{Aprendizado de máquina}
 
-Diferentemente do ARIMA, redes neurais artificiais não foram elaboradas com a
+Diferentementr do ARIMA, redes neurais artificiais não foram elaboradas com a
+r: target STRING not available
+
 visão na aplicação de previsão de séries temporais, na verdade seu uso é muito
 mais abrangente que este, no entanto, se considerarmos o problema de previsão
 de redes neurais como um problema de regressão poderemos modelar a rede neural
