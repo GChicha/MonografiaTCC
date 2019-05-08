@@ -91,22 +91,17 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 
 \chapter{Introdução}
 
-Segundo \citeonline{wiley} prever é a tarefa de predizer valores futuros ou
-eventos, é de grande importância para diversos setores incluindo governos e
-industrias. Sendo parte crucial na tomada de decisão fica evidente a
-necessidade de se realizar boas previsões. No entanto, essa tarefa muitas vezes
-pode ser extremamente complexa, muitos autores e organizações já realizaram
-previsões que se demonstraram erradas, como exemplo podemos citar o The New
-York Times que previu em 1966 que em 2000 existiriam somente 220.000
-computadores nos Estados Unidos.
+%VALERIA: Evite usar a 1a pessoa no texto ("podemos..., fizemos...", etc.). Embora essa forma seja comum na escrita científica em inglês, em português não é usual. Eu já corrigi essa questão em toda a parte revisada (até o início dos modelos probabilísticos). Por favor, corrija no restante.
 
-Ainda conforme \citeonline{wiley} as previsões são classificadas como sendo de
+Segundo \citeonline{wiley} prever é a capacidade de predizer valores ou eventos futuros e constitui uma tarefa de grande importância para diversos setores, incluindo governos e
+industrias. Uma vez que tal capacidade é parte crucial na tomada de decisão, fica evidente a necessidade de se realizar boas previsões. No entanto, fazer boas previsões pode ser uma tarefa extremamente complexa. Muitos autores e organizações já realizaram
+previsões que, com o decorrer do tempo, se mostraram erradas, como no caso do The New
+York Times, que previu em 1966 que existiriam somente 220.000 computadores nos Estados Unidos no ano 2000.
+
+Ainda conforme \citeonline{wiley}, as previsões são classificadas como sendo de
 curto, médio e longo prazo, sendo o prazo definido na frequência das
-observações.  Quando denominada de curto é previsto somente poucas observações
-a frente. Já previsões de médio prazo podem se estender por algumas observações
-no futuro, enquanto períodos maiores serão chamados de longo prazo. Ainda
-conforme o autor, predições de médio e longo prazo são mais difíceis e
-suscetíveis a fatores externos.
+observações. Quando denominadas de curto prazo, são previstas poucas observações a frente do tempo atual. Já previsões de médio prazo podem se estender por algumas observações no futuro. Por fim, previsões que envolvem um período maior no futuro são chamadas de longo prazo. Ainda
+conforme o autor, predições de médio e longo prazo são mais difíceis de se realizar e suscetíveis a fatores externos.
 
 % FIXME Acredito que deveria estar nos trabalhos relacionados
 %Em \citeonline{giebel2011state} o autor realiza a predição da geração de
@@ -118,22 +113,16 @@ suscetíveis a fatores externos.
 %crucial para garantir o abastecimento de energia a uma região, podendo
 %impactar no cotidiano e economia de uma população.
 
-Para a realização da previsão é necessário ter uma grande compreensão do que se
-quer prever, sendo necessário organizar a informação de uma forma a evidenciar
-a dependência dos dados com seus estados anteriores, para isso podemos
-apresentar essas informações na forma de uma série temporal e a partir dessa
-realizar medições e produzir modelos, que deverão ser capazes de expressar
-matematicamente o comportamento da série em função de suas observações
-anteriores, permitindo obter predições de estados futuros.
+Para a realização da previsão é necessária a compreensão do evento que se quer prever. Quando existe uma relação temporal entre as observações do evento em questão, i.e., o evento ocorre em uma determinada sequência no tempo, é necessário organizar as informações de forma a evidenciar a dependência das observações com seus estados anteriores. Nesse caso, as observações passadas compõem uma série temporal, a partir da qual é possível realizar medições e produzir modelos capazes de expressar
+matematicamente o comportamento da série em função de suas observações anteriores, permitindo assim a predição de estados futuros.
 
-% FIXME: Tá esquisito
-As séries temporais, segundo \citeonline{wiley} são compostas de observações
-sequenciais ao longo do tempo, como exemplo, podemos observar a série na
-\autoref{serie0}, que foi gerada utilizando um processo de caminhada aleatória.
-Sendo essas observações separadas unicamente pelo tempo pode-se obter os dados
-em diferentes intervalos, como observações diárias, semanais ou ainda anuais.
-Conforme \citeonline{ehlers} devido a caraterística estocástica uma observação
-é definida por ser dada em função de suas antecessoras.
+
+% FIXME: Tá esquisito 
+% VALERIA: não está claro o que vc quer mostrar com essa figura! O que vc quer que o leitor observe? Além disso, vc precisa dizer o que os eixos x e y significam.
+Conforme mencionado, as séries temporais são compostas de observações sequenciais ao longo do tempo \cite{wiley}. Como exemplo, a \autoref{serie0} mostra uma série gerada utilizando-se um processo de caminhada aleatória.
+Sendo essas observações separadas unicamente pelo tempo, pode-se obter os dados em diferentes intervalos, como observações diárias, semanais ou anuais.
+% VALERIA: Arrumei a escrita, mas veja se é isso mesmo que vc queria dizer
+Conforme \citeonline{ehlers}, devido à caraterística estocástica do processo, uma observação se define em função de suas antecessoras.
 
 \begin{figure}[ht]
     \centering
@@ -142,19 +131,14 @@ Conforme \citeonline{ehlers} devido a caraterística estocástica uma observaç�
     \source{Elaborado pelo autor}
 \end{figure}
 
-Considerando então que a série apresentará comportamento estocástico podemos
-propor modelos que serão capazes de aproximar o comportamento da série, e os
-modelos comumente utilizados nessa tarefa são aqueles probabilísticos, mais
-especificamente o proposto por \citeonline{box} conhecido por ARIMA\@. Em
-contrapartida podemos apresentar modelos utilizando aprendizado de máquina para
-expressar essas séries que vem se apresentando como uma alternativa poderosa em
+Considerando então que a série apresentará comportamento estocástico, é possível propor modelos que serão capazes de aproximar o comportamento da série. Os modelos comumente utilizados para essa tarefa são aqueles probabilísticos, mais especificamente o ARIMA\@, proposto por \citeonline{box}. Também é possível utilizar modelos criados a partir da aplicação de técnicas de aprendizado de máquina, que vem se apresentando como uma alternativa poderosa em
 muitas aplicações.
 
-Com o constante interesse na aplicação e identificação das capacidades de
-técnicas de aprendizado é evidente a importância de observar como esse
-modelo se compara com aqueles estatísticos. Como forma de identificar essa
-diferença e buscar compreender as técnicas esse trabalho realizou a previsão de
-uma série de característica econômica utilizando ambas metodologias.
+Com o constante interesse na aplicação e a identificação das capacidades de
+técnicas de aprendizado, fica evidente a importância de observar como esses modelos se comparam com os estatísticos. Dessa forma, o objetivo deste trabalho foi comparar o desempenho de modelos estatísticos e baseados em aprendizado de máquina na previsão de uma série de característica econômica. Especificamente, foram avaliados o modelo estatístico ARIMA e um modelo de aprendizado de máquina baseado em redes neurais artificiais de múltiplas camadas. Os resultados indicaram....
+%VALERIA: precisa dizer qual(is) modelo(s) estatístico(s) e de aprendizado de máquina vc avaliou. Tb precisa dizer de forma sumarizada qual foi o resultado.
+
+%Como forma de comparar desempenhos e buscar compreender as técnicas que poderiam ser utilizadas para a previsão, este trabalho realizou a previsão de uma série de característica econômica utilizando ambas metodologias.
 
 % TODO: Introduzir modelos ARIMA com exemplos de artigos
 
@@ -171,82 +155,53 @@ uma série de característica econômica utilizando ambas metodologias.
 %analisado por \citeonline{zhang}, o autor ainda apresenta outros exemplos
 %quais os autores obtiveram resultados superiores ao método estatístico.
 
-Esta monografia se organiza da seguinte forma, na \autoref{chap:fundTeor} será
-apresentada a definição da atividade de previsão seguido dos principais métodos
-de previsão de séries temporais empregadas, sendo o primeiro, ARIMA, com
-abordagem estatística e o segundo usando com base em métodos de aprendizado de
-máquina, sendo especificamente descrito as redes neurais artificiais de
-múltiplas camadas. Após apresentado os métodos, no \autoref{chap:desenv}
-conforme objetivos estabelecidos serão propostos dois modelos, um utilizando o
-modelo probabilístico e o outro tendo base o modelo de inspiração biológica.
-Com base nos modelos obtidos serão apresentados os resultados no
-\autoref{chap:result} e finalizando com a discussão dos resultados obtidos no
-\autoref{chap:concl}.
+O restante desta monografia está organizada como segue. No \autoref{chap:fundTeor} é apresentada a fundamentação teórica do trabalho, incluindo os principais métodos de previsão de séries temporais empregados. No \autoref{chap:desenv} são descritos os passos metodológicos empregados para a desenvolvimento tanto do modelo estatístico quanto de aprendizado de máquina. Os resultados obtidos com base nos modelos construídos são apresentados no
+\autoref{chap:result}. 
+%VALERIA: discussão de resultados deve ficar no capítulo de resultados, não na conclusão. Na conclusão se resume o que foi feito, se indica os principais resultados e se dá as conclusões finais.
+Por fim, no \autoref{chap:concl} é apresentada a discussão dos resultados, bem como as conclusões obtidas.
 
 \chapter{Fundamentação teórica}\label{chap:fundTeor}
 
 \section{Previsão}
-Segundo \citeonline{wiley} podemos separar o processo de previsão em diversas
-atividades, dispostas a seguir:
+Segundo \citeonline{wiley}, o processo de previsão pode ser dividido em diversas atividades, dispostas a seguir:
 
 \begin{enumerate}
     \item Definição do problema\\
         Envolve definir e entender a tarefa de previsão a ser realizada,
         considerando o prazo a ser previsto e definindo os dados necessários.
     \item Coleta dos dados\\
-        Conforme o problema definido na etapa anterior ocorrerá nessa atividade
-        a coleta dos dados necessários.
+        Envolve a coleta dos dados necessários de acordo com as definições da atividade anterior.
     \item Análise dos dados\\
-        Atividade de alta importância para a seleção do modelo mais adequado,
-        nessa etapa é utilizada de observações gráficas e extração de
+        Atividade de alta importância para a seleção do modelo mais adequado. Nessa etapa são utilizadas observações gráficas e extração de
         características para identificar padrões que corroborem na escolha dos
-        parâmetros. Ainda ocorrerá a identificação de observações problemáticas
-        e aplicadas as devidas correções.
+        parâmetros. Também são identificadas observações problemáticas e, caso necessário, aplicadas as devidas correções.
     \item Seleção e verificação do modelo\\
-        Conforme análise será selecionado o modelo, analisando também o
-        comportamento com os dados fornecidos. Como método de verificação será
-        utilizado métricas que favoreçam a comparação.
+        A partir da análise feita na atividade anterior, será selecionado o modelo, analisando-se também o
+        comportamento com os dados fornecidos. Como método de verificação são utilizadas métricas que favoreçam a comparação.
     \item Avaliação do modelo\\
-        Etapa para avaliar como o modelo se comportará com novos dados,
-        normalmente é realizado com observações excluídas dos dados utilizados
-        nas etapas anteriores, porem a parte separada terá somente esta
-        finalidade.
+        Atividade na qual se avalia como o modelo se comporta com novos dados, normalmente realizada com observações excluídas dos dados utilizados nas atividades anteriores. As observações separadas para avaliação são utilizadas apenas para essa finalidade.
     \item Publicação do modelo\\
-        Com o modelo devidamente selecionado e avaliado é instalado em ambiente
-        de produção, tendo que observar as alterações necessárias para que
-        novos dados sejam inseridos corretamente.
+        Com o modelo devidamente selecionado e avaliado, o mesmo é instalado em ambiente de produção, observando-se as alterações necessárias para que novos dados sejam inseridos corretamente.
     \item Monitoramento do desempenho do modelo\\
-        Deve-se continuamente avaliar como o modelo aplicado se comporta em
-        relação ao ambiente, já que o ambiente é algo volátil.
+        Deve-se continuamente avaliar como o modelo aplicado se comporta em relação ao ambiente, já que o ambiente é algo volátil.
 \end{enumerate}
 
-As atividades normalmente são empregadas em ordem semelhante a exposta. Vale-se
-ainda observar que após a tarefa de avaliação, se essa resultar em um valor
-insatisfatório, deve-se retornar a fase anterior e refeita a avaliação até que
+Essas atividades normalmente são realizadas em ordem semelhante a exposta. Vale observar ainda que se os resultados da atividade de avaliação forem insatisfatórios, deve-se retornar à atividade anterior e refazer a avaliação até que
 um modelo que obedeça às especificações seja encontrado.
 
 \section{Séries temporais}
 
-Como já disposto anteriormente, séries temporais são observações sucessivas ao
-longo do tempo. Retomamos ainda que essas séries se caracterizam pelo fato de
-suas observações serem dependentes das observações anteriores. Demonstram
-características como tendência e sazonalidade, sendo que a primeira capaz de
-conferir a série um lento comportamento que pode levar a observações futuras
-com valores menores ou maiores e a segunda característica confere a ela padrão
-que pode vir a apresentar ciclos dados em função do tempo, comumente tomando
-períodos semanais, mensais ou anuais.
+Como exposto anteriormente, séries temporais são compostas por observações sucessivas feitas ao longo do tempo. Cabe destacar ainda que essas séries se caracterizam pelo fato de suas observações serem dependentes das observações anteriores. Além disso, tais séries demonstram características como tendência e sazonalidade. A tendência caracteriza o comportamento de crescimento/decrescimento da série, o que pode levar a observações futuras com valores menores ou maiores. A sazonalidade caracteriza padrões cíclicos em função do tempo, comumente tomando períodos semanais, mensais ou anuais.
 
+%VALERIA: o que o T (maiúsculo) significa na definição? Achei que fosse tempo, mas no parágrafo seguinte aparece a Equação 2.1 na qual o T é usado para designar a tendência. Achei confuso.
 Uma série é descrita matematicamente pelo conjunto $\{X(t): t \in T\}$, podendo
-ser $t$ um tempo contínuo ou discreto, sendo continuo quando se possui as
-observações de todo $t$ em $T$, sendo este dado como $T \subseteq
-\mathbb{R}^{+}$ e discreto quando entre uma observação e outra existe um
-intervalo igual de tempo, normalmente dado na forma de uma sequência, $T = \{1,
-2, \ldots, n\}$, sendo $n$ o número de leituras.
+$t$ ser um tempo contínuo ou discreto. O tempo $t$ é dito contínuo quando se possui observações $X(t)$ para todo $t$ em $T$, sendo $T \subseteq
+\mathbb{R}^{+}$. O tempo $t$ é discreto quando entre as observações $X(t_i)$ e $X(t_i_+_1)$ existe um intervalo igual de tempo, normalmente dado na forma de uma sequência, $T = \{1,
+2, \ldots, n\}$, sendo $n$ o número de observações.
 
-Segundo \citeonline{ehlers} uma série temporal classicamente é decomposta
+Segundo \citeonline{ehlers}, uma série temporal classicamente é decomposta
 seguindo a \autoref{eq:timeseries}, sendo $t$ usado para denotar o tempo, $T$
-nos fornece a tendência, $C$ a sazonalidade, já $R$ é a componente aleatória e
-caracterizada por possuir média zero, denotada como ruído branco.
+denota a tendência, $C$ a sazonalidade, e $R$ é a componente aleatória caracterizada por possuir média zero, também denotada como ruído branco.
 
 \begin{equation}
     \label{eq:timeseries}
@@ -255,18 +210,17 @@ caracterizada por possuir média zero, denotada como ruído branco.
 
 \subsection{Série estacionária}
 
-Um conceito importante durante a analise de séries é o caráter estacionário, e
-segundo \citeonline{ehlers} definimos uma série estritamente estacionária por
-possuir a distribuição de probabilidade conjunta de $X(t_1), \ldots, X(t_k)$
-igual de $X(t_1 + \tau), \ldots, X(t_k + \tau)$.
+%VALERIA: tirei essa definição de um site de estatística
+%http://www.portalaction.com.br/series-temporais/13-processos-estacionarios
+% mas precisaria usar uma definição tirada de um livro.
+Um conceito importante para a análise de séries temporais é o seu caráter estacionário. Um processo é dito estacionário se todas as suas características comportamentais não se alteram ao longo do tempo. Em outras palavras, o processo se desenvolve no tempo em torno da média, de modo que a escolha de uma origem dos tempos não é importante. Segundo \citeonline{ehlers}, uma série é dita estritamente estacionária quando a distribuição de probabilidade conjunta de $X(t_1), \ldots, X(t_k)$ é igual a de $X(t_1 + \tau), \ldots, X(t_k + \tau)$.
 
-Ainda segundo \citeonline{ehlers} a definição estrita dada é dificilmente
-aplicada, então usualmente é aplicada a definição de fracamente estacionaria,
-definindo então com base no critério de possuir função média constante.
-Portanto, ao decorrer desse trabalho quando tomarmos uma série como
-estacionária estamos concluindo isto pelo conceito de fracamente estacionária.
-Em termos matemáticos podemos utilizar a \autoref{eq:westacionaria} para
-definir que variância de um elemento da série deve ser semelhante a média.
+Ainda segundo \citeonline{ehlers}, a definição estrita de série estacionária é dificilmente aplicada, então usualmente se utiliza a definição de série fracamente estacionária, que se
+define com base no critério da mesma possuir função média constante.
+Dessa forma, no decorrer deste trabalho, se usará a definição de série fracamente estacionária para se tomar uma série como estacionária.
+
+Em termos matemáticos, usa-se a \autoref{eq:westacionaria} para
+definir que variância de um elemento da série ($z_t$) deve ser semelhante à média. Em outras palavras, o deslocamento da origem do tempo $t$ por uma quantidade $\tau$ não exerce efeito na distribuição conjunta da série. Assim, o valor esperado para a série em determinado momento não será dada em função do tempo.
 
 \begin{equation}
     \label{eq:westacionaria}
@@ -274,49 +228,42 @@ definir que variância de um elemento da série deve ser semelhante a média.
 \end{equation}
 
 % FIXME Dada em função de que??
-Em outras palavras, o deslocamento da origem do tempo $t$ por uma quantidade
-$\tau$ não exerce efeito na distribuição conjunta da série, assim o valor
-esperado para a série em determinado momento não será dada em função do tempo.
+
 
 %TODO Adicionar referência ao Livro Time Series by exmples
 
 %TODO Adicionar referência ao teste de Dockey Fuller
 
+%VALERIA: Deixe para mostrar o exemplo da série estacionária pós-diferenciação na seção que fala sobre a diferenciação. Neste ponto do texto ficou fora de contexto. Ou, se vc quer mostrar um exemplo, mostre uma série originalmente estacionária. Além disso, nesse caso, vc tem que explicar melhor a figura. Por exemplo, qual(is) característica(s) do gráfico da série me diz(em) que ela é estacionária? Dizer que a observação do gráfico é suficiente não é suficiente. ;)
 
-A \autoref{fig:co2diff} é um exemplo de série estacionária encontrada ao
-aplicar o processo de diferenciação na série apresentada na \autoref{fig:co2},
-este processo está descrito na \autoref{sec:diff}. Segundo
-\citeonline{tsExample} embora exista testes como o de Dikey Fuller descrito em
-\citeonline{dickey} para a prova de estacionáriedade, é suficiente a observação
-gráfica da série.
+%A \autoref{fig:co2diff} é um exemplo de série estacionária encontrada ao aplicar o processo de diferenciação na série apresentada na \autoref{fig:co2}, este processo está descrito na \autoref{sec:diff}. Segundo \citeonline{tsExample} embora exista testes como o de Dikey Fuller descrito em \citeonline{dickey} para a prova de estacionariedade, é suficiente a observação gráfica da série. 
+%%VALERIA: O que exatamente no gráfico me diz que a série é estacionária?
 
-\subsection{Tendência}
+\subsection{Sazonalidade e tendência}
 
-Segundo \citeonline{ehlers} não existe uma definição exata de tendência, mas
-normalmente é associado ao comportamento de mudança das observações ao longo de
-um vasto período. Uma série com tendência pode ser descrita como uma função
-apresentada na \autoref{eq:tendencia}, $\alpha$ e $\beta$ coeficientes e
-$\epsilon_t$ o erro. Sendo que $\beta$ define a taxa de crescimento da série,
-assim podemos entender $\beta$ da forma $\beta = x_t - x_{t-1}$.
+Conforme definido por \citeonline{ehlers}, a sazonalidade caracteriza repetições de comportamento de uma série em um período $s$ de tempo. A presença da sazonalidade, em geral, é
+facilmente observada na representação gráfica da série, conforme exemplificado no gráfico da \autoref{fig:co2}. Nesse gráfico é apresentada uma série temporal real que registra a mudança na concentração de $CO_2$ na atmosfera. Observando o gráfico, é possível notar que há sazonalidade de periodicidade anual.
+%VALERIA: Não é evidente o que caracteriza a sazonalidade no gráfico. Deixe isso claro para o leitor. O que mostra a sazonalidade é a linha em formato de "serra", i.e., em cada ano tem um pico e um vale? 
+
+Ainda no gráfico da \autoref{fig:co2}, também é possível notar que há uma tendência de crescimento na série. Segundo \citeonline{ehlers}, não há uma definição exata de tendência, mas normalmente a mesma é associada ao comportamento de mudança das observações ao longo de um vasto período. 
+%VALERIA: o que significa o alpha?
+Uma série com tendência pode ser descrita como a função
+apresentada na \autoref{eq:tendencia}, na qual $\alpha$ e $\beta$ são os coeficientes %de quê???
+e $\epsilon_t$ é o erro. O coeficiente $\beta$ define a taxa de crescimento da série e, desse modo, $\beta$ pode ser entendido na forma $\beta = x_t - x_{t-1}$.
 
 \begin{equation}
     \label{eq:tendencia} X_t = \alpha + \beta_t + \epsilon_t
 \end{equation}
 
-Este entendimento de série com tendencia segundo \citeonline{ehlers} já permite
-encontrar uma função polinomial que represente a série, no caso esta toma a
-forma da \autoref{eq:tendenciaSerie}.
+Esse entendimento de série com tendência, segundo \citeonline{ehlers}, permite encontrar uma função polinomial representativa da série na forma mostrada na \autoref{eq:tendenciaSerie}.
 
 \begin{equation}
     \label{eq:tendenciaSerie}
     X_t = \beta_0 + \beta_1t + \beta_2t^2 + \cdots + \beta_{p}t^p + \epsilon_t
 \end{equation}
 
-Para exemplificar uma série temporal real que apresente tendência e
-sazonalidade podemos apresentar o gráfico na \autoref{fig:co2}, este apresenta
-a mudança na concentração de $CO_2$ na atmosfera, no caso esta é uma série de
-característica natural, é fácil notar a tendência de crescimento e sua
-sazonalidade de periodicidade anual.
+% Um exemplo real de uma série temporal que apresenta tendência e
+% sazonalidade é mostrado no gráfico na \autoref{fig:co2}. Essa série registra a mudança na concentração de $CO_2$ na atmosfera, sendo, portanto, uma série de característica natural. Observando o gráfico, é fácil notar a tendência de crescimento da série e sua sazonalidade de periodicidade anual.
 
 \begin{figure}
     \centering
@@ -327,30 +274,31 @@ sazonalidade de periodicidade anual.
 
 \subsubsection{Filtros}
 
-Em algumas séries a tendência pode não estar evidente devido à flutuações, por
-conta disso pode vir a ser necessário a aplicação de filtros que tem como
-objetivo obter uma série suavizada que possibilite observar a tendência, um
-desses filtros é apresentado na \autoref{eq:filtro}\cite{ehlers}.
+%VALERIA:essas flutuações seriam a sazonalidade?
+Em algumas séries a tendência pode não estar evidente devido a flutuações.
+Por conta disso, pode ser necessária a aplicação de filtros que têm como objetivo obter uma série suavizada que possibilite observar a tendência. 
+%VALERIA: Esse filtro tem nome?
+Um desses filtros é apresentado na \autoref{eq:filtro} \cite{ehlers}.
 
 \begin{equation}
     \label{eq:filtro}
     y_t = \sum_{j = -q}^{s}{a_{j}x_{t+j}}
 \end{equation}
 
-Na \autoref{eq:filtro} $a_j$ é um coeficiente a ser aplicada a cada termo da
-soma de forma a aplicar um peso a este, sendo observado que $\sum{a_j} = 1$.
-Podemos obter no caso mais simples $a_j = \frac{1}{2q + 1}$ e teremos $y_j$
-conforme a \autoref{eq:yjfiltro}.
+%VALERIA: Cada termo da soma é uma observação? Se for, não ficaria melhor dizer: $a_j$ é um peso aplicado a cada observação da série, observado que $\sum{a_j} = 1$?
+% Também precisa dizer o que é o 't', o 'q' e o 's'
+Na \autoref{eq:filtro}, $a_j$ é um coeficiente a ser aplicado a cada termo da soma de forma a aplicar um peso a este, sendo observado que $\sum{a_j} = 1$.
+%VALERIA: Qual é o caso mais simples?
+Podemos obter, no caso mais simples, $a_j = \frac{1}{2q + 1}$ e teremos $y_j$ conforme a \autoref{eq:yjfiltro}.
 
 \begin{equation}
     \label{eq:yjfiltro}
     y_t = \frac{1}{2q + 1}\sum_{j=-q}^{q}{x_{t+j}}
 \end{equation}
 
-A \autoref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias móveis. A
-aplicação do filtro de médias móveis na série das leituras de $CO_2$ resulta na
-\autoref{fig:co2filtrado}, que evidencia de forma independente a tendência da
-série após removido a sazonalidade.
+A \autoref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias móveis. 
+%VALERIA: se o filtro de médias móveis serve para remover a sazonalidade, precisa dizer antes de comentar sobre o gráfico.
+A aplicação do filtro de médias móveis na série das leituras de $CO_2$ resulta na \autoref{fig:co2filtrado}, que evidencia de forma independente a tendência da série após a remoção da sazonalidade.
 
 \begin{figure}
     \centering
@@ -363,23 +311,19 @@ série após removido a sazonalidade.
 
 \subsubsection{Diferenciação}\label{sec:diff}
 
-Outra tarefa a ser observada em relação ao entendimento de tendência é a forma
-qual é removida, para sua remoção o método mais simples para tal é fazer a
-subtração do valor observado com o seu antecessor, da forma como descrito na
-\autoref{eq:diferenciacao}, normalmente uma única diferenciação é suficiente
-porem em séries com componente sazonal podem vir a ser necessárias mais de uma
-em um \textit{lag} diferente.
+Outra tarefa a ser observada em relação ao entendimento de tendência é a forma na qual é removida. O método mais simples para remoção da tendência é subtrair de cada valor observado o valor do seu antecessor, conforme descrito na \autoref{eq:diferenciacao}. Normalmente, uma única diferenciação é suficiente para remover a tendência, porém em séries com componente sazonal podem vir a ser necessárias mais de uma em um \textit{lag} diferente.
 
 \begin{equation}
     \label{eq:diferenciacao}
     y_t = x_t - x_{t-1}
 \end{equation}
 
-Para dar um exemplo de diferenciação volto a série das leituras do $CO_2$ e
-agora realizando uma diferenciação, o resultado é visto na
-\autoref{fig:co2diff}, especificamente neste exemplo percebemos que a série se
-aproximou de uma série com função média constante, dando evidência a componente
-sazonal.
+
+O gráfico da \autoref{fig:co2diff} mostra o resultado obtido para a série de leituras de $CO_2$ após uma diferenciação. 
+%VALERIA: vc começou dizendo que a diferenciação serve para remover tendência e concluiu dizendo que a diferenciação evidenciou a componente sazonal (?!). Qual a relação? Além disso, por que esse gráfico evidencia a componente sazonal? Explique isso ao leitor.
+Pelo gráfico é possível perceber que a série resultante se aproxima de uma série com função média constante, dando evidência a componente sazonal.
+
+%Para dar um exemplo de diferenciação volto a série das leituras do $CO_2$ e agora realizando uma diferenciação, o resultado é visto na \autoref{fig:co2diff}, especificamente neste exemplo percebemos que a série se aproximou de uma série com função média constante, dando evidência a componente sazonal.
 
 \begin{figure}
     \centering
@@ -389,12 +333,13 @@ sazonal.
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
-\subsection{Sazonalidade}
+% \subsection{Sazonalidade}
 
-Conforme definido por \citeonline{ehlers} sazonalidade caracteriza repetições
-de comportamento de uma série em um período $s$ de tempo. Normalmente é
-facilmente observado na representação gráfica da série.
+% Conforme definido por \citeonline{ehlers} sazonalidade caracteriza repetições
+% de comportamento de uma série em um período $s$ de tempo. Normalmente é
+% facilmente observado na representação gráfica da série.
 
+%VALERIA: PAREI REVISAR AQUI
 \section{Modelos probabilísticos}
 
 Como já disposto, as séries temporais podem ser previstas utilizando de modelos
@@ -596,8 +541,7 @@ Essa detecção de padrões permitem, por exemplo, a realização das seguintes
 atividades.
 \begin{itemize}
     \item Classificação\\
-        É a tarefa de mapear uma entrada a uma \textit{tag}, como no exemplo na
-        classificação dos números, apresentada no início da seção. Podemos
+        É a tarefa de mapear uma entrada a uma categoria, como no exemplo na classificação dos números, apresentada no início da seção. Podemos
         encontrar ainda exemplos do uso de aprendizado de máquina para
         classificação em diversos outros trabalhos, como
         \citeonline{artigoClassificacao} que utilizou redes neurais artificiais
@@ -689,7 +633,7 @@ entradas, $x_i$.
 
 \section{Métricas de avaliação}
 
-\chapter{Desenvolvimento}\label{chap:desev}
+\chapter{Desenvolvimento}\label{chap:desenv}
 
 Para demonstrar e avaliar a capacidade de os métodos de previsão apresentados
 neste trabalho, foi selecionada uma série temporal qual consta as vendas
