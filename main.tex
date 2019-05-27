@@ -134,11 +134,17 @@ estados futuros.
 
 
 % FIXME: Tá esquisito 
-% VALERIA: não está claro o que vc quer mostrar com essa figura! O que vc quer que o leitor observe? Além disso, vc precisa dizer o que os eixos x e y significam.
-Conforme mencionado, as séries temporais são compostas de observações sequenciais ao longo do tempo \cite{wiley}. Como exemplo, a \autoref{serie0} mostra uma série gerada utilizando-se um processo de caminhada aleatória.
-Sendo essas observações separadas unicamente pelo tempo, pode-se obter os dados em diferentes intervalos, como observações diárias, semanais ou anuais.
+% VALERIA: não está claro o que vc quer  mostrar com essa figura! O que vc quer
+% que o  leitor observe?  Além disso, vc  precisa dizer  o que os  eixos x  e y
+% significam.
+Conforme  mencionado,   as  séries  temporais  são   compostas  de  observações
+sequenciais ao  longo do  tempo~\cite{wiley}. Como exemplo,  a \autoref{serie0}
+mostra uma série gerada utilizando-se um processo de caminhada aleatória. Sendo
+essas observações  separadas unicamente pelo  tempo, pode-se obter os  dados em
+diferentes intervalos, como observações diárias, semanais ou anuais.
 % VALERIA: Arrumei a escrita, mas veja se é isso mesmo que vc queria dizer
-Conforme \citeonline{ehlers}, devido à caraterística estocástica do processo, uma observação se define em função de suas antecessoras.
+Conforme \citeonline{ehlers},  devido à caraterística estocástica  do processo,
+uma observação se define em função de suas antecessoras.
 
 \begin{figure}[ht]
     \centering
@@ -163,9 +169,13 @@ máquina na previsão de uma  série de característica econômica. Especificame
 foram  avaliados  o  modelo  estatístico  ARIMA  e  um  modelo  de  aprendizado
 de  máquina baseado  em  redes  neurais artificiais  de  múltiplas camadas.  Os
 resultados indicaram....
-%VALERIA: precisa dizer qual(is) modelo(s) estatístico(s) e de aprendizado de máquina vc avaliou. Tb precisa dizer de forma sumarizada qual foi o resultado.
+% VALERIA: precisa dizer qual(is) modelo(s)  estatístico(s) e de aprendizado de
+% máquina  vc  avaliou.  Tb  precisa  dizer de  forma  sumarizada  qual  foi  o
+% resultado.
 
-%Como forma de comparar desempenhos e buscar compreender as técnicas que poderiam ser utilizadas para a previsão, este trabalho realizou a previsão de uma série de característica econômica utilizando ambas metodologias.
+% Como  forma de  comparar desempenhos  e  buscar compreender  as técnicas  que
+% poderiam ser utilizadas para a previsão, este trabalho realizou a previsão de
+% uma série de característica econômica utilizando ambas metodologias.
 
 % TODO: Introduzir modelos ARIMA com exemplos de artigos
 
@@ -189,7 +199,9 @@ incluindo os principais métodos de  previsão de séries temporais empregados. 
 desenvolvimento tanto do  modelo estatístico quanto de  aprendizado de máquina.
 Os  resultados obtidos  com base  nos modelos  construídos são  apresentados no
 \autoref{chap:result}.
-%VALERIA: discussão de resultados deve ficar no capítulo de resultados, não na conclusão. Na conclusão se resume o que foi feito, se indica os principais resultados e se dá as conclusões finais.
+% VALERIA: discussão de resultados deve ficar no capítulo de resultados, não na
+% conclusão. Na  conclusão se resume o  que foi feito, se  indica os principais
+% resultados e se dá as conclusões finais.
 Por fim, no \autoref{chap:concl} é  apresentada a discussão dos resultados, bem
 como as conclusões obtidas.
 
@@ -236,7 +248,7 @@ Vale  observar ainda  que  se os  resultados da  atividade  de avaliação  fore
 insatisfatórios, deve-se  retornar à atividade  anterior e refazer  a avaliação
 até que um modelo que obedeça às especificações seja encontrado.
 
-\section{Séries temporais}
+\section{Séries temporais}\label{sec:seriesTemporais}
 
 Como  exposto anteriormente,  séries  temporais são  compostas por  observações
 sucessivas  feitas ao  longo do  tempo. Cabe  destacar ainda  que essas  séries
@@ -247,7 +259,9 @@ crescimento/decrescimento da série, o que  pode levar a observações futuras c
 valores  menores ou  maiores. A  sazonalidade caracteriza  padrões cíclicos  em
 função do tempo, comumente tomando períodos semanais, mensais ou anuais.
 
-%VALERIA: o que o T (maiúsculo) significa na definição? Achei que fosse tempo, mas no parágrafo seguinte aparece a Equação 2.1 na qual o T é usado para designar a tendência. Achei confuso.
+% VALERIA: o que o T (maiúsculo) significa na definição? Achei que fosse tempo,
+% mas no  parágrafo seguinte aparece  a Equação  2.1 na qual  o T é  usado para
+% designar a tendência. Achei confuso.
 Uma série é descrita matematicamente pelo conjunto $\{X(t): t \in T\}$, podendo
 $t$ ser  um tempo  contínuo ou  discreto. O  tempo $t$  é dito  contínuo quando
 se  possui  observações  $X(t)$  para  todo $t$  em  $T$,  sendo  $T  \subseteq
@@ -304,18 +318,39 @@ esperado para a série em determinado momento não será dada em função do tem
 
 %TODO Adicionar referência ao teste de Dockey Fuller
 
-%VALERIA: Deixe para mostrar o exemplo da série estacionária pós-diferenciação na seção que fala sobre a diferenciação. Neste ponto do texto ficou fora de contexto. Ou, se vc quer mostrar um exemplo, mostre uma série originalmente estacionária. Além disso, nesse caso, vc tem que explicar melhor a figura. Por exemplo, qual(is) característica(s) do gráfico da série me diz(em) que ela é estacionária? Dizer que a observação do gráfico é suficiente não é suficiente. ;)
+% VALERIA: Deixe para mostrar o exemplo da série estacionária pós-diferenciação
+% na seção que fala  sobre a diferenciação. Neste ponto do  texto ficou fora de
+% contexto. Ou, se  vc quer mostrar um exemplo, mostre  uma série originalmente
+% estacionária. Além  disso, nesse caso, vc  tem que explicar melhor  a figura.
+% Por exemplo,  qual(is) característica(s) do  gráfico da série me  diz(em) que
+% ela é  estacionária? Dizer  que a  observação do gráfico  é suficiente  não é
+% suficiente. ;)
 
-%A \autoref{fig:co2diff} é um exemplo de série estacionária encontrada ao aplicar o processo de diferenciação na série apresentada na \autoref{fig:co2}, este processo está descrito na \autoref{sec:diff}. Segundo \citeonline{tsExample} embora exista testes como o de Dikey Fuller descrito em \citeonline{dickey} para a prova de estacionariedade, é suficiente a observação gráfica da série. 
+% A  \autoref{fig:co2diff}  é  um  exemplo  de  série  estacionária  encontrada
+% ao   aplicar  o   processo   de  diferenciação   na   série  apresentada   na
+% \autoref{fig:co2}, este processo está descrito na \autoref{sec:diff}. Segundo
+% \citeonline{tsExample} embora exista  testes como o de  Dikey Fuller descrito
+% em  \citeonline{dickey} para  a  prova de  estacionariedade,  é suficiente  a
+% observação gráfica da série.
 %%VALERIA: O que exatamente no gráfico me diz que a série é estacionária?
 
 \subsection{Sazonalidade e tendência}
 
-Conforme definido por \citeonline{ehlers}, a sazonalidade caracteriza repetições de comportamento de uma série em um período $s$ de tempo. A presença da sazonalidade, em geral, é
-facilmente observada na representação gráfica da série, conforme exemplificado no gráfico da \autoref{fig:co2}. Nesse gráfico é apresentada uma série temporal real que registra a mudança na concentração de $CO_2$ na atmosfera. Observando o gráfico, é possível notar que há sazonalidade de periodicidade anual.
-%VALERIA: Não é evidente o que caracteriza a sazonalidade no gráfico. Deixe isso claro para o leitor. O que mostra a sazonalidade é a linha em formato de "serra", i.e., em cada ano tem um pico e um vale? 
+Conforme   definido  por   \citeonline{ehlers},   a  sazonalidade   caracteriza
+repetições de comportamento de uma série em um período $s$ de tempo. A presença
+da sazonalidade, em  geral, é facilmente observada na  representação gráfica da
+série, conforme exemplificado no gráfico  da \autoref{fig:co2}. Nesse gráfico é
+apresentada uma série  temporal real que registra a mudança  na concentração de
+$CO_2$ na atmosfera. Observando o gráfico, é possível notar que há sazonalidade
+de periodicidade anual.
+% VALERIA: Não  é evidente o que  caracteriza a sazonalidade no  gráfico. Deixe
+% isso claro para o leitor. O que mostra a sazonalidade é a linha em formato de
+% "serra", i.e., em cada ano tem um pico e um vale?
 
-Ainda no gráfico da \autoref{fig:co2}, também é possível notar que há uma tendência de crescimento na série. Segundo \citeonline{ehlers}, não há uma definição exata de tendência, mas normalmente a mesma é associada ao comportamento de mudança das observações ao longo de um vasto período. 
+Ainda  no  gráfico  da  \autoref{fig:co2},  também  é  possível  notar  que  há
+uma  tendência de  crescimento na  série. Segundo  \citeonline{ehlers}, não  há
+uma  definição exata  de  tendência, mas  normalmente a  mesma  é associada  ao
+comportamento de mudança das observações ao longo de um vasto período.
 %VALERIA: o que significa o alpha?
 Uma série com tendência pode ser descrita como a função
 apresentada na \autoref{eq:tendencia}, na qual $\alpha$ e $\beta$ são os coeficientes %de quê???
@@ -325,15 +360,20 @@ e $\epsilon_t$ é o erro. O coeficiente $\beta$ define a taxa de crescimento da 
     \label{eq:tendencia} X_t = \alpha + \beta_t + \epsilon_t
 \end{equation}
 
-Esse entendimento de série com tendência, segundo \citeonline{ehlers}, permite encontrar uma função polinomial representativa da série na forma mostrada na \autoref{eq:tendenciaSerie}.
+Esse entendimento de série  com tendência, segundo \citeonline{ehlers}, permite
+encontrar uma  função polinomial representativa  da série na forma  mostrada na
+\autoref{eq:tendenciaSerie}.
 
 \begin{equation}
     \label{eq:tendenciaSerie}
     X_t = \beta_0 + \beta_1t + \beta_2t^2 + \cdots + \beta_{p}t^p + \epsilon_t
 \end{equation}
 
-% Um exemplo real de uma série temporal que apresenta tendência e
-% sazonalidade é mostrado no gráfico na \autoref{fig:co2}. Essa série registra a mudança na concentração de $CO_2$ na atmosfera, sendo, portanto, uma série de característica natural. Observando o gráfico, é fácil notar a tendência de crescimento da série e sua sazonalidade de periodicidade anual.
+% Um exemplo real de uma série  temporal que apresenta tendência e sazonalidade
+% é mostrado  no gráfico  na \autoref{fig:co2}. Essa  série registra  a mudança
+% na  concentração  de $CO_2$  na  atmosfera,  sendo,  portanto, uma  série  de
+% característica natural.  Observando o gráfico,  é fácil notar a  tendência de
+% crescimento da série e sua sazonalidade de periodicidade anual.
 
 \begin{figure}
     \centering
@@ -345,30 +385,36 @@ Esse entendimento de série com tendência, segundo \citeonline{ehlers}, permite
 \subsubsection{Filtros}
 
 %VALERIA:essas flutuações seriam a sazonalidade?
-Em algumas séries a tendência pode não estar evidente devido a flutuações.
-Por conta disso, pode ser necessária a aplicação de filtros que têm como objetivo obter uma série suavizada que possibilite observar a tendência. 
-%VALERIA: Esse filtro tem nome?
-Um desses filtros é apresentado na \autoref{eq:filtro} \cite{ehlers}.
+Em algumas séries a tendência pode  não estar evidente devido a flutuações. Por
+conta disso, pode  ser necessária a aplicação de filtros  que têm como objetivo
+obter  uma série  suavizada que  possibilite  observar a  tendência. Um  desses
+filtros é apresentado na \autoref{eq:filtro} \cite{ehlers}.
 
 \begin{equation}
     \label{eq:filtro}
     y_t = \sum_{j = -q}^{s}{a_{j}x_{t+j}}
 \end{equation}
 
-%VALERIA: Cada termo da soma é uma observação? Se for, não ficaria melhor dizer: $a_j$ é um peso aplicado a cada observação da série, observado que $\sum{a_j} = 1$?
-% Também precisa dizer o que é o 't', o 'q' e o 's'
-Na \autoref{eq:filtro}, $a_j$ é um coeficiente a ser aplicado a cada termo da soma de forma a aplicar um peso a este, sendo observado que $\sum{a_j} = 1$.
+%VALERIA:  Cada termo  da soma  é uma  observação? Se  for, não  ficaria melhor
+%dizer: $a_j$  é um  peso aplicado  a cada observação  da série,  observado que
+%$\sum{a_j} = 1$? Também precisa dizer o que é o 't', o 'q' e o 's'
+Na \autoref{eq:filtro}, $a_j$  é um coeficiente a ser aplicado  a cada termo da
+soma de forma a aplicar um peso a este, sendo observado que $\sum{a_j} = 1$.
 %VALERIA: Qual é o caso mais simples?
-Podemos obter, no caso mais simples, $a_j = \frac{1}{2q + 1}$ e teremos $y_j$ conforme a \autoref{eq:yjfiltro}.
+Podemos obter, no caso  mais simples, $a_j = \frac{1}{2q +  1}$ e teremos $y_j$
+conforme a \autoref{eq:yjfiltro}.
 
 \begin{equation}
     \label{eq:yjfiltro}
     y_t = \frac{1}{2q + 1}\sum_{j=-q}^{q}{x_{t+j}}
 \end{equation}
 
-A \autoref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias móveis. 
-%VALERIA: se o filtro de médias móveis serve para remover a sazonalidade, precisa dizer antes de comentar sobre o gráfico.
-A aplicação do filtro de médias móveis na série das leituras de $CO_2$ resulta na \autoref{fig:co2filtrado}, que evidencia de forma independente a tendência da série após a remoção da sazonalidade.
+A \autoref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias móveis.
+% VALERIA: se  o filtro  de médias  móveis serve  para remover  a sazonalidade,
+% precisa dizer antes de comentar sobre o gráfico.
+A aplicação do filtro de médias móveis  na série das leituras de $CO_2$ resulta
+na \autoref{fig:co2filtrado},  que evidencia de forma  independente a tendência
+da série após a remoção da sazonalidade.
 
 \begin{figure}
     \centering
@@ -381,7 +427,12 @@ A aplicação do filtro de médias móveis na série das leituras de $CO_2$ resu
 
 \subsubsection{Diferenciação}\label{sec:diff}
 
-Outra tarefa a ser observada em relação ao entendimento de tendência é a forma na qual é removida. O método mais simples para remoção da tendência é subtrair de cada valor observado o valor do seu antecessor, conforme descrito na \autoref{eq:diferenciacao}. Normalmente, uma única diferenciação é suficiente para remover a tendência, porém em séries com componente sazonal podem vir a ser necessárias mais de uma em um \textit{lag} diferente.
+Outra tarefa a ser observada em relação  ao entendimento de tendência é a forma
+na qual é removida. O método mais  simples para remoção da tendência é subtrair
+de  cada valor  observado  o  valor do  seu  antecessor,  conforme descrito  na
+\autoref{eq:diferenciacao}. Normalmente,  uma única diferenciação  é suficiente
+para remover  a tendência, porém em  séries com componente sazonal  podem vir a
+ser necessárias mais de uma em um \textit{lag} diferente.
 
 \begin{equation}
     \label{eq:diferenciacao}
@@ -389,9 +440,11 @@ Outra tarefa a ser observada em relação ao entendimento de tendência é a for
 \end{equation}
 
 
-O gráfico da \autoref{fig:co2diff} mostra o resultado obtido para a série de leituras de $CO_2$ após uma diferenciação. 
+O gráfico  da \autoref{fig:co2diff} mostra o  resultado obtido para a  série de
+leituras de $CO_2$ após uma diferenciação.
 %VALERIA: vc começou dizendo que a diferenciação serve para remover tendência e concluiu dizendo que a diferenciação evidenciou a componente sazonal (?!). Qual a relação? Além disso, por que esse gráfico evidencia a componente sazonal? Explique isso ao leitor.
-Pelo gráfico é possível perceber que a série resultante se aproxima de uma série com função média constante, dando evidência a componente sazonal.
+Pelo gráfico  é possível  perceber que  a série resultante  se aproxima  de uma
+série com função média constante, dando evidência a componente sazonal.
 
 %Para dar um exemplo de diferenciação volto a série das leituras do $CO_2$ e agora realizando uma diferenciação, o resultado é visto na \autoref{fig:co2diff}, especificamente neste exemplo percebemos que a série se aproximou de uma série com função média constante, dando evidência a componente sazonal.
 
@@ -594,18 +647,22 @@ partir  da  minimização  do  critério  de  informação  de  Akaike  que  seg
 parcimonioso e representativo para a série analisada.
 
 \subsection{Determinação dos coeficientes}
+
 Por fim, para completa construção do modelo apresentado na \autoref{eq:arima} é
 necessária  a  obtenção  dos  coeficientes tanto  do  processo  autorregressivo
-tanto  do de  médias movéis.  Para essa  tarefa \citeonline{vinay}  apresenta a
-\autoref{eq:coef}  que  serve  para  determinação  dos  coeficientes  de  ambos
-processos.
+tanto  do de  médias móveis.  Para essa  tarefa segundo \citeonline{yinay} é
+comum a utilização do estimador de \textit{likelihood}, ou mais precisamente a
+maximação da função de \textit{likelihood}.
 
-\begin{equation}
-    \label{eq:coef}
-    \alpha = inv(M_A^T M_A) M_A^T M_B
+Essa  maximização   é  descrita   por  \citeonline{statiticalML}   da  seguinte
+forma.  Considerando  uma função  $q(x;\theta)$  que  nos retorna  a  densidade
+probabilística de uma entrada $x$ com um conjunto de parâmetros a ser otimizado
+$\theta$ de dimensão $b$, o objetivo é a maximização da \autoref{eq:likelihood}
+que nos retorna a capacidade dos parâmetros em aproximar a série.
+
+\begin{equation}\label{eq:likelihood}
+    L(\theta) = \prod_{i=1}^{n}{q(x_i;\theta)}
 \end{equation}
-
-A matriz $M_A$ e $M_B$ são dadas da seguinte forma.
 
 \section{Aprendizado de Máquina}
 
@@ -700,16 +757,15 @@ descrito primeiramente  por Rosenblatt em  1962, e  tem sua função  definida e
 entradas,  $x_i$. Visualmente  o \textit{perceptron}  é representado  segundo a
 \autoref{fig:perceptron}.
 
-\begin{equation}
-    \label{eq:perceptron}
+\begin{equation}\label{eq:perceptron}
     v(x) = \sum_{i=1}^{m}{w_i  x_i + b}
 \end{equation}
 
-\begin{figure}[ht]\label{fig:perceptron}
+\begin{figure}[ht]
     \centering
-    \caption{Representação gráfica de um \textit{perceptron}}
+    \caption{Representação gráfica de um \textit{perceptron}}\label{fig:perceptron}
     \includegraphics[width=.5\linewidth]{images/perceptron.png}
-    \source{\citeonline{haykin}}
+    \source{\citeonline{haykin2009}}
 \end{figure}
 
 Após  a soma  ponderada é  aplicada ao  resultado $v$  uma função  de ativação,
@@ -759,7 +815,16 @@ Sendo a camada  de entrada aquela que recebe as  características do conjunto de
 dados. O nome  de \textit{feedforward} é dado devido a  entrada ser apresentada
 primeiramente a camada  de entrada e as  ativações fluírem até a  saída. Logo o
 resultado da  rede será encontrado  na camada de saída  após passar por  toda a
-rede em uma única direção.
+rede  em uma  única direção.  Visualmente podemos  expressar a  rede segundo  a
+\autoref{fig:neuralNetwork}.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Representação da ligação entre \textit{perceptron} em uma rede
+    neural}\label{fig:neuralNetwork}
+    \includegraphics[width=.5\linewidth]{images/neuralNetwork.png}
+    \source{\citeonline{haykin2009}}
+\end{figure}
 
 Sendo os  parâmetros a  serem definidos  em uma rede  neural somente  os pesos,
 $w_i$, definimos que  estes serão inicializados como  valores aleatórios, sendo
@@ -782,16 +847,105 @@ valor  do erro.  Tendo os  valores  dos erros,  $E$,  esse valor  é aplicado  a
 para a nova iteração.
 
 \begin{equation}\label{eq:backpropagation}
-    w_{n+1} = w_n - \alpha \frac{\theta E(x,w_t)}{\theta w_t}
+    w_{n+1} = w_n - \alpha \frac{\partial E(x,w_t)}{\partial w_t}
 \end{equation}
 
 \chapter{Desenvolvimento}\label{chap:desenv}
 
+Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries
+temporais tem  grande importância,  e uma  de suas  principais aplicações  é na
+previsão  de indicadores  econômicos, como  o S\&P500,  um índice  mantido pela
+Standard \& Poor's desde 1923, indexando os  valores de 500 ativos em bolsas de
+valores e  servindo como um indicador  geral do comportamento do  mercado. Logo
+foi obtido os dados do S\&P500 para comparar os modelos apresentados e observar
+as previsões que estes foram capazes de realizar considerando essa série.
 
+Para   podermos   compreender   o   comportamento  dos   modelos   com   outros
+tipos   de  séries   foi  também   selecionada  a   série  já   apresentado  na
+\autoref{sec:seriesTemporais} que contem os dados  da concentração de $CO_2$ na
+atmosfera. A  importância de  avaliar comportamento  com essa  série se  dá por
+conta do  se diferenciar da  série econômica  por ter sazonalidade  e tendência
+muito mais claras.
+
+As observações das séries podem ser obtidas
+online\footnote{\url{https://datahub.io/core/s-and-p-500}}\footnote{\url{https://datahub.io/core/co2-ppm}}.
+Na   \autoref{fig:sp500}  e   \autoref{fig:co2}  observamos   a  plotagem   das
+observações  do   índice  S\&P500  e   as  leituras  do  $CO_2$   na  atmosfera
+respectivamente.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico das observações do índice S\&P500}\label{fig:sp500}
+    \includegraphics[width=.5\linewidth]{images/sp500.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+\subsubsection{Análise da série}
+
+Seguindo as etapas para construção do modelo foi realizada a análise dos dados.
+O  objetivo  era identificar  as  características  da  série,  como se  esta  é
+estacionaria, e quanto  a existência de tendencia e  sazonalidade, sendo também
+já realizada a remoção de \textit{outliers} que possam atrapalhar na construção
+do modelo.
+
+Já   na   análise   dos   gráficos  das   séries   na   \autoref{fig:sp500}   e
+\autoref{fig:co2} fica  evidente o comportamento  não estacionário de  ambas as
+séries, conclui-se  isso segundo  os critérios  definidos anteriormente.  Já se
+aproveita para perceber a existência clara de tendência em ambos conjuntos.
+
+Para  remover a  tendência e  consequentemente  tornar estacionaria  a série  é
+necessário  realizar inicialmente  uma diferenciação.  Na \autoref{fig:co2diff}
+temos  a  primeira diferenciação  das  leituras  de  $CO_2$,  já para  a  série
+financeira temos a \autoref{fig:sp500diff} com sua primeira diferenciação. Pela
+observação podemos concluir que uma única diferenciação foi suficiente em ambos
+os casos.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Primeira diferenciação dos dados do SP500}\label{fig:sp500diff}
+    \includegraphics[width=.5\linewidth]{images/sp500diff.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+Quanto  a sazonalidade  é evidente  a sua  existência nas  leituras de  CO2, no
+entanto, tal constatação não é tão clara  nos índices da Standard \& Poor sendo
+necessários  outros métodos  que não  foram  discutidos nesse  trabalho para  a
+definição de sua sazonalidade.
+
+\subsubsection{Definição do modelo probabilístico}
+
+%TODO Definição do modelo CO2
+
+Compreendido  o  comportamento  da  série  se definiu  a  correlação  entre  as
+observações para possibilitar a construção  do modelo probabilístico, usando do
+gráfico  da  função  de autocorrelação  apresentado  na  \autoref{fig:sp500acf}
+em   conjunto  com   o  gráfico   da  função   de  autocorrelação   parcial  da
+\autoref{fig:sp500pacf} foi compreendido seguindo  o modelo de \citeonline{box}
+que por conta  de ambos gráficos apresentarem somente um  valor significativo o
+modelo probabilístico escolhido  para representar a série S\&P500  foi o modelo
+ARIMA(1,1,1), sendo este hibrido do modelo AR(1) e MA(1) com uma integração.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico dos 40 primeiros elementos da função de autocorrelação da
+    série S\&P500}\label{fig:sp500acf}
+    \includegraphics[width=.5\linewidth]{images/sp500acf.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico  dos 40  primeiros elementos  da função  de autocorrelação
+    parcial da série S\&P500}\label{fig:sp500pacf}
+    \includegraphics[width=.5\linewidth]{images/sp500pacf.png}
+    \source{Elaborado pelo autor}
+\end{figure}
 
 \chapter{Resultados}\label{chap:result}
 
 \chapter{Conclusões}\label{chap:concl}
+
+
 
 \section{Trabalhos futuros}
 
