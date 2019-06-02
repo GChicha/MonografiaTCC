@@ -14,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{microtype}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \usepackage{csquotes}
 
 \usepackage{tikz}
@@ -797,14 +798,14 @@ sozinho  é incapaz  de traçar  hiperplanos  capazes de  resolver problemas  n�
 lineares, no  exemplo apresentado  por \citeonline{knight} neste  é apresentado
 que  enquanto um  neurônio  artificial  é capaz  de  reproduzir corretamente  o
 comportamento de um porta logica E ou OU este não consegue sintetizar uma porta
-OU exclusivo, com isso é definido um limite ao \textit{perceptron} já que este
+OU-exclusivo, com isso é definido um limite ao \textit{perceptron} já que este
 é incapaz de resolver algumas classes de problemas.
 
 \subsubsection{Redes neurais \textit{feedforward}}
 
 Ainda considerando  a incapacidade do  \textit{perceptron} de uma  única camada
 modelar algumas superfícies \citeonline{knight} apresenta que se empregado mais
-de  uma  camada  seremos  capazes  então  de  desenvolver  esses  modelos  mais
+de  uma  camada seremos  capazes  então  de  representar esses  problemas  mais
 complexos. A essa arquitetura de organização de neurônios se dá o nome de redes
 neurais de  múltiplas camadas, e quando  a alimentação é na  direção da entrada
 para a saída será classificada também como \textit{feedforward}.
@@ -832,28 +833,90 @@ reajustados uma vez a cada passagem do aprendizado.
 
 Para avaliação dos  pesos é necessário utilizar uma função  de calculo do erro,
 como este trabalho consiste na realização regressão o calculo do erro será dado
-pela função de erro quadrático médio conforme \autoref{eq:mse}.
+pela função de erro absoluto médio conforme \autoref{eq:mae}.
 
-\begin{equation}\label{eq:mse}
-    MSE = \frac{1}{n}\sum_{i=1}^{n}{(Y_i - \hat{Y}_i)^2}
+\begin{equation}\label{eq:mae}
+    MAE = \frac{1}{n}\sum_{i=1}^{n}{|(Y_i - \hat{Y}_i)|}
 \end{equation}
 
-\subsubsection{\textit{Backpropagation}}
+\subsubsection{Retro propagação}
 
 A atualização  dos pesos ocorre  a cada iteração  sobre os valores  de entrada,
 assim,  suas  saídas  são  comparadas  com  os  valores  reais  e  computado  o
-valor  do erro.  Tendo os  valores  dos erros,  $E$,  esse valor  é aplicado  a
+valor  do erro.  Tendo os  valores  dos erros,  $L$,  esse valor  é aplicado  a
 \autoref{eq:backpropagation} e  então os pesos  da rede neural  são atualizados
-para a nova iteração.
+para a  nova iteração,  sendo aplicado  uma taxa  de aprendizado,  $\alpha$, ao
+valor que será corrigido os pesos.
 
 \begin{equation}\label{eq:backpropagation}
-    w_{n+1} = w_n - \alpha \frac{\partial E(x,w_t)}{\partial w_t}
+    w_{n+1} = w_n - \alpha \frac{\partial L(x,w_t)}{\partial w_t}
 \end{equation}
 
-\chapter{Desenvolvimento}\label{chap:desenv}
+\subsubsection{Avaliação e seleção do modelo}
 
-Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries
-temporais tem  grande importância,  e uma  de suas  principais aplicações  é na
+Após  o treinamento  do  modelo temos  de  avaliar a  capacidade  do modelo  de
+generalizar  para  dados  ainda  não  apresentados a  eles,  esse  conceito  de
+generalização  é descrito  por \citeonline{haykin2009}  como um  dos principais
+objetivos de um modelo neural.
+
+Para avaliarmos a capacidade de generalização normalmente é separado uma porção
+dos  dados, normalmente  em uma  proporção de  30\%, assim  durante a  etapa de
+treinamento serão  utilizados a porção  maior dos dados  e após o  modelo estar
+treinado  é verificado  a qualidade  utilizando a  função de  erro já  definida
+anteriormente mas agora no conjunto de teste.
+
+Já  que durante  a  etapa de  aprendizado  o modelo  só  obterá informações  do
+conjunto  de trinamento  se  faz necessário  algumas  estrategias para  impedir
+que  o modelo  se  especialize  no conjunto,  essa  especialização é  conhecida
+por  \textit{overfit}, isto  pode causar  a  incapacidade do  modelo em  prever
+corretamente os  dados que ainda não  foram lhe apresentado. Para  impedir isto
+podemos realizar os seguintes procedimentos.
+
+\begin{enumerate}
+    \item Validação cruzada\\
+        O conjunto de dados é divido em sub conjuntos, \textit{folds}, e a rede
+        neural é treinada  utilizando $k-1$ \textit{folds}, sendo  $k$ o número
+        total de conjuntos  criados, e o modelo é validado  no conjunto deixado
+        de  fora do  treinamento.  Ocorrerá  ainda a  mudança  do conjunto  que
+        servirá para validação, assim impediremos  que a rede se especialize em
+        um conjunto  especifico. Na \autoref{fig:crosvalidation} o  conjunto de
+        entrada é dividido  em três \textit{folds} e o  treinamento é realizado
+        nas três divisões  criadas, sendo os conjuntos em  azul utilizados para
+        treinamento e aqueles em vermelho utilizados para avaliar o modelo, e o
+        modelo  é  avaliado  conforme  um  método, $L_{cv}$,  que  reúna  os  a
+        avaliação de todos, $L = L_{cv}(L_1, L_2, L_3)$.
+
+        \begin{figure}[ht]
+            \centering
+            \caption{Divisão da entrada em três\textit{folds}}\label{fig:crosvalidation}
+            \includegraphics[width=.5\linewidth]{images/cross_validation.png}
+            \source{Elaborado pelo autor}
+        \end{figure}
+
+    \item Regularização\\
+        Tem  como objetivo  manter os  pesos do  modelo baixos.  O procedimento
+        consiste  em alterar  a função  do erro  adicionando a  ela o  custo do
+        pesos, isso é  feito conforme a \autoref{eq:regL1}, sendo  $L$ a função
+        de perda anterior e $L_{reg}$ a  regularizada, $w$ é os pesos do modelo
+        e $\lambda$  é a taxa de  regularização, se selecionado um  valor muito
+        alto os  pesos tenderão a  $0$ e o efeito  prático será o  contrario ao
+        desejado  e o  modelo passará  a ser  incapaz de  representar também  o
+        conjunto de entrada.
+
+        \begin{equation}\label{eq:regL1}
+            L_{reg} = L + \lambda \sum{|w|}
+        \end{equation}
+\end{enumerate}
+
+Como  já  apresentada  existem  diversas definições  a  serem  realizadas  para
+produção  do  modelo que  contemple  os  requisitos  do modelo.  Podemos  então
+realizar testes nesses diversos modelos  possíveis e escolher aquele que melhor
+se adeque segundo a função de  erro definida, esse procedimento é conhecido por
+busca em grade,  realizando a avaliação do modelo para  todas as combinações de
+parâmetros definidos na grade.
+
+\chapter{Desenvolvimento}\label{chap:desenv}
+Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries temporais tem  grande importância,  e uma  de suas  principais aplicações  é na
 previsão  de indicadores  econômicos, como  o S\&P500,  um índice  mantido pela
 Standard \& Poor's desde 1923, indexando os  valores de 500 ativos em bolsas de
 valores e  servindo como um indicador  geral do comportamento do  mercado. Logo
@@ -866,6 +929,15 @@ tipos   de  séries   foi  também   selecionada  a   série  já   apresentado 
 atmosfera. A  importância de  avaliar comportamento  com essa  série se  dá por
 conta do  se diferenciar da  série econômica  por ter sazonalidade  e tendência
 muito mais claras.
+
+Durante  toda  a  etapa  de   desenvolvimento  foi  utilizada  a  linguagem  de
+programação python em conjunto com jupyter  para a análise das séries, produção
+dos modelos  e avaliação. Especificamente  para os modelos  probabilísticos foi
+utilizado a  biblioteca statsmodels\footnote{\url{https://www.statsmodels.org}}
+e  tensorflow\footnote{\url{https://www.tensorflow.org/}}  para os  modelos  de
+aprendizado de máquina.  Além delas foram utilizadas a  biblioteca seaborn para
+produção  dos gráficos  e  pandas em  conjunto com  numpy  e scikit-learn  para
+importar e realizar as modificações necessárias dos dados.
 
 As observações das séries podem ser obtidas
 online\footnote{\url{https://datahub.io/core/s-and-p-500}}\footnote{\url{https://datahub.io/core/co2-ppm}}.
@@ -880,7 +952,10 @@ respectivamente.
     \source{Elaborado pelo autor}
 \end{figure}
 
-\subsubsection{Análise da série}
+A divisão do conjunto de treino e teste foi realizado de maneira a ser
+utilizado 70\% dos dados durante o treinamento e 30\% durante a validação.
+
+\section{Análise da série}
 
 Seguindo as etapas para construção do modelo foi realizada a análise dos dados.
 O  objetivo  era identificar  as  características  da  série,  como se  esta  é
@@ -893,12 +968,11 @@ Já   na   análise   dos   gráficos  das   séries   na   \autoref{fig:sp500} 
 séries, conclui-se  isso segundo  os critérios  definidos anteriormente.  Já se
 aproveita para perceber a existência clara de tendência em ambos conjuntos.
 
-Para  remover a  tendência e  consequentemente  tornar estacionaria  a série  é
-necessário  realizar inicialmente  uma diferenciação.  Na \autoref{fig:co2diff}
-temos  a  primeira diferenciação  das  leituras  de  $CO_2$,  já para  a  série
-financeira temos a \autoref{fig:sp500diff} com sua primeira diferenciação. Pela
-observação podemos concluir que uma única diferenciação foi suficiente em ambos
-os casos.
+Para  tornar  a  série  estacionaria é  necessário  realizar  inicialmente  uma
+diferenciação.  Na \autoref{fig:co2diff}  temos  a  primeira diferenciação  das
+leituras de $CO_2$, já para  a série financeira temos a \autoref{fig:sp500diff}
+em sua primeira  diferenciação. Pela observação podemos concluir  que uma única
+diferenciação foi suficiente em ambos os casos.
 
 \begin{figure}[ht]
     \centering
@@ -907,12 +981,19 @@ os casos.
     \source{Elaborado pelo autor}
 \end{figure}
 
-Quanto  a sazonalidade  é evidente  a sua  existência nas  leituras de  CO2, no
-entanto, tal constatação não é tão clara  nos índices da Standard \& Poor sendo
-necessários  outros métodos  que não  foram  discutidos nesse  trabalho para  a
-definição de sua sazonalidade.
+Quanto a sazonalidade é evidente a sua existência nas leituras de $CO_2$, sendo
+esta anual e tendo que as leituras são mensais podemos dizer que a sazonalidade
+se repete a cada  12 leituras, no entanto, tal constatação não  é tão clara nos
+índices da  Standard \&  Poor sendo  necessários outros  métodos que  não foram
+discutidos nesse trabalho para a sua definição.
 
-\subsubsection{Definição do modelo probabilístico}
+Tendo sido realizada  a análise pode-se estimar que os  modelos ARMA não seriam
+suficientes  e que  seria a  necessária  utilização do  modelo integrado,  alem
+disso, seria adequado a aplicação do modelo com suporte a sazonalidade, SARIMA,
+à série  contendo leituras  de $CO_2$,  no entanto,  por conta  da complexidade
+adicional este não fez parte do desenvolvimento desse trabalho.
+
+\section{Definição do modelo probabilístico}
 
 %TODO Definição do modelo CO2
 
@@ -941,11 +1022,79 @@ ARIMA(1,1,1), sendo este hibrido do modelo AR(1) e MA(1) com uma integração.
     \source{Elaborado pelo autor}
 \end{figure}
 
+\section{Definição do modelo utilizando aprendizado de máquina}
+
+Já para  o desenvolvimento do modelo  neural não foi necessária  uma observação
+profunda da  série, no entanto,  exigiu uma parametrização muito  mais complexa
+do  modelo,  observando como  o  modelo  convergia considerando  os  parâmetros
+escolhidos e realizando  uma busca em grade extensiva para  encontrar um modelo
+com boa capacidade representativa.
+
+Antes da etapa de parametrização  foram realizadas alguns pré-processamentos, o
+primeiro foi  em vista  de escalar a  série para o  intervalo 0  e 1, já  que a
+função  de  ativação  utilizada  tem  esse  intervalo  como  saída.  Para  isso
+foi  utilizado o  método de  \textit{MinMaxScaler} da  biblioteca sklearn,  que
+matematicamente pode ser representado  como visto na \autoref{eq:minmaxscaler},
+sendo $MAX$ e  $MIN$ o maior e  menor valor respectivamente no  conjunto após o
+procedimento.
+
+\begin{align}\label{eq:minmaxscaler}
+    &X_{std} = \frac{X - \min X}{\max X-\min X}\\
+    &X_{scaled} = X_{std} * (MAX-MIN)+MIN
+\end{align}
+
+Na \autoref{tab:gridsearch} observamos todos os parâmetros testados na busca em
+largura.
+
+\begin{table}[ht]
+\centering
+\caption{Possibilidades dos parâmetros da busca em grade}\label{tab:gridsearch}
+\begin{tabular}{l l}
+\multicolumn{1}{c}{Parâmetro}        & \multicolumn{1}{c}{Possibilidades}  \\
+    \toprule
+    Número de camadas                & 1 \ldots 4                          \\
+    Número de unidades por camada    & 1 \ldots 20                         \\
+    $\lambda$ regularização          & 0.00001 \ldots 0.0001               \\
+    Função de ativação               & $relu$, $sigmoid$                   \\
+    Função de perda                  & MSE, MAE                            \\
+    Iterações                        & 20 \ldots 1000
+\end{tabular}
+\source{Elaborado pelo autor}
+\end{table}
+
+Uma característica que foi logo  observada nas primeiras execuções anteriores a
+aplicação  da regularização  foi o  rápido \textit{overfit}  sobre os  dados de
+treinamento como  visto na \autoref{fig:sp500_overfit}, mesmo  sendo aplicada a
+validação  cruzada, e  ainda como  visto na  \autoref{fig:iter_sp500_overfit} a
+especialização para o conjunto de treino  foi muito rápida, portanto foi também
+aplicada a regularização e após isso foi muito frequente encontrar bons modelos
+para as séries observadas.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico  da  comparação  do  previsto   e  real  para  o  conjunto
+    de   treino   e   teste   para   a   série   de   observações   do   índice
+    S\&P500}\label{fig:sp500_overfit}
+    \minipage{0.50\linewidth}
+        \includegraphics[width=\linewidth]{images/sp500_overfit_train.png}
+    \endminipage\hfill
+    \minipage{0.50\linewidth}
+        \includegraphics[width=\linewidth]{images/sp500_overfit_test.png}
+    \endminipage\hfill
+    \source{Elaborado pelo autor}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico da função de perda em  função do números de iterações para
+    a série S\&P500}\label{fig:iter_sp500_overfit}
+    \includegraphics[width=.5\linewidth]{images/sp500_overfit_iter.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
 \chapter{Resultados}\label{chap:result}
 
 \chapter{Conclusões}\label{chap:concl}
-
-
 
 \section{Trabalhos futuros}
 
