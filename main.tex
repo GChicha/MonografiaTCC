@@ -466,33 +466,31 @@ série com função média constante, dando evidência a componente sazonal.
 %VALERIA: PAREI REVISAR AQUI
 \section{Modelos probabilísticos}
 
-Como já disposto, as séries temporais podem ser previstas utilizando de modelos
-estatísticos, isso segundo \citeonline{ehlers} ocorre devido ao seu caráter
-estocástico por conta de cada observação possuir correlação com as observações
-imediatamente antecessoras diferentemente de séries determinísticas, quais tem
-seu estado definido por uma função matemática ou um sistema onde a saída só é
-dependente das entradas atuais.
+%Conforme já disposto, as séries temporais podem ser previstas utilizando de modelos estatísticos, isso segundo \citeonline{ehlers} ocorre devido ao seu caráter estocástico por conta de cada observação possuir correlação com as observações imediatamente antecessoras diferentemente de séries determinísticas, quais tem seu estado definido por uma função matemática ou um sistema onde a saída só é dependente das entradas atuais.
 
-O modelo comumente utilizado para essa tarefa é o ARIMA, descrito por
-\citeonline{box}, caracteriza a série em três parâmetros $(p,d,q)$, sendo cada
-um associado a um processo, sendo $p$ associado a processos auto-regressivos,
-$r$ a processos integrativos e $q$ a de médias móveis.
+Conforme apresentado anteriormente, as séries temporais podem ser previstas utilizando-se modelos estatísticos. Segundo \citeonline{ehlers}, isso se deve ao seu caráter estocástico, uma vez que cada observação possui correlação com as observações imediatamente antecessoras, diferentemente de séries determinísticas, as quais têm seu estado definido por uma função matemática ou um sistema para o qual a saída é dependente apenas das entradas atuais.
 
-Para encontrarmos esses parâmetros \citeonline{box} descreveu alguns processos,
-entre eles a analise da função de autocorrelação.
+Um modelo comumente utilizado para a previsão de séries temporais é o ARIMA. Descrito por
+\citeonline{box}, esse modelo caracteriza a série em termos de três parâmetros $(p,d,q)$, sendo cada
+um associado a um processo: $p$ é associado a processos auto-regressivos,
+$r$ a processos integrativos e $q$ a processos de médias móveis.
+
+A definição dos valores desses parâmetros não é direta e depende de uma análise das características da série. 
+%VALERIA: modifiquei a frase, então veja se ainda está fazendo sentido
+\citeonline{box} descreveu algumas ferramentas que podem auxiliar nessa análise, entre elas a análise da função de autocorrelação.
+%Para encontrarmos esses parâmetros \citeonline{box} descreveu alguns processos, entre eles a análise da função de autocorrelação.
 
 \subsection{Função de autocorrelação}\label{sec:corre}
+%VALERIA: função de 'correlação' ou 'autocorrelação'?
+%Conforme mencionado, a análise da função de correlação é uma ferramenta que auxilia na identificação do comportamento da série \cite{box}.
+%, uma ferramenta para isso é a função de autocorrelação, 
+%VALERIA: a definição abaixo ficou "solta"
+%Com base na correlação entre duas séries $X$ e $Y$, é possível obter a correlação de uma série com defasagem $k$, sendo essa defasagem a distância entre o valor analisado $X_t$ a observação $X_{t-k}$.
+%VALERIA: VEJA O PARÁGRAFO ABAIXO FAZ SENTIDO
+Como o nome sugere, a função de autocorrelação mede a correlação entre as observações de uma série em diferentes períodos de tempo. Considerando-se uma série temporal $X$, calcula-se a correlação entre seus valores com uma defasagem de tempo $k$, sendo essa defasagem a distância entre o valor analisado $X_t$ a observação $X_{t-k}$. Por exemplo, supondo uma série de 100 observações, pode-se chamar de $X'$ a série correspondente aos 99 primeiras observações e de $X''$ a série correspondente às últimas 99 observações. Nesse caso, tem-se uma defasagem (ou lag) de 1 período de tempo. Assim a função de autocorrelação será dada segundo a \autoref{eq:autocorrelacao}.
 
-Durante a parametrização precisaremos identificar o comportamento da série, uma
-ferramenta para isso é a função de autocorrelação, com base na correlação entre
-duas séries $X$ e $Y$, podemos obter a correlação de uma série com defasagem
-$k$, sendo essa defasagem a distância entre o valor analisado $X_t$ a
-observação $X_{t-k}$.
+%Desse modo, é possível se obter a função de autocorrelação para uma série de 100 elementos ao se considerar que a série $X$ corresponde aos 99 primeiros elementos e a série $Y$ os 99 últimos elementos. Assim a função de autocorrelação será dada segundo a \autoref{eq:autocorrelacao}.
 
-Assim podemos obter a função de autocorrelação para uma série de 100 elementos
-ao considerar que a série $X$ é os 99 primeiros elementos e $Y$ os 99 últimos
-elementos. Assim a função de autocorrelação será dada segundo
-\autoref{eq:autocorrelacao}.
 
 \begin{equation}
     \label{eq:autocorrelacao}
@@ -500,18 +498,18 @@ elementos. Assim a função de autocorrelação será dada segundo
     \overline{x})}}{\sum_{t=1}^{n}{(x_t - \overline{x})^2}}
 \end{equation}
 
-Segundo  \citeonline{ehlers} a  função  de autocorrelação  quando plotada  para
-os  $k$-ésimos  primeiros  coeficientes  é   chamado  de  correlograma  e  este
-é  uma  ferramenta   importante  para  as  análises.  Como   exemplo  pode  ser
-visto  a  \autoref{fig:correlogramaCo2} na  qual  é  disposto as  25  primeiras
-defasagens das leituras  de concentração de $CO_2$ na  atmosfera, ainda segundo
-\citeonline{ehlers}  temos  de  definir  ao correlograma  o  seu  intervalo  de
-confiança, com o  qual podemos considerar tudo que esteja  acima desse como uma
-correlação que  deve ser analisada  e abaixo desse limite  será desconsiderada,
-assim se todos as correlações estarem  abaixo desse limite podemos considerar a
-série como um  ruído branco, para encontrar  esse intervalo \citeonline{ehlers}
-recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número
-de observações da série.
+
+Segundo  \citeonline{ehlers}, a  função  de autocorrelação,  quando plotada  para os  $k$-ésimos  primeiros  coeficientes,  é chamada  de  correlograma e constitui-se em uma  ferramenta   importante  para  as  análises.  
+%VALERIA: essas 25 primeiras defasagens seriam como 25 séries geradas, cada uma, com diferença de uma unidade de tempo t (um mês, nesse caso)?
+Como um exemplo, a \autoref{fig:correlogramaCo2} apresenta o correlograma com as 25 primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Ainda, segundo \citeonline{ehlers}, é preciso definir um intervalo  de confiança para o correlograma. 
+%VALERIA: se é um intervalo, não faz sentido dizer acima ou abaixo, mas sim dentro e fora do intervalo
+Considera-se tudo que esteja acima desse limite como uma correlação que deve ser analisada e o que está abaixo desse limite será desconsiderado. Assim, se todas as correlações estiverem abaixo desse limite, podemos considerar a série como um  ruído branco. 
+%VALERIA: o que significa dizer que é a série é ruído branco? Faça essa relação.
+%VALERIA: essa equação está esquisita. A fórmula padrão para o limite de confiança (nesse caso, de 95%) é 1,96*desvio padrão. Por que está dividindo pela raiz de n?
+Para encontrar o intervalo de confiança, \citeonline{ehlers} recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número de observações da série.
+
+
+%Como um exemplo,  pode  ser visto  a  \autoref{fig:correlogramaCo2} na  qual  é  disposto as  25  primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Ainda, segundo \citeonline{ehlers}, é preciso definir para o correlograma  o  seu  intervalo  de confiança, com o  qual podemos considerar tudo que esteja  acima desse como uma correlação que  deve ser analisada  e abaixo desse limite  será desconsiderada, assim se todos as correlações estarem  abaixo desse limite podemos considerar a série como um  ruído branco, para encontrar  esse intervalo \citeonline{ehlers} recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número de observações da série.
 
 \begin{figure}
     \centering
