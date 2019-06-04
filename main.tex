@@ -499,13 +499,13 @@ Como o nome sugere, a função de autocorrelação mede a correlação entre as 
 \end{equation}
 
 
-Segundo  \citeonline{ehlers}, a  função  de autocorrelação,  quando plotada  para os  $k$-ésimos  primeiros  coeficientes,  é chamada  de  correlograma e constitui-se em uma  ferramenta   importante  para  as  análises.  
+Segundo  \citeonline{ehlers}, a  função  de autocorrelação,  quando plotada  para os  $k$-ésimos  primeiros  coeficientes,  é chamada  de  correlograma e constitui-se em uma  ferramenta importante  para  as  análises.
 %VALERIA: essas 25 primeiras defasagens seriam como 25 séries geradas, cada uma, com diferença de uma unidade de tempo t (um mês, nesse caso)?
-Como um exemplo, a \autoref{fig:correlogramaCo2} apresenta o correlograma com as 25 primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Ainda, segundo \citeonline{ehlers}, é preciso definir um intervalo  de confiança para o correlograma. 
-%VALERIA: se é um intervalo, não faz sentido dizer acima ou abaixo, mas sim dentro e fora do intervalo
-Considera-se tudo que esteja acima desse limite como uma correlação que deve ser analisada e o que está abaixo desse limite será desconsiderado. Assim, se todas as correlações estiverem abaixo desse limite, podemos considerar a série como um  ruído branco. 
-%VALERIA: o que significa dizer que é a série é ruído branco? Faça essa relação.
-%VALERIA: essa equação está esquisita. A fórmula padrão para o limite de confiança (nesse caso, de 95%) é 1,96*desvio padrão. Por que está dividindo pela raiz de n?
+Como um exemplo, a \autoref{fig:correlogramaCo2} apresenta o correlograma com as 25 primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Nesse gráfico, também é exibido o intervalo de confiança calculado para o correlograma (destacado em azul). Segundo \citeonline{ehlers}, %é preciso definir um intervalo  de confiança para o correlograma. 
+%VALERIA: se é um intervalo, não faz sentido dizer acima ou abaixo, mas sim dentro e fora do intervalo.
+considera-se tudo que esteja acima desse limite como uma correlação que deve ser analisada e o que está abaixo desse limite será desconsiderado. Assim, se todas as correlações estiverem abaixo desse limite, podemos considerar a série como um  ruído branco. 
+%VALERIA: na prática, o que significa dizer que é a série é ruído branco? Esclareça se possível.
+%VALERIA: essa equação do intervalo de confiança está esquisita. A fórmula padrão é valor +- 1,96*desvio padrão (o 1,96 é usado para se obter um intervalo de 95% de confiança). Por que na sua fóruma está dividindo pela raiz de n?
 Para encontrar o intervalo de confiança, \citeonline{ehlers} recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número de observações da série.
 
 
@@ -663,51 +663,36 @@ que nos retorna a capacidade dos parâmetros em aproximar a série.
     L(\theta) = \prod_{i=1}^{n}{q(x_i;\theta)}
 \end{equation}
 
+%VALERIA: Pode usar "Aprendizado de Máquina" ou  "Aprendizagem de Máquina". Apenas certifique-se de manter um padrão em todo o texto, ok?
 \section{Aprendizado de Máquina}
 
-Computadores se utilizam de algorítimos  para realizar processamento de dados e
-na  solução  de  problemas,  porem, para  determinados  problemas  não  existem
-algoritmos.  Por  exemplo a  classificação  de  um  e-mail como  indesejado  ou
-legitimo  pode se  tornar  um problema  muito complexo  para  se determinar  um
-algorítimo  capaz  de realizar  a  correta  identificação, considerando  que  a
-definição de \textit{spam} pode variar com o tempo e usuário.
+Computadores se utilizam de algorítimos para realizar processamento de dados e solucionar problemas.  Porém, para  determinados  problemas,  não é possível definir um algoritmo, seja porque o seres humanos não conseguem explicar seu conhecimento ou esse conhecimento é muito complexo para ser explicitado, ou, ainda, porque o conhecimento e a solução do problema muda com o passar do tempo. Um exemplo de tal situação seria a classificação de  um e-mail como \textit{spam} ou legitimo. Definir as características que fazem um e-mail ser considerado \textit{spam} pode se  tornar um problema  complexo, especialmente considerando-se que a definição de \textit{spam} pode variar com o tempo e usuário.
 
-Conforme \citeonline{ethem} quando  temos tarefas como a  identificação de spam
-apresentada que  não apresenta solução  evidente, porem, permite  identificar a
-existência  de um  padrão no  conjunto de  dados, pode-se  aplicar técnicas  de
-mineração  de dados  em volumes  de dados  massivos em  buscas desses  padrões.
-Entretanto para classificarmos  esse sistema como inteligente  não é suficiente
-ser capaz de concluir padrões de uma base, precisamos que este ainda seja capaz
-de se adaptar a mudanças e aprender com isso.
+Conforme \citeonline{ethem}, tarefas como a identificação de \textit{spam}, que não apresentam uma solução evidente, mas que podem ser resolvidas por meio da identificação de padrões a partir de um conjunto de  dados, são boas candidatas à aplicação de técnicas de aprendizado de máquina.%pode-se  aplicar técnicas  de mineração  de dados  em volumes  de dados  massivos em  buscas desses  padrões.
+%VALERIA: cuidado com essa definição. Aprendizado de máquina e inteligência não são exatamente a mesma coisa. Vc está falando aqui de AM, não de inteligência no sentido de um sistema que precisa aprender continuamente com o ambiente.
+Entretanto para classificarmos esse sistema como inteligente não é suficiente que o mesmo seja capaz de inferir padrões de uma base, precisamos que este ainda seja capaz de se adaptar a mudanças e aprender com isso.
 
-Considerando  a definição  apresentado  e segundo  \citeonline{machineLearning}
-aprendizado de máquina  é descrito como a habilidade  de algorítimos reconhecer
-padrões  em um  conjunto  de  dados. Essa  detecção  de  padrões permitem,  por
-exemplo, a realização das seguintes atividades.
+%Considerando  a definição apresentada e 
+\citeonline{machineLearning} descreve aprendizado de máquina como a habilidade  de algoritmos reconhecer padrões em um conjunto de dados. 
+%VALERIA: As duas atividades que vc descreve são características de AM supervisionado. Vc não falou nada sobre isso. AM supervisionado é o tipo mais comum de AM, mas não é o único. Além deles, temos AM não-supervisionado (que inclui as atividades de associação e agrupamento) e AM por reforço.
+Esse aprendizado de padrões pode ser aplicado, por exemplo, nas seguintes atividades:
 \begin{itemize}
     \item Classificação\\
-        Realiza  o  mapeamento  de  uma   entrada  a  uma  categoria,  como  no
-        exemplo  na  classificação  dos   números,  apresentada  no  início  da
-        seção.  Podemos   encontrar  ainda  exemplos  do   uso  de  aprendizado
-        de  máquina  para  classificação  em diversos  outros  trabalhos, sendo
-        aplicado desde a classificação de texto à identificação de riscos em
-        aplicações financeiras.
+        Tarefa de encontrar  o  mapeamento  de  uma   entrada  a  uma  ou mais categorias de um conjunto pré-definido.
+        %VALERIA: Vc não mostrou o exemplo da classificação de números ainda
+        %,  como  no exemplo  na  classificação  dos   números,  apresentada  no  início  da seção.  
+        Um exemplo desse tipo de tarefa seria a classificação de dígitos manuscritos nas classes de 0 a 9. Sendo a classificação uma das tarefas de aprendizado de máquina mais comuns, é possível encontrar  exemplos do seu uso em diversos cenários, desde a classificação de textos até a identificação de riscos em aplicações financeiras.
     \item Regressão\\
-        Já  a  tarefa de  regressão  é  aplicada  quando precisamos  mapear  um
-        conjunto  de valores  a  uma  saída em  $  \mathbb{R}  $, por  exemplo,
-        \citeonline{regressao}   utilizou   redes  neurais   artificiais   para
-        encontrar um  modelo que  permitisse a  previsão da  demanda de  uso de
-        energia elétrica,  mapeando o  carga atual  e informações  climáticas a
-        carga futura.
+        Tarefa de mapear uma entrada, representada por meio de um conjunto  de valores, a uma saída em  $\mathbb{R}$. 
+        %VALERIA: tem certeza que esse trabalho fez regressão? Se o valor previsto não for contínuo, não caracteriza regressão.
+        Como um exemplo desse tipo de tarefa, \citeonline{regressao} utilizou redes  neurais   artificiais para encontrar um modelo que permitisse a previsão da  demanda de  uso de energia elétrica,  mapeando a carga atual e informações climáticas à carga futura.
 \end{itemize}
 
-Um  exemplo   de  uso  de   aprendizado  de   máquina  é  a   identificação  de
-caracteres  numéricos   escritos  a  mão,   esse  exemplo  é   apresentado  por
-\citeonline{machineLearning} é  descrito como  um problema de  classificação na
-qual uma imagem  de dimensões $28 \times  28$ pixeis é dada como  entrada em um
-sistema e este deve atribuir uma classificação que descreve qual o número que a
-figura representa,  um conjunto  de exemplo  dessas imagens  pode ser  visto na
-\autoref{fig:numeroClassi}.
+%VALERIA: Esse exemplo é bom, mas está mal explicado. Além disso, ele exemplifica apenas a atividade de classificação e vc não disse porque vai explicar essa atividade e não a outra (regressão).
+%Vc tb está emendando o parágrafo todo em uma única frase. Não pode. Um parágrafo é composto de várias frases! Use o ponto final!
+%Deixei o parágrafo abaixo comentado para vc ver como vc tinha feito e veja como eu o separei em frases menores no parágrafo a seguir.
+%Um exemplo de uso de aprendizado de máquina é a identificação de caracteres  numéricos escritos à mão, esse  exemplo  é   apresentado  por \citeonline{machineLearning} é  descrito como  um problema de  classificação na qual uma imagem  de dimensões $28 \times 28$ pixeis é dada como  entrada em um sistema e este deve atribuir uma classificação que descreve qual o número que a figura representa,  um conjunto  de exemplo  dessas imagens  pode ser  visto na \autoref{fig:numeroClassi}.
+Um exemplo de uso de aprendizado de máquina é a identificação de caracteres  numéricos escritos à mão. Apresentado por \citeonline{machineLearning}, esse exemplo é descrito como  um problema de  classificação no qual uma imagem  de dimensões $28 \times 28$ pixeis é dada como  entrada para um sistema que deve atribuir uma categoria que descreve qual o número que a figura representa.  Um conjunto de exemplos de tais imagens  pode ser  visto na \autoref{fig:numeroClassi}.
 
 \begin{figure}
     \centering
@@ -717,12 +702,8 @@ figura representa,  um conjunto  de exemplo  dessas imagens  pode ser  visto na
     \source{\citeonline{machineLearning}}
 \end{figure}
 
-No exemplo apresentado na  \autoref{fig:numeroClassi} podemos entender a tarefa
-como  um sistema  onde $x$  é a  entrada  e $\hat{y}$  é a  saída do  sistemas.
-Matematicamente  podemos expressar  da  forma vista  na \autoref{eq:sisCla}.  A
-saída será na forma  de um conjunto de números variando de 0  a 1 expressando a
-probabilidade  de  $x$ pertencer  à  classe  $\hat{y}_i$  onde  $i$ é  o  valor
-expressado na imagem.
+No exemplo apresentado na \autoref{fig:numeroClassi} podemos entender a tarefa como um sistema no qual $x$  é a  entrada  e $\hat{y}$  é a  saída.
+Matematicamente, podemos expressar da  forma vista  na \autoref{eq:sisCla}.  A saída será na forma  de um conjunto de números variando de 0  a 1 expressando a probabilidade  de  $x$ pertencer  à  classe  $\hat{y}_i$  onde  $i$ é o valor expressado na imagem.
 
 \begin{equation}
     \label{eq:sisCla}
