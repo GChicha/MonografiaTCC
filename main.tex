@@ -68,6 +68,19 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 
 \imprimirfolhaderosto{}
 
+\begin{epigrafe}
+    \vspace*{\fill}
+	\begin{flushright}
+		\textit{``Rogo a você que me lê\\
+        A sua boa vontade\\
+        Não olhe os error, releve,\\
+        Guarde com sinceridade\\
+        E busque o melhor fazer\\
+        Lendo cordel de verdade.''\\
+        Raquel Juvêncio e Filomena Mourão}
+	\end{flushright}
+\end{epigrafe}
+
 \begin{resumo}
     % TODO: Resumo
 
@@ -169,10 +182,8 @@ foi comparar o desempenho de modelos  estatísticos e baseados em aprendizado de
 máquina na previsão de uma  série de característica econômica. Especificamente,
 foram  avaliados  o  modelo  estatístico  ARIMA  e  um  modelo  de  aprendizado
 de  máquina baseado  em  redes  neurais artificiais  de  múltiplas camadas.  Os
-resultados indicaram....
-% VALERIA: precisa dizer qual(is) modelo(s)  estatístico(s) e de aprendizado de
-% máquina  vc  avaliou.  Tb  precisa  dizer de  forma  sumarizada  qual  foi  o
-% resultado.
+resultados indicaram  que os modelos  tiveram desempenho semelhantes  nos dados
+utilizados nesse trabalho.
 
 % Como  forma de  comparar desempenhos  e  buscar compreender  as técnicas  que
 % poderiam ser utilizadas para a previsão, este trabalho realizou a previsão de
@@ -199,12 +210,9 @@ incluindo os principais métodos de  previsão de séries temporais empregados. 
 \autoref{chap:desenv} são  descritos os passos metodológicos  empregados para a
 desenvolvimento tanto do  modelo estatístico quanto de  aprendizado de máquina.
 Os  resultados obtidos  com base  nos modelos  construídos são  apresentados no
-\autoref{chap:result}.
-% VALERIA: discussão de resultados deve ficar no capítulo de resultados, não na
-% conclusão. Na  conclusão se resume o  que foi feito, se  indica os principais
-% resultados e se dá as conclusões finais.
-Por fim, no \autoref{chap:concl} é  apresentada a discussão dos resultados, bem
-como as conclusões obtidas.
+\autoref{chap:result} e  apresentada as  constatações feitas em  ambos modelos.
+Por  fim,  no  \autoref{chap:concl}  é  apresentada  a  conclusão  do  que  foi
+realizado.
 
 \chapter{Fundamentação teórica}\label{chap:fundTeor}
 
@@ -260,9 +268,6 @@ crescimento/decrescimento da série, o que  pode levar a observações futuras c
 valores  menores ou  maiores. A  sazonalidade caracteriza  padrões cíclicos  em
 função do tempo, comumente tomando períodos semanais, mensais ou anuais.
 
-% VALERIA: o que o T (maiúsculo) significa na definição? Achei que fosse tempo,
-% mas no  parágrafo seguinte aparece  a Equação  2.1 na qual  o T é  usado para
-% designar a tendência. Achei confuso.
 Uma série é descrita matematicamente pelo conjunto $\{X(t): t \in T\}$, podendo
 $t$ ser  um tempo  contínuo ou  discreto. O  tempo $t$  é dito  contínuo quando
 se  possui  observações  $X(t)$  para  todo $t$  em  $T$,  sendo  $T  \subseteq
@@ -271,13 +276,12 @@ $X(t_{i+1})$ existe um  intervalo igual de tempo, normalmente dado  na forma de
 uma sequência, $T = \{1, 2, \ldots, n\}$, sendo $n$ o número de observações.
 
 Segundo  \citeonline{ehlers}, uma  série  temporal  classicamente é  decomposta
-seguindo a \autoref{eq:timeseries},  sendo $t$ usado para denotar  o tempo, $T$
-denota  a  tendência, $C$  a  sazonalidade,  e  $R$  é a  componente  aleatória
-caracterizada por possuir média zero, também denotada como ruído branco.
+seguindo a \autoref{eq:timeseries}, sendo $t$ usado para denotar o tempo, logo,
+é parte fundamental entender o comportamento segundo essas três componentes.
 
 \begin{equation}
     \label{eq:timeseries}
-    X_t = T_t + C_t + R_t
+    X_t = Tendência_t + Sazonal_t + Aleatório_t
 \end{equation}
 
 \subsection{Série estacionária}
@@ -327,13 +331,15 @@ esperado para a série em determinado momento não será dada em função do tem
 % ela é  estacionária? Dizer  que a  observação do gráfico  é suficiente  não é
 % suficiente. ;)
 
-% A  \autoref{fig:co2diff}  é  um  exemplo  de  série  estacionária  encontrada
-% ao   aplicar  o   processo   de  diferenciação   na   série  apresentada   na
-% \autoref{fig:co2}, este processo está descrito na \autoref{sec:diff}. Segundo
-% \citeonline{tsExample} embora exista  testes como o de  Dikey Fuller descrito
-% em  \citeonline{dickey} para  a  prova de  estacionariedade,  é suficiente  a
-% observação gráfica da série.
-%%VALERIA: O que exatamente no gráfico me diz que a série é estacionária?
+A  \autoref{fig:co2diff}   é  um  exemplo  de   série  estacionária  encontrada
+ao   aplicar   o   processo   de  diferenciação   na   série   apresentada   na
+\autoref{fig:co2}, este  processo está descrito na  \autoref{sec:diff}. Segundo
+\citeonline{tsExample} embora  exista testes  como o  de Dikey  Fuller descrito
+em  \citeonline{dickey}  para  a  prova de  estacionariedade,  é  suficiente  a
+observação  gráfica  da  série.  Mas  caso não  seja  conclusiva  a  observação
+\citeonline{tsExample} orienta obter  o gráfico da função  de autocorrelação, e
+se  observada a  existência de  mais de  20 correlações  significativas pode-se
+classificar a série como não estacionaria.
 
 \subsection{Sazonalidade e tendência}
 
@@ -343,19 +349,18 @@ da sazonalidade, em  geral, é facilmente observada na  representação gráfica
 série, conforme exemplificado no gráfico  da \autoref{fig:co2}. Nesse gráfico é
 apresentada uma série  temporal real que registra a mudança  na concentração de
 $CO_2$ na atmosfera. Observando o gráfico, é possível notar que há sazonalidade
-de periodicidade anual.
-% VALERIA: Não  é evidente o que  caracteriza a sazonalidade no  gráfico. Deixe
-% isso claro para o leitor. O que mostra a sazonalidade é a linha em formato de
-% "serra", i.e., em cada ano tem um pico e um vale?
+de periodicidade anual, devido ao gráfico apresentar formato de serra e está se
+apresentar em repetição anual.
 
 Ainda  no  gráfico  da  \autoref{fig:co2},  também  é  possível  notar  que  há
 uma  tendência de  crescimento na  série. Segundo  \citeonline{ehlers}, não  há
 uma  definição exata  de  tendência, mas  normalmente a  mesma  é associada  ao
-comportamento de mudança das observações ao longo de um vasto período.
-%VALERIA: o que significa o alpha?
-Uma série com tendência pode ser descrita como a função
-apresentada na \autoref{eq:tendencia}, na qual $\alpha$ e $\beta$ são os coeficientes %de quê???
-e $\epsilon_t$ é o erro. O coeficiente $\beta$ define a taxa de crescimento da série e, desse modo, $\beta$ pode ser entendido na forma $\beta = x_t - x_{t-1}$.
+comportamento  de  mudança  das  observações  ao longo  de  um  vasto  período.
+Uma  série  com tendência  pode  ser  descrita  como  a função  apresentada  na
+\autoref{eq:tendencia},  na  qual $\alpha$  e  $\beta$  são os  coeficientes  e
+$\epsilon_t$ é  o erro. O coeficiente  $\beta$ define a taxa  de crescimento da
+série  e, desse  modo, $\beta$  pode  ser entendido  na  forma $\beta  = x_t  -
+x_{t-1}$.
 
 \begin{equation}
     \label{eq:tendencia} X_t = \alpha + \beta_t + \epsilon_t
@@ -447,7 +452,11 @@ leituras de $CO_2$ após uma diferenciação.
 Pelo gráfico  é possível  perceber que  a série resultante  se aproxima  de uma
 série com função média constante, dando evidência a componente sazonal.
 
-%Para dar um exemplo de diferenciação volto a série das leituras do $CO_2$ e agora realizando uma diferenciação, o resultado é visto na \autoref{fig:co2diff}, especificamente neste exemplo percebemos que a série se aproximou de uma série com função média constante, dando evidência a componente sazonal.
+Para  dar  um   exemplo  de  diferenciação  volto  a  série   das  leituras  do
+$CO_2$  e  agora   realizando  uma  diferenciação,  o  resultado   é  visto  na
+\autoref{fig:co2diff}, especificamente neste exemplo  percebemos que a série se
+aproximou de  uma série  com função  média constante,  dando ainda  evidência a
+componente sazonal.
 
 \begin{figure}
     \centering
@@ -463,34 +472,42 @@ série com função média constante, dando evidência a componente sazonal.
 % de comportamento de uma série em um período $s$ de tempo. Normalmente é
 % facilmente observado na representação gráfica da série.
 
-%VALERIA: PAREI REVISAR AQUI
 \section{Modelos probabilísticos}
 
-%Conforme já disposto, as séries temporais podem ser previstas utilizando de modelos estatísticos, isso segundo \citeonline{ehlers} ocorre devido ao seu caráter estocástico por conta de cada observação possuir correlação com as observações imediatamente antecessoras diferentemente de séries determinísticas, quais tem seu estado definido por uma função matemática ou um sistema onde a saída só é dependente das entradas atuais.
+Conforme  apresentado anteriormente,  as séries  temporais podem  ser previstas
+utilizando-se modelos  estatísticos. Segundo \citeonline{ehlers}, isso  se deve
+ao  seu caráter  estocástico, uma  vez  que cada  observação possui  correlação
+com  as  observações  imediatamente   antecessoras,  diferentemente  de  séries
+determinísticas, as quais têm seu estado  definido por uma função matemática ou
+um sistema para o qual a saída é dependente apenas das entradas atuais.
 
-Conforme apresentado anteriormente, as séries temporais podem ser previstas utilizando-se modelos estatísticos. Segundo \citeonline{ehlers}, isso se deve ao seu caráter estocástico, uma vez que cada observação possui correlação com as observações imediatamente antecessoras, diferentemente de séries determinísticas, as quais têm seu estado definido por uma função matemática ou um sistema para o qual a saída é dependente apenas das entradas atuais.
+Um modelo comumente utilizado para a  previsão de séries temporais é o ARIMA\@.
+Descrito por  \citeonline{box}, esse  modelo caracteriza a  série em  termos de
+três  parâmetros $(p,d,q)$,  sendo  cada  um associado  a  um  processo: $p$  é
+associado a  processos auto-regressivos, $r$  a processos integrativos e  $q$ a
+processos de médias móveis.
 
-Um modelo comumente utilizado para a previsão de séries temporais é o ARIMA. Descrito por
-\citeonline{box}, esse modelo caracteriza a série em termos de três parâmetros $(p,d,q)$, sendo cada
-um associado a um processo: $p$ é associado a processos auto-regressivos,
-$r$ a processos integrativos e $q$ a processos de médias móveis.
-
-A definição dos valores desses parâmetros não é direta e depende de uma análise das características da série. 
-%VALERIA: modifiquei a frase, então veja se ainda está fazendo sentido
-\citeonline{box} descreveu algumas ferramentas que podem auxiliar nessa análise, entre elas a análise da função de autocorrelação.
-%Para encontrarmos esses parâmetros \citeonline{box} descreveu alguns processos, entre eles a análise da função de autocorrelação.
+A  definição dos  valores  desses parâmetros  não  é direta  e  depende de  uma
+análise  das  características  da  série.  \citeonline{box}  descreveu  algumas
+ferramentas que podem auxiliar nessa análise, entre elas a análise da função de
+autocorrelação.
 
 \subsection{Função de autocorrelação}\label{sec:corre}
-%VALERIA: função de 'correlação' ou 'autocorrelação'?
+
 %Conforme mencionado, a análise da função de correlação é uma ferramenta que auxilia na identificação do comportamento da série \cite{box}.
 %, uma ferramenta para isso é a função de autocorrelação, 
 %VALERIA: a definição abaixo ficou "solta"
 %Com base na correlação entre duas séries $X$ e $Y$, é possível obter a correlação de uma série com defasagem $k$, sendo essa defasagem a distância entre o valor analisado $X_t$ a observação $X_{t-k}$.
-%VALERIA: VEJA O PARÁGRAFO ABAIXO FAZ SENTIDO
-Como o nome sugere, a função de autocorrelação mede a correlação entre as observações de uma série em diferentes períodos de tempo. Considerando-se uma série temporal $X$, calcula-se a correlação entre seus valores com uma defasagem de tempo $k$, sendo essa defasagem a distância entre o valor analisado $X_t$ a observação $X_{t-k}$. Por exemplo, supondo uma série de 100 observações, pode-se chamar de $X'$ a série correspondente aos 99 primeiras observações e de $X''$ a série correspondente às últimas 99 observações. Nesse caso, tem-se uma defasagem (ou lag) de 1 período de tempo. Assim a função de autocorrelação será dada segundo a \autoref{eq:autocorrelacao}.
 
-%Desse modo, é possível se obter a função de autocorrelação para uma série de 100 elementos ao se considerar que a série $X$ corresponde aos 99 primeiros elementos e a série $Y$ os 99 últimos elementos. Assim a função de autocorrelação será dada segundo a \autoref{eq:autocorrelacao}.
-
+Como  o nome  sugere, a  função de  autocorrelação mede  a correlação  entre as
+observações de uma  série em diferentes períodos de  tempo. Considerando-se uma
+série  temporal  $X$,  calcula-se  a  correlação entre  seus  valores  com  uma
+defasagem  de  tempo $k$,  sendo  essa  defasagem  a  distância entre  o  valor
+analisado $X_t$ a  observação $X_{t-k}$. Por exemplo, supondo uma  série de 100
+observações, pode-se  chamar de  $X'$ a série  correspondente aos  99 primeiras
+observações e de $X''$ a série  correspondente às últimas 99 observações. Nesse
+caso,  tem-se uma  defasagem (ou  \text{lag}) de  1 período  de tempo.  Assim a
+função de autocorrelação será dada segundo a \autoref{eq:autocorrelacao}.
 
 \begin{equation}
     \label{eq:autocorrelacao}
@@ -499,14 +516,23 @@ Como o nome sugere, a função de autocorrelação mede a correlação entre as 
 \end{equation}
 
 
-Segundo  \citeonline{ehlers}, a  função  de autocorrelação,  quando plotada  para os  $k$-ésimos  primeiros  coeficientes,  é chamada  de  correlograma e constitui-se em uma  ferramenta   importante  para  as  análises.  
-%VALERIA: essas 25 primeiras defasagens seriam como 25 séries geradas, cada uma, com diferença de uma unidade de tempo t (um mês, nesse caso)?
-Como um exemplo, a \autoref{fig:correlogramaCo2} apresenta o correlograma com as 25 primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Ainda, segundo \citeonline{ehlers}, é preciso definir um intervalo  de confiança para o correlograma. 
+Segundo  \citeonline{ehlers},  a  função   de  autocorrelação,  quando  plotada
+para  os  $k$-ésimos  primeiros  coeficientes,  é  chamada  de  correlograma  e
+constitui-se em uma ferramenta importante para  as análises. Como um exemplo, a
+\autoref{fig:correlogramaCo2}  apresenta o  correlograma  com  as 25  primeiras
+defasagens das leituras de concentração  de $CO_2$ na atmosfera. Ainda, segundo
+\citeonline{ehlers},  é  preciso  definir  um intervalo  de  confiança  para  o
+correlograma.
 %VALERIA: se é um intervalo, não faz sentido dizer acima ou abaixo, mas sim dentro e fora do intervalo
-Considera-se tudo que esteja acima desse limite como uma correlação que deve ser analisada e o que está abaixo desse limite será desconsiderado. Assim, se todas as correlações estiverem abaixo desse limite, podemos considerar a série como um  ruído branco. 
+Considera-se tudo  que esteja acima desse  limite como uma correlação  que deve
+ser analisada e  o que está abaixo desse limite  será desconsiderado. Assim, se
+todas as correlações estiverem abaixo  desse limite, podemos considerar a série
+como um ruído branco.
 %VALERIA: o que significa dizer que é a série é ruído branco? Faça essa relação.
 %VALERIA: essa equação está esquisita. A fórmula padrão para o limite de confiança (nesse caso, de 95%) é 1,96*desvio padrão. Por que está dividindo pela raiz de n?
-Para encontrar o intervalo de confiança, \citeonline{ehlers} recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número de observações da série.
+Para encontrar o intervalo de confiança, \citeonline{ehlers} recomenda utilizar
+a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número  de observações da
+série.
 
 
 %Como um exemplo,  pode  ser visto  a  \autoref{fig:correlogramaCo2} na  qual  é  disposto as  25  primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Ainda, segundo \citeonline{ehlers}, é preciso definir para o correlograma  o  seu  intervalo  de confiança, com o  qual podemos considerar tudo que esteja  acima desse como uma correlação que  deve ser analisada  e abaixo desse limite  será desconsiderada, assim se todos as correlações estarem  abaixo desse limite podemos considerar a série como um  ruído branco, para encontrar  esse intervalo \citeonline{ehlers} recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número de observações da série.
@@ -628,14 +654,31 @@ decaimento exponencial.
 
 Se não for  possível identificar a série a partir  deste procedimento, pode ser
 que a série apresente tendencia ou sazonalidade. No caso de existir tendência é
-necessária a  realização de uma ou  mais diferenciação na série,  $d$, com essa
-nova  série agora  estacionaria é  refeito  as verificações  e determinadas  as
-ordens.
+necessária a realização  de uma ou mais diferenciações na  série, com essa nova
+série agora estacionaria é refeito as verificações e determinadas as ordens.
 
 No caso acima o  modelo obtido ou é da forma $AR(p)$ ou  $MA(q)$ porem em casos
-de modelos híbridos os gráficos  devem apresentar comportamento de decaimento a
-partir do $p$ para o FAC e $q$ para FACP\@.
+de modelos híbridos ambas funções  devem apresentar comportamento de decaimento
+a partir do $p$ para o FAC e $q$ para FACP\@. Na \autoref{tab:facpacf} podemos
+temos essa seleção de forma sumarizada.
 
+
+\begin{table}[ht]
+    \centering
+    \caption{Modelo conforme FAC e FACP}\label{tab:facpacf}
+    \begin{tabular}{l l l}
+        \multicolumn{1}{c}{Modelo} & \multicolumn{1}{c}{FAC} & \multicolumn{1}{c}{FACP} \\
+        \toprule
+        Série aleatória  & 0                          & 0                      \\
+        AR (1)           & decaimento exponencial     & 0, $k$ > 2             \\
+        AR (p)           & decaimento para zero       & 0, $k$ > $p$           \\
+        MA (1)           & 0                          & decaimento oscilatório \\
+        ARMA (p, q)      & decaimento a partir de $p$ & decaimento a partir de $q$
+    \end{tabular}
+    \source{\citeonline{ehlers}}
+\end{table}
+
+% FIXME Repetitivo
 Porem, segundo  \citeonline{vinay} essa  forma nos  fornece modelos  que servem
 somente  como uma  boa aproximação,  para determinação  de um  modelo realmente
 eficiente  pode  ser necessário  a  execução  de  um  grande número  de  testes
@@ -863,12 +906,13 @@ treinamento serão  utilizados a porção  maior dos dados  e após o  modelo es
 treinado  é verificado  a qualidade  utilizando a  função de  erro já  definida
 anteriormente mas agora no conjunto de teste.
 
-Já  que durante  a  etapa de  aprendizado  o modelo  só  obterá informações  do
-conjunto  de trinamento  se  faz necessário  algumas  estrategias para  impedir
-que  o modelo  se  especialize  no conjunto,  essa  especialização é  conhecida
-por  \textit{overfit}, isto  pode causar  a  incapacidade do  modelo em  prever
-corretamente os  dados que ainda não  foram lhe apresentado. Para  impedir isto
-podemos realizar os seguintes procedimentos.
+Já  que  durante  a  etapa  de  aprendizado  o  modelo  só  obterá  informações
+do  conjunto  de   trinamento  se  faz  necessário   algumas  estrategias  para
+impedir  que  o  modelo  se  especialize no  conjunto,  essa  especialização  é
+conhecida por  \textit{overfit}, isto pode  causar a incapacidade do  modelo em
+prever  corretamente  os  dados  que  ainda não  foram  lhe  apresentado.  Para
+impedir  isto  podemos  realizar   os  seguintes  procedimentos  descritos  por
+\citeonline{deepLearning}.
 
 \begin{enumerate}
     \item Validação cruzada\\
@@ -914,7 +958,8 @@ busca em grade,  realizando a avaliação do modelo para  todas as combinações
 parâmetros definidos na grade.
 
 \chapter{Desenvolvimento}\label{chap:desenv}
-Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries temporais tem  grande importância,  e uma  de suas  principais aplicações  é na
+Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries
+temporais tem  grande importância,  e uma  de suas  principais aplicações  é na
 previsão  de indicadores  econômicos, como  o S\&P500,  um índice  mantido pela
 Standard \& Poor's desde 1923, indexando os  valores de 500 ativos em bolsas de
 valores e  servindo como um indicador  geral do comportamento do  mercado. Logo
@@ -950,8 +995,13 @@ respectivamente.
     \source{Elaborado pelo autor}
 \end{figure}
 
-A divisão do conjunto de treino e teste foi realizado de maneira a ser
+A  divisão do  conjunto  de treino  e  teste  foi realizado  de  maneira a  ser
 utilizado 70\% dos dados durante o treinamento e 30\% durante a validação.
+
+Após a análise da série foi encontrado os modelos que mais se adequem as séries
+apresentadas e validada  a capacidade deste modelo prever um  dia adiante. Para
+tornar a  comparação justa  foi definido algumas  considerações aos  modelos de
+aprendizado, como a quantidade de observações consideradas para a previsão.
 
 \section{Análise da série}
 
@@ -1055,7 +1105,7 @@ largura.
     $\lambda$ regularização          & 0.00001 \ldots 0.0001               \\
     Função de ativação               & $relu$, $sigmoid$                   \\
     Função de perda                  & MSE, MAE                            \\
-    Iterações                        & 20 \ldots 1000
+    Iterações                        & 20 \ldots 500
 \end{tabular}
 \source{Elaborado pelo autor}
 \end{table}
@@ -1064,9 +1114,9 @@ Uma característica que foi logo  observada nas primeiras execuções anteriores
 aplicação  da regularização  foi o  rápido \textit{overfit}  sobre os  dados de
 treinamento como  visto na \autoref{fig:sp500_overfit}, mesmo  sendo aplicada a
 validação  cruzada, e  ainda como  visto na  \autoref{fig:iter_sp500_overfit} a
-especialização para o conjunto de treino  foi muito rápida, portanto foi também
-aplicada a regularização e após isso foi muito frequente encontrar bons modelos
-para as séries observadas.
+especialização para o conjunto de treino foi muito rápida, assim foi aplicada a
+regularização e após se tornou frequente  encontrar bons modelos para as séries
+observadas.
 
 \begin{figure}[ht]
     \centering
@@ -1090,7 +1140,43 @@ para as séries observadas.
     \source{Elaborado pelo autor}
 \end{figure}
 
+Para os dados  da Standard \& Poors  o modelo selecionado a partir  da busca em
+grade  foi com  duas camadas,  sendo a  primeira camada  com 13  neurônios e  a
+segunda com somente um  neurônios já que esta é a camada de  saída. A função de
+ativação de foi a $relu$ e  o $\lambda$ da regularização ficou como $0.000001$.
+A função de  perda selecionada foi $MSE$ e 300  iterações foram suficientes. Já
+que  o modelo  probabilístico  tem AR(1)  foi fixado  em  uma única  observação
+no passado para a realização da previsão.
+
 \chapter{Resultados}\label{chap:result}
+
+A  partir  dos  modelos  gerados   foram  obtidos  os  resultados  apresentados
+na   \autoref{tab:resultadosp500}   e  o   gráfico   do   conjunto  de   testes
+comparando  os   resultados  obtidos  com   os  valores  são   apresentados  na
+\autoref{fig:comparesp500}.  Observando  os  resultados  é claro  que  os  dois
+modelos conseguiram exito  na tarefa de aproximar o comportamento  da série. Em
+termos  comparativos o  modelo neural  obtive resultado  um pouco  inferior, na
+ordem de $0.6\%$.
+
+\begin{table}[ht]
+    \centering
+    \caption{Valores do erro para a série S\&P500}\label{tab:resultadosp500}
+    \begin{tabular}{ll}
+        \multicolumn{1}{c}{Modelo} & \multicolumn{1}{c}{MSE} \\
+        \toprule
+        MLP                        & 0.0002101               \\
+        ARIMA                      & 0.0002088
+    \end{tabular}
+    \source{Elaborado pelo autor}
+\end{table}
+
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico comparativo entre os modelos obtidos para a série
+    S\&P500}\label{fig:comparesp500}
+    \includegraphics[width=.5\linewidth]{images/sp500_prediction_compare.png}
+    \source{Elaborado pelo autor}
+\end{figure}
 
 \chapter{Conclusões}\label{chap:concl}
 
