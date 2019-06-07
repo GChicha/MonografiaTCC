@@ -146,19 +146,13 @@ produzir modelos capazes de expressar  matematicamente o comportamento da série
 em  função de  suas  observações  anteriores, permitindo  assim  a predição  de
 estados futuros.
 
-
-% FIXME: Tá esquisito 
-% VALERIA: não está claro o que vc quer  mostrar com essa figura! O que vc quer
-% que o  leitor observe?  Além disso, vc  precisa dizer  o que os  eixos x  e y
-% significam.
 Conforme  mencionado,   as  séries  temporais  são   compostas  de  observações
 sequenciais ao  longo do  tempo~\cite{wiley}. Como exemplo,  a \autoref{serie0}
 mostra uma série gerada utilizando-se um processo de caminhada aleatória. Sendo
 essas observações  separadas unicamente pelo  tempo, pode-se obter os  dados em
-diferentes intervalos, como observações diárias, semanais ou anuais.
-% VALERIA: Arrumei a escrita, mas veja se é isso mesmo que vc queria dizer
-Conforme \citeonline{ehlers},  devido à caraterística estocástica  do processo,
-uma observação se define em função de suas antecessoras.
+diferentes intervalos,  como observações diárias, semanais  ou anuais. Conforme
+\citeonline{ehlers},  devido  à  caraterística  estocástica  do  processo,  uma
+observação se define em função de suas antecessoras.
 
 \begin{figure}[ht]
     \centering
@@ -286,17 +280,15 @@ seguindo a \autoref{eq:timeseries}, sendo $t$ usado para denotar o tempo, logo,
 
 \subsection{Série estacionária}
 
-%VALERIA: tirei essa definição de um site de estatística
-%http://www.portalaction.com.br/series-temporais/13-processos-estacionarios
-% mas precisaria usar uma definição tirada de um livro.
-Um  conceito importante  para a  análise de  séries temporais  é o  seu caráter
-estacionário. Um processo é dito  estacionário se todas as suas características
-comportamentais  não se  alteram  ao  longo do  tempo.  Em  outras palavras,  o
-processo se desenvolve no tempo em torno da média, de modo que a escolha de uma
-origem dos  tempos não é  importante. Segundo \citeonline{ehlers}, uma  série é
-dita estritamente estacionária quando  a distribuição de probabilidade conjunta
-de  $X(t_1), \ldots,  X(t_k)$ é  igual a  de $X(t_1  + \tau),  \ldots, X(t_k  +
-\tau)$.
+Um  conceito   importante  para  a  análise   de  séries  temporais  é   o  seu
+caráter  estacionário.  Um  processo  é  dito estacionário  se  todas  as  suas
+características  comportamentais não  se  alteram ao  longo  do tempo.  Segundo
+\citeonline{tsExample}  não  existe  um  limiar   que  defina  uma  série  como
+estacionaria, mas pode  definir como estacionário um processo  se desenvolve no
+tempo em  torno da média, de  modo que a escolha  de uma origem dos  tempos não
+é  importante.  Segundo  \citeonline{ehlers},  uma série  é  dita  estritamente
+estacionária  quando  a  distribuição  de probabilidade  conjunta  de  $X(t_1),
+\ldots, X(t_k)$ é igual a de $X(t_1 + \tau), \ldots, X(t_k + \tau)$.
 
 Ainda segundo \citeonline{ehlers}, a definição  estrita de série estacionária é
 dificilmente  aplicada,  então  usualmente  se utiliza  a  definição  de  série
@@ -390,37 +382,30 @@ encontrar uma  função polinomial representativa  da série na forma  mostrada 
 
 \subsubsection{Filtros}
 
-%VALERIA:essas flutuações seriam a sazonalidade?
-Em algumas séries a tendência pode  não estar evidente devido a flutuações. Por
-conta disso, pode  ser necessária a aplicação de filtros  que têm como objetivo
-obter  uma série  suavizada que  possibilite  observar a  tendência. Um  desses
-filtros é apresentado na \autoref{eq:filtro} \cite{ehlers}.
+Em  algumas séries  a  tendência pode  não estar  evidente  devido ao  processo
+aleatório. Por conta disso, pode ser  necessária a aplicação de filtros que têm
+como objetivo obter  uma série suavizada que possibilite  observar a tendência.
+Um desses filtros é apresentado na \autoref{eq:filtro}~\cite{ehlers}.
 
 \begin{equation}
     \label{eq:filtro}
     y_t = \sum_{j = -q}^{s}{a_{j}x_{t+j}}
 \end{equation}
 
-%VALERIA:  Cada termo  da soma  é uma  observação? Se  for, não  ficaria melhor
-%dizer: $a_j$  é um  peso aplicado  a cada observação  da série,  observado que
-%$\sum{a_j} = 1$? Também precisa dizer o que é o 't', o 'q' e o 's'
 Na \autoref{eq:filtro}, $a_j$  é um coeficiente a ser aplicado  a cada termo da
 soma de forma a aplicar um peso a este, sendo observado que $\sum{a_j} = 1$.
-%VALERIA: Qual é o caso mais simples?
-Podemos obter, no caso  mais simples, $a_j = \frac{1}{2q +  1}$ e teremos $y_j$
-conforme a \autoref{eq:yjfiltro}.
+
+A \autoref{eq:yjfiltro} é  conhecida por fornecer o cálculo  das médias móveis,
+permitindo  suavizar a  série,  sem alterar  algumas  características da  série
+como  sua tendência.  A  aplicação do  filtro  de médias  móveis  na série  das
+leituras de $CO_2$ resulta na \autoref{fig:co2filtrado}, que evidencia de forma
+independente a tendência  da série após a remoção da  sazonalidade, por meio da
+suavização utilizando o período cíclico da série.
 
 \begin{equation}
     \label{eq:yjfiltro}
     y_t = \frac{1}{2q + 1}\sum_{j=-q}^{q}{x_{t+j}}
 \end{equation}
-
-A \autoref{eq:yjfiltro} é conhecida por fornecer o cálculo das médias móveis.
-% VALERIA: se  o filtro  de médias  móveis serve  para remover  a sazonalidade,
-% precisa dizer antes de comentar sobre o gráfico.
-A aplicação do filtro de médias móveis  na série das leituras de $CO_2$ resulta
-na \autoref{fig:co2filtrado},  que evidencia de forma  independente a tendência
-da série após a remoção da sazonalidade.
 
 \begin{figure}
     \centering
@@ -447,16 +432,10 @@ ser necessárias mais de uma em um \textit{lag} diferente.
 
 
 O gráfico  da \autoref{fig:co2diff} mostra o  resultado obtido para a  série de
-leituras de $CO_2$ após uma diferenciação.
-%VALERIA: vc começou dizendo que a diferenciação serve para remover tendência e concluiu dizendo que a diferenciação evidenciou a componente sazonal (?!). Qual a relação? Além disso, por que esse gráfico evidencia a componente sazonal? Explique isso ao leitor.
-Pelo gráfico  é possível  perceber que  a série resultante  se aproxima  de uma
-série com função média constante, dando evidência a componente sazonal.
-
-Para  dar  um   exemplo  de  diferenciação  volto  a  série   das  leituras  do
-$CO_2$  e  agora   realizando  uma  diferenciação,  o  resultado   é  visto  na
-\autoref{fig:co2diff}, especificamente neste exemplo  percebemos que a série se
-aproximou de  uma série  com função  média constante,  dando ainda  evidência a
-componente sazonal.
+leituras de $CO_2$ após uma diferenciação. Pelo gráfico é possível perceber que
+a série resultante  se aproxima de uma série com  função média constante, dando
+evidência  a  componente  sazonal  já  que  a  variação  do  gráfico  apresenta
+unicamente um forte comportamento repetitivo.
 
 \begin{figure}
     \centering
@@ -465,12 +444,6 @@ componente sazonal.
     \includegraphics[width=.6\linewidth]{images/co2_diff.png}
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
-
-% \subsection{Sazonalidade}
-
-% Conforme definido por \citeonline{ehlers} sazonalidade caracteriza repetições
-% de comportamento de uma série em um período $s$ de tempo. Normalmente é
-% facilmente observado na representação gráfica da série.
 
 \section{Modelos probabilísticos}
 
@@ -484,20 +457,14 @@ um sistema para o qual a saída é dependente apenas das entradas atuais.
 Um modelo comumente utilizado para a  previsão de séries temporais é o ARIMA\@.
 Descrito por  \citeonline{box}, esse  modelo caracteriza a  série em  termos de
 três  parâmetros $(p,d,q)$,  sendo  cada  um associado  a  um  processo: $p$  é
-associado a  processos auto-regressivos, $r$  a processos integrativos e  $q$ a
-processos de médias móveis.
+associado a processos  auto-regressivos, $d$ a integração e $q$  a processos de
+médias móveis.
 
-A  definição dos  valores  desses parâmetros  não  é direta  e  depende de  uma
-análise  das  características  da  série.  \citeonline{box}  descreveu  algumas
-ferramentas que podem auxiliar nessa análise, entre elas a análise da função de
-autocorrelação.
+A   definição  dos   valores   desses  parâmetros   depende   da  análise   das
+características da  série. \citeonline{box}  descreveu algumas  ferramentas que
+podem auxiliar nessa análise, entre elas a análise da função de autocorrelação.
 
 \subsection{Função de autocorrelação}\label{sec:corre}
-
-%Conforme mencionado, a análise da função de correlação é uma ferramenta que auxilia na identificação do comportamento da série \cite{box}.
-%, uma ferramenta para isso é a função de autocorrelação, 
-%VALERIA: a definição abaixo ficou "solta"
-%Com base na correlação entre duas séries $X$ e $Y$, é possível obter a correlação de uma série com defasagem $k$, sendo essa defasagem a distância entre o valor analisado $X_t$ a observação $X_{t-k}$.
 
 Como  o nome  sugere, a  função de  autocorrelação mede  a correlação  entre as
 observações de uma  série em diferentes períodos de  tempo. Considerando-se uma
@@ -515,18 +482,20 @@ função de autocorrelação será dada segundo a \autoref{eq:autocorrelacao}.
     \overline{x})}}{\sum_{t=1}^{n}{(x_t - \overline{x})^2}}
 \end{equation}
 
-
-Segundo  \citeonline{ehlers}, a  função  de autocorrelação,  quando plotada  para os  $k$-ésimos  primeiros  coeficientes,  é chamada  de  correlograma e constitui-se em uma  ferramenta importante  para  as  análises.
-%VALERIA: essas 25 primeiras defasagens seriam como 25 séries geradas, cada uma, com diferença de uma unidade de tempo t (um mês, nesse caso)?
-Como um exemplo, a \autoref{fig:correlogramaCo2} apresenta o correlograma com as 25 primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Nesse gráfico, também é exibido o intervalo de confiança calculado para o correlograma (destacado em azul). Segundo \citeonline{ehlers}, %é preciso definir um intervalo  de confiança para o correlograma. 
-%VALERIA: se é um intervalo, não faz sentido dizer acima ou abaixo, mas sim dentro e fora do intervalo.
-considera-se tudo que esteja acima desse limite como uma correlação que deve ser analisada e o que está abaixo desse limite será desconsiderado. Assim, se todas as correlações estiverem abaixo desse limite, podemos considerar a série como um  ruído branco. 
-%VALERIA: na prática, o que significa dizer que é a série é ruído branco? Esclareça se possível.
-%VALERIA: essa equação do intervalo de confiança está esquisita. A fórmula padrão é valor +- 1,96*desvio padrão (o 1,96 é usado para se obter um intervalo de 95% de confiança). Por que na sua fóruma está dividindo pela raiz de n?
-Para encontrar o intervalo de confiança, \citeonline{ehlers} recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número de observações da série.
-
-
-%Como um exemplo,  pode  ser visto  a  \autoref{fig:correlogramaCo2} na  qual  é  disposto as  25  primeiras defasagens das leituras  de concentração de $CO_2$ na  atmosfera. Ainda, segundo \citeonline{ehlers}, é preciso definir para o correlograma  o  seu  intervalo  de confiança, com o  qual podemos considerar tudo que esteja  acima desse como uma correlação que  deve ser analisada  e abaixo desse limite  será desconsiderada, assim se todos as correlações estarem  abaixo desse limite podemos considerar a série como um  ruído branco, para encontrar  esse intervalo \citeonline{ehlers} recomenda utilizar a seguinte equação  $\pm{}1,96/\sqrt{n}$, sendo $n$ o número de observações da série.
+Segundo  \citeonline{ehlers},  a  função   de  autocorrelação,  quando  plotada
+para  os  $k$-ésimos  primeiros  coeficientes,  é  chamada  de  correlograma  e
+constitui-se em uma ferramenta importante para  as análises. Como um exemplo, a
+\autoref{fig:correlogramaCo2}  apresenta o  correlograma  com  as 25  primeiras
+defasagens das leituras de concentração  de $CO_2$ na atmosfera. Nesse gráfico,
+também  é  exibido o  intervalo  de  confiança  calculado para  o  correlograma
+(destacado  em  azul).  Segundo   \citeonline{ehlers},  é  preciso  definir  um
+intervalo de  confiança para o  correlograma para se definir  quais correlações
+são relevantes e  quais não. De forma que todas  as correlações relevante estão
+fora desse  intervalo de  confiança. Assim, se  todas as  correlações estiverem
+dentro do  limite a série  é caracterizada como um  ruído branco, ou  seja, seu
+comportamento não permite  modelagem. Para encontrar o  intervalo de confiança,
+\citeonline{ehlers} recomenda utilizar a seguinte equação $\pm{}1,96/\sqrt{n}$,
+sendo $n$ o número de observações da série.
 
 \begin{figure}
     \centering
