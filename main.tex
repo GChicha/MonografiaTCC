@@ -33,13 +33,14 @@
 \data{2018}
 \orientador{Valéria Delisandra Feltrim}
 \instituicao{Universidade Estadual de Maringá\\
-Centro de Tecnologia --- Departamento de Informática\\
-Bacharelado em Ciência da Computação}
+             Centro de Tecnologia --- Departamento de Informática\\
+             Bacharelado em Ciência da Computação}
 \tipotrabalho{Trabalho de Conclusão de Curso}
 
-\preambulo{Trabalho de Conclusão de Curso de Graduação apresentado ao
-Departamento de Informática da Universidade Estadual de Maringá, como requisito
-parcial para obtenção do grau de Bacharel em Ciência da Computação.}
+\preambulo{Trabalho  de   Conclusão  de  Curso  de   Graduação  apresentado  ao
+    Departamento  de  Informática da  Universidade  Estadual  de Maringá,  como
+    requisito  parcial  para  obtenção  do  grau  de  Bacharel  em  Ciência  da
+    Computação.}
 
 \makeatletter
 \hypersetup{
@@ -48,10 +49,10 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
     pdfsubject={\imprimirpreambulo},
     pdfcreator={LaTeX with abnTeX2},
     pdfkeywords={séries temporais}{arima}{aprendizado de máquina}{redes neurais},
-    colorlinks=true,        % false: boxed links; true: colored links
-    linkcolor=red,         % color of internal links
-    citecolor=green,         % color of links to bibliography
-    filecolor=magenta,      % color of file links
+    colorlinks=true,   % false: boxed links; true: colored links
+    linkcolor=red,     % color of internal links
+    citecolor=green,   % color of links to bibliography
+    filecolor=magenta, % color of file links
     urlcolor=blue,
     bookmarksdepth=4
 }
@@ -70,15 +71,15 @@ parcial para obtenção do grau de Bacharel em Ciência da Computação.}
 
 \begin{epigrafe}
     \vspace*{\fill}
-	\begin{flushright}
-		\textit{``Rogo a você que me lê\\
+    \begin{flushright}
+        \textit{``Rogo a você que me lê\\
         A sua boa vontade\\
         Não olhe os error, releve,\\
         Guarde com sinceridade\\
         E busque o melhor fazer\\
         Lendo cordel de verdade.''\\
         Raquel Juvêncio e Filomena Mourão}
-	\end{flushright}
+    \end{flushright}
 \end{epigrafe}
 
 \begin{resumo}
@@ -157,7 +158,7 @@ observação se define em função de suas antecessoras.
 \begin{figure}[ht]
     \centering
     \caption{Série gerada para exemplo}\label{serie0}
-    \includegraphics[width=.6\linewidth]{images/serie_exemplo.png}
+    \includegraphics[width=.5\linewidth]{images/serie_exemplo.png}
     \source{Elaborado pelo autor}
 \end{figure}
 
@@ -278,12 +279,12 @@ seguindo a \autoref{eq:timeseries}, sendo $t$ usado para denotar o tempo, logo,
     X_t = Tendência_t + Sazonal_t + Aleatório_t
 \end{equation}
 
-\subsection{Série estacionária}
+\subsection{Série estacionária}\label{sec:estacionaria}
 
 Um  conceito   importante  para  a  análise   de  séries  temporais  é   o  seu
 caráter  estacionário.  Um  processo  é  dito estacionário  se  todas  as  suas
 características  comportamentais não  se  alteram ao  longo  do tempo.  Segundo
-\citeonline{tsExample}  não  existe  um  limiar   que  defina  uma  série  como
+\citeonline{timeseriesExample} não existe  um limiar que defina  uma série como
 estacionaria, mas pode  definir como estacionário um processo  se desenvolve no
 tempo em  torno da média, de  modo que a escolha  de uma origem dos  tempos não
 é  importante.  Segundo  \citeonline{ehlers},  uma série  é  dita  estritamente
@@ -323,15 +324,12 @@ esperado para a série em determinado momento não será dada em função do tem
 % ela é  estacionária? Dizer  que a  observação do gráfico  é suficiente  não é
 % suficiente. ;)
 
-A  \autoref{fig:co2diff}   é  um  exemplo  de   série  estacionária  encontrada
-ao   aplicar   o   processo   de  diferenciação   na   série   apresentada   na
-\autoref{fig:co2}, este  processo está descrito na  \autoref{sec:diff}. Segundo
-\citeonline{tsExample} embora  exista testes  como o  de Dikey  Fuller descrito
-em  \citeonline{dickey}  para  a  prova de  estacionariedade,  é  suficiente  a
-observação  gráfica  da  série.  Mas  caso não  seja  conclusiva  a  observação
-\citeonline{tsExample} orienta obter  o gráfico da função  de autocorrelação, e
-se  observada a  existência de  mais de  20 correlações  significativas pode-se
-classificar a série como não estacionaria.
+Segundo  \citeonline{timeseriesExample} embora  exista testes  como o  de Dikey
+Fuller  descrito em  \citeonline{dickey} para  a prova  de estacionariedade,  é
+suficiente  a observação  gráfica  da série.  Mas caso  não  seja conclusiva  a
+observação \citeonline{timeseriesExample} orienta obter  o gráfico da função de
+autocorrelação,  e  se  observada  a  existência  de  mais  de  20  correlações
+significativas pode-se classificar a série como não estacionaria.
 
 \subsection{Sazonalidade e tendência}
 
@@ -373,10 +371,10 @@ encontrar uma  função polinomial representativa  da série na forma  mostrada 
 % característica natural.  Observando o gráfico,  é fácil notar a  tendência de
 % crescimento da série e sua sazonalidade de periodicidade anual.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \caption{Leituras de $CO_2$ na atmosfera.}\label{fig:co2}
-    \includegraphics[width=.6\linewidth]{images/co2.png}
+    \includegraphics[width=.5\linewidth]{images/co2.png}
     \source{\citeonline{co2data}}
 \end{figure}
 
@@ -407,12 +405,12 @@ suavização utilizando o período cíclico da série.
     y_t = \frac{1}{2q + 1}\sum_{j=-q}^{q}{x_{t+j}}
 \end{equation}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \caption{Leituras de $CO_2$ filtrada utilizando médias móveis com $q$ igual
         a $52$, devido à sazonalidade ser anual, ou seja, $52$
         semanas.}\label{fig:co2filtrado}
-    \includegraphics[width=.6\linewidth]{images/co2_filtered.png}
+    \includegraphics[width=.5\linewidth]{images/co2_filtered.png}
     \source{Elaborado pelo próprio autor a partir de \citeonline{co2data}}
 \end{figure}
 
@@ -437,11 +435,11 @@ a série resultante  se aproxima de uma série com  função média constante, d
 evidência  a  componente  sazonal  já  que  a  variação  do  gráfico  apresenta
 unicamente um forte comportamento repetitivo.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \caption{Série da leitura do $CO_2$ na atmosfera com uma
         diferenciação}\label{fig:co2diff}
-    \includegraphics[width=.6\linewidth]{images/co2_diff.png}
+    \includegraphics[width=.5\linewidth]{images/co2_diff.png}
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
@@ -496,12 +494,14 @@ dentro do  limite a série  é caracterizada como um  ruído branco, ou  seja, s
 comportamento não permite  modelagem. Para encontrar o  intervalo de confiança,
 \citeonline{ehlers} recomenda utilizar a seguinte equação $\pm{}1,96/\sqrt{n}$,
 sendo $n$ o número de observações da série.
+% Encontrei um calculo um pouco diferente para o intervalo de confiança no
+% livro Time Series By Examples, lá está colocado como +-2/sqrt(n)
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \caption{Gráfico da função de autocorrelação das leituras de
         $CO_2$}\label{fig:correlogramaCo2}
-    \includegraphics[width=.6\linewidth]{images/acf_co2.png}
+    \includegraphics[width=.5\linewidth]{images/acf_co2.png}
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
@@ -516,11 +516,11 @@ tendência foi  realmente removida  após uma  diferenciação, tornando  visív
 componente sazonal, vemos  isso pela alternância das  correlações observadas no
 correlograma.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \caption{Gráfico de função de autocorrelação da diferenciação da série de
         $CO_2$}\label{fig:acfco2diff}
-    \includegraphics[width=.6\linewidth]{images/acf_co2_diff.png}
+    \includegraphics[width=.5\linewidth]{images/acf_co2_diff.png}
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
@@ -529,9 +529,9 @@ correlograma.
 
 \subsection{ARIMA}
 
-O modelo ARIMA já introduzido na seção anterior possui três parâmetros
-essenciais $(p,q,d)$ sendo $p$ repensável por definir o numero de observações
-considerados no processo auto regressivo, $q$ o numero de diferenciações
+O  modelo  ARIMA  já  introduzido  na seção  anterior  possui  três  parâmetros
+essenciais $(p,q,d)$ sendo  $p$ repensável por definir o  numero de observações
+considerados  no  processo auto  regressivo,  $q$  o numero  de  diferenciações
 necessárias para a remoção da tendencia e $d$ o numero de termos no processo de
 medias móveis.
 
@@ -546,7 +546,7 @@ de   ordem   $p$,   ou   $AR(p)$,   quando   temos   $X_t$   dado   segundo   a
 
 \begin{equation}
     \label{eq:aregressivo}
-    X_t = \alpha_1X_{t-1}+\epsilon_t
+    X_t = \sum_{i = 1}^{p}{\alpha_1X_{t-i}}+\epsilon_t
 \end{equation}
 
 Como observado  na \autoref{eq:aregressivo}  é um modelo  útil se  for razoável
@@ -560,14 +560,13 @@ um erro aleatório.
 
 Segundo \citeonline{timeseriesExample} o processo de  médias móveis é dado como
 a média  dos termos passados  e correntes  e pode ser  descrito matematicamente
-segunda a \autoref{eq:pmediasmoveis}.
+segunda a \autoref{eq:pmediasmoveis}. Sendo os valores $\epsilon$ a defasagem
+da série.
 
 \begin{equation}
     \label{eq:pmediasmoveis}
-    X_t = \epsilon_t - \theta_1\epsilon_{t-1} - \theta_2\epsilon_{t-2} - \theta_{q}\epsilon_{t-q}
+    X_t = \epsilon_t - \theta_1\epsilon_{t-1} - \theta_2\epsilon_{t-2} - \cdots - \theta_{q}\epsilon_{t-q}
 \end{equation}
-
-Onde os valores de $\theta$ serão dados após análise da série.
 
 \subsubsection{ARMA --- Modelo misto}
 
@@ -575,17 +574,22 @@ Combinando o  processo AR e MA  podemos obter um modelo  extremamente útil para
 descrever  séries temporais.  E a  junção dos  modelos pode  ser expressa  pela
 \autoref{eq:arma}.
 
+Então segundo  \citeonline{timeseriesExample} se  considerarmos $X_t$  como uma
+série estacionaria, teremos  o processo AR relacionando a  observação atual com
+as  $p$  observações anteriores  e  o  processa  MA apresentando  as  defasagem
+passadas e presente.
+
 \begin{equation}
     \label{eq:arma}
-    X_t = \mu + \sum_{j=-q}^{q}\sum_{i = 1}^{p} \phi{}x_{t-i}+\epsilon_t+\sum{i = 0}{q}\theta_i\epsilon_{t-i}
+    X_t = \sum_{i = 1}^{p}{\alpha X_{t-i}} + \epsilon_t - \sum_{j = 1}^{p}{\theta \epsilon_{t-i}}
 \end{equation}
 
 \subsubsection{Integração}
 
 Em  casos  que a  série  analisada  apresenta  não estacionariedade  segundo  a
 definição dada  na \autoref{sec:estacionaria}, é necessário  a transformação em
-uma  série  estacionaria,  isso  pode ser  facilmente  realizado  utilizando  o
-método  descrito  na  \autoref{sec:diferenciacao},  assim  podemos  aplicar  de
+uma série estacionaria, isso pode  ser facilmente realizado utilizando o método
+de  diferenciação  descrito na  \autoref{sec:diff},  assim  podemos aplicar  de
 forma  adequada o  procedimento  de \citeonline{box}  para  produzir um  modelo
 probabilístico que poderá ser utilizado na atividade de previsão da série.
 
@@ -593,34 +597,37 @@ probabilístico que poderá ser utilizado na atividade de previsão da série.
 Normalmente  uma diferenciação  é suficiente  para remover  a tendencia  de uma
 série  e a  transformar em  uma série  estacionária, entretanto  em séries  que
 apresentem a componente  sazonal pode vir a ser necessária  a aplicação de duas
-ou  mais  diferenciações  e  em  casos da  aplicação  de  modelos  SARIMA  essa
+ou  mais  diferenciações e  em  casos  da  aplicação  de modelos  SARIMA,  essa
 diferenciação é aplicada com uma distância  $l$, com esse valor sendo dado pela
-sazonalidade da série.
+sazonalidade da  série, no entanto,  esse modelo  sazonal não foi  discutido no
+decorrer do desenvolvimento.
 
 \subsection{Seleção do modelo}
 
-De  acordo com  \citeonline{box} a  identificação do  modelo pode  ser feita  a
-partir da análise gráfica  da FAC e FACP, podendo contar com  a ajuda de outros
-testes para validação da estacionariedade da série.
+De  acordo  com \citeonline{box}  a  identificação  do  modelo pode  ser  feita
+a  partir  da  análise  gráfica  da  FAC e  FACP,  que  foram  apresentados  na
+\autoref{sec:corre}, podendo contar com a ajuda de outros testes para validação
+da estacionariedade da série.
 
 % FIXME Corrigir inicio
-O modo que  \citeonline{box} desenvolveu análise o  comportamento da correlação
-de forma que  para identificar a ordem  do AR, $p$, é suficiente  analisar se o
+O método proposto por \citeonline{box} observa o comportamento da correlação de
+forma que  para identificar  a ordem  do AR,  $p$, é  suficiente analisar  se o
 gráfico do FAC  apresenta decaimento exponencial e FACP apresenta  uma quebra a
 partir do elemento $p$  do gráfico. Já a identificação da  ordem do processo de
 médias móveis  é feita de modo  análogo, porem o  $q$ é dado pela  elemento que
 apresenta  a quebra  no gráfico  do FACP  enquanto o  gráfico do  FAC apresenta
-decaimento exponencial.
+decaimento exponencial. Para modelos híbridos a  análise é mais complexa e pode
+ser necessária a verificação do FAC residual.
 
 Se não for  possível identificar a série a partir  deste procedimento, pode ser
-que a série apresente tendencia ou sazonalidade. No caso de existir tendência é
-necessária a realização  de uma ou mais diferenciações na  série, com essa nova
-série agora estacionaria é refeito as verificações e determinadas as ordens.
+que a  série apresente  tendencia. No  caso de  existir tendência  é necessária
+a  realização  de  uma  ou  mais diferenciações,  com  essa  nova  série  agora
+estacionaria é refeito as verificações e determinadas as ordens.
 
 No caso acima o  modelo obtido ou é da forma $AR(p)$ ou  $MA(q)$ porem em casos
 de modelos híbridos ambas funções  devem apresentar comportamento de decaimento
-a partir do $p$ para o FAC e $q$ para FACP\@. Na \autoref{tab:facpacf} podemos
-temos essa seleção de forma sumarizada.
+a partir do  $p$ para o FAC  e $q$ para FACP\@.  Na \autoref{tab:facpacf} temos
+esse procedimento de seleção do modelo de forma sumarizada.
 
 
 \begin{table}[ht]
@@ -642,11 +649,11 @@ temos essa seleção de forma sumarizada.
 Porem, segundo  \citeonline{vinay} essa  forma nos  fornece modelos  que servem
 somente  como uma  boa aproximação,  para determinação  de um  modelo realmente
 eficiente  pode  ser necessário  a  execução  de  um  grande número  de  testes
-exaustivos e selecionar  aquele modelo que apresente modelo  parcimonioso e que
-gere  um  bom resultado,  para  isso  podemos  comparar  os diversos  testes  a
-partir  da  minimização  do  critério  de  informação  de  Akaike  que  segundo
-\citeonline{ehlers}  propicia  a identificação  de  um  modelo ao  mesmo  tempo
-parcimonioso e representativo para a série analisada.
+exaustivos,  e  utilizando de  alguma  métrica  selecionar  o modelo  que  seja
+parcimonioso  e que  forneça  bons  resultados, para  isso  podemos comparar  os
+diversos testes a partir da minimização do critério de informação de Akaike que
+segundo  \citeonline{ehlers} propicia  a identificação  de um  modelo ao  mesmo
+tempo parcimonioso e representativo para a série analisada.
 
 \subsection{Determinação dos coeficientes}
 
@@ -666,14 +673,26 @@ que nos retorna a capacidade dos parâmetros em aproximar a série.
     L(\theta) = \prod_{i=1}^{n}{q(x_i;\theta)}
 \end{equation}
 
-%VALERIA: Pode usar "Aprendizado de Máquina" ou  "Aprendizagem de Máquina". Apenas certifique-se de manter um padrão em todo o texto, ok?
 \section{Aprendizado de Máquina}
 
-Computadores se utilizam de algorítimos para realizar processamento de dados e solucionar problemas.  Porém, para  determinados  problemas,  não é possível definir um algoritmo, seja porque o seres humanos não conseguem explicar seu conhecimento ou esse conhecimento é muito complexo para ser explicitado, ou, ainda, porque o conhecimento e a solução do problema muda com o passar do tempo. Um exemplo de tal situação seria a classificação de  um e-mail como \textit{spam} ou legitimo. Definir as características que fazem um e-mail ser considerado \textit{spam} pode se  tornar um problema  complexo, especialmente considerando-se que a definição de \textit{spam} pode variar com o tempo e usuário.
+Computadores se utilizam de algorítimos  para realizar processamento de dados e
+solucionar  problemas.  Porém,  para  determinados problemas,  não  é  possível
+definir um  algoritmo, seja porque o  seres humanos não conseguem  explicar seu
+conhecimento ou  esse conhecimento é  muito complexo para ser  explicitado, ou,
+ainda, porque  o conhecimento  e a  solução do  problema muda  com o  passar do
+tempo.  Um exemplo  de tal  situação seria  a classificação  de um  e-mail como
+\textit{spam} ou legitimo.  Definir as características que fazem  um e-mail ser
+considerado \textit{spam}  pode se  tornar um problema  complexo, especialmente
+considerando-se que  a definição  de \textit{spam}  pode variar  com o  tempo e
+usuário.
 
-Conforme \citeonline{ethem}, tarefas como a identificação de \textit{spam}, que não apresentam uma solução evidente, mas que podem ser resolvidas por meio da identificação de padrões a partir de um conjunto de  dados, são boas candidatas à aplicação de técnicas de aprendizado de máquina.%pode-se  aplicar técnicas  de mineração  de dados  em volumes  de dados  massivos em  buscas desses  padrões.
-%VALERIA: cuidado com essa definição. Aprendizado de máquina e inteligência não são exatamente a mesma coisa. Vc está falando aqui de AM, não de inteligência no sentido de um sistema que precisa aprender continuamente com o ambiente.
-Entretanto para classificarmos esse sistema como inteligente não é suficiente que o mesmo seja capaz de inferir padrões de uma base, precisamos que este ainda seja capaz de se adaptar a mudanças e aprender com isso.
+Conforme \citeonline{ethem}, tarefas como a identificação de \textit{spam}, que
+não apresentam  uma solução  evidente, mas  que podem  ser resolvidas  por meio
+da  identificação  de padrões  a  partir  de um  conjunto  de  dados, são  boas
+candidatas à aplicação  de técnicas de aprendizado de  máquina. Entretanto para
+classificarmos esse sistema como inteligente não  é suficiente que o mesmo seja
+capaz de inferir padrões  de uma base, precisamos que este  ainda seja capaz de
+se adaptar a mudanças e aprender com isso.
 
 %Considerando  a definição apresentada e 
 \citeonline{machineLearning} descreve aprendizado de máquina como a habilidade  de algoritmos reconhecer padrões em um conjunto de dados. 
@@ -697,7 +716,7 @@ Esse aprendizado de padrões pode ser aplicado, por exemplo, nas seguintes ativi
 %Um exemplo de uso de aprendizado de máquina é a identificação de caracteres  numéricos escritos à mão, esse  exemplo  é   apresentado  por \citeonline{machineLearning} é  descrito como  um problema de  classificação na qual uma imagem  de dimensões $28 \times 28$ pixeis é dada como  entrada em um sistema e este deve atribuir uma classificação que descreve qual o número que a figura representa,  um conjunto  de exemplo  dessas imagens  pode ser  visto na \autoref{fig:numeroClassi}.
 Um exemplo de uso de aprendizado de máquina é a identificação de caracteres  numéricos escritos à mão. Apresentado por \citeonline{machineLearning}, esse exemplo é descrito como  um problema de  classificação no qual uma imagem  de dimensões $28 \times 28$ pixeis é dada como  entrada para um sistema que deve atribuir uma categoria que descreve qual o número que a figura representa.  Um conjunto de exemplos de tais imagens  pode ser  visto na \autoref{fig:numeroClassi}.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \caption{Exemplo de entrada para o algorítimo de
         classificação}\label{fig:numeroClassi}
