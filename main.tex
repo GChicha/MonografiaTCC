@@ -115,7 +115,7 @@ tomada de decisão,  fica evidente a necessidade de se  realizar boas previsões
 No entanto,  fazer boas  previsões pode ser  uma tarefa  extremamente complexa.
 Muitos autores  e organizações já realizaram  previsões que, com o  decorrer do
 tempo, se mostraram erradas, como no caso  do The New York Times, que previu em
-1966  que existiriam  somente 220.000  computadores nos  Estados Unidos  no ano
+1966  que existiriam  somente 220 000  computadores nos  Estados Unidos  no ano
 2000.
 
 Ainda conforme  \citeonline{wiley}, as  previsões são classificadas  como sendo
@@ -177,7 +177,7 @@ foi comparar o desempenho de modelos  estatísticos e baseados em aprendizado de
 máquina na previsão de uma  série de característica econômica. Especificamente,
 foram  avaliados  o  modelo  estatístico  ARIMA  e  um  modelo  de  aprendizado
 de  máquina baseado  em  redes  neurais artificiais  de  múltiplas camadas.  Os
-resultados indicaram  que os modelos  tiveram desempenho semelhantes  nos dados
+resultados indicaram que  os modelos tiveram desempenhos  semelhantes nos dados
 utilizados nesse trabalho.
 
 % Como  forma de  comparar desempenhos  e  buscar compreender  as técnicas  que
@@ -247,8 +247,8 @@ diversas atividades, dispostas a seguir:
         relação ao ambiente, já que o ambiente é algo volátil.
 \end{enumerate}
 
-Essas  atividades normalmente  são realizadas  em ordem  semelhante a  exposta.
-Vale  observar ainda  que  se os  resultados da  atividade  de avaliação  forem
+Essas  atividades  normalmente  são  realizadas em  ordem  como  exposta.  Vale
+observar  ainda  que   se  os  resultados  da  atividade   de  avaliação  forem
 insatisfatórios, deve-se  retornar à atividade  anterior e refazer  a avaliação
 até que um modelo que obedeça às especificações seja encontrado.
 
@@ -325,8 +325,8 @@ esperado para a série em determinado momento não será dada em função do tem
 % suficiente. ;)
 
 Segundo  \citeonline{timeseriesExample} embora  exista testes  como o  de Dikey
-Fuller  descrito em  \citeonline{dickey} para  a prova  de estacionariedade,  é
-suficiente  a observação  gráfica  da série.  Mas caso  não  seja conclusiva  a
+Fuller  descrito  em  \citeonline{dickey}  para a  prova  de  estacionariedade,
+é  suficiente  a observação  gráfica  da  série.  Caso  não seja  conclusiva  a
 observação \citeonline{timeseriesExample} orienta obter  o gráfico da função de
 autocorrelação,  e  se  observada  a  existência  de  mais  de  20  correlações
 significativas pode-se classificar a série como não estacionaria.
@@ -334,8 +334,8 @@ significativas pode-se classificar a série como não estacionaria.
 \subsection{Sazonalidade e tendência}
 
 Conforme   definido  por   \citeonline{ehlers},   a  sazonalidade   caracteriza
-repetições de comportamento de uma série em um período $s$ de tempo. A presença
-da sazonalidade, em  geral, é facilmente observada na  representação gráfica da
+repetições  de comportamento  de uma  série em  um período  $s$. A  presença da
+sazonalidade,  em geral,  é facilmente  observada na  representação gráfica  da
 série, conforme exemplificado no gráfico  da \autoref{fig:co2}. Nesse gráfico é
 apresentada uma série  temporal real que registra a mudança  na concentração de
 $CO_2$ na atmosfera. Observando o gráfico, é possível notar que há sazonalidade
@@ -393,12 +393,12 @@ Um desses filtros é apresentado na \autoref{eq:filtro}~\cite{ehlers}.
 Na \autoref{eq:filtro}, $a_j$  é um coeficiente a ser aplicado  a cada termo da
 soma de forma a aplicar um peso a este, sendo observado que $\sum{a_j} = 1$.
 
-A \autoref{eq:yjfiltro} é  conhecida por fornecer o cálculo  das médias móveis,
-permitindo  suavizar a  série,  sem alterar  algumas  características da  série
-como  sua tendência.  A  aplicação do  filtro  de médias  móveis  na série  das
-leituras de $CO_2$ resulta na \autoref{fig:co2filtrado}, que evidencia de forma
-independente a tendência  da série após a remoção da  sazonalidade, por meio da
-suavização utilizando o período cíclico da série.
+A  \autoref{eq:yjfiltro}  é  conhecida  por   fornecer  o  cálculo  das  médias
+móveis,  permitindo  suavizar  a  série,  mantendo  a  tendência.  A  aplicação
+do  filtro  de médias  móveis  nos  dados das  leituras  de  $CO_2$ resulta  na
+\autoref{fig:co2filtrado}, que evidencia de forma independente a tendência após
+a remoção da sazonalidade, por meio da suavização utilizando como parâmetro $q$
+seu período cíclico.
 
 \begin{equation}
     \label{eq:yjfiltro}
@@ -465,14 +465,14 @@ podem auxiliar nessa análise, entre elas a análise da função de autocorrela�
 \subsection{Função de autocorrelação}\label{sec:corre}
 
 Como  o nome  sugere, a  função de  autocorrelação mede  a correlação  entre as
-observações de uma  série em diferentes períodos de  tempo. Considerando-se uma
-série  temporal  $X$,  calcula-se  a  correlação entre  seus  valores  com  uma
-defasagem  de  tempo $k$,  sendo  essa  defasagem  a  distância entre  o  valor
-analisado $X_t$ a  observação $X_{t-k}$. Por exemplo, supondo uma  série de 100
-observações, pode-se  chamar de  $X'$ a série  correspondente aos  99 primeiras
-observações e de $X''$ a série  correspondente às últimas 99 observações. Nesse
-caso,  tem-se uma  defasagem (ou  \text{lag}) de  1 período  de tempo.  Assim a
-função de autocorrelação será dada segundo a \autoref{eq:autocorrelacao}.
+observações  de uma  série em  diferentes períodos.  Considerando-se uma  série
+temporal $X$, calcula-se  a correlação entre seus valores com  uma defasagem de
+tempo $k$,  sendo essa defasagem  a distância entre  o valor analisado  $X_t$ a
+observação  $X_{t-k}$.  Por exemplo,  supondo  uma  série de  100  observações,
+pode-se chamar de $X'$ a série  correspondente às 99 primeiras observações e de
+$X''$ a série correspondente às últimas  99 observações. Nesse caso, tem-se uma
+defasagem (ou \text{lag})  de 1 período. Assim a função  de autocorrelação será
+dada segundo a \autoref{eq:autocorrelacao}.
 
 \begin{equation}
     \label{eq:autocorrelacao}
@@ -542,16 +542,16 @@ medias móveis.
 
 Segundo  \citeonline{ehlers}  um  processo  $X_t$  é  chamado  auto  regressivo
 de   ordem   $p$,   ou   $AR(p)$,   quando   temos   $X_t$   dado   segundo   a
-\autoref{eq:aregressivo}.
+\autoref{eq:aregressivo}.  Nesse  caso $\alpha$  são  os  coeficientes a  serem
+calculados.
 
 \begin{equation}
     \label{eq:aregressivo}
-    X_t = \sum_{i = 1}^{p}{\alpha_1X_{t-i}}+\epsilon_t
+    X_t = \sum_{i = 1}^{p}{\alpha_{i}X_{t-i}}
 \end{equation}
 
-Como observado  na \autoref{eq:aregressivo}  é um modelo  útil se  for razoável
-assumir que o  valor atual depende somente de seus  antecessores imediatos mais
-um erro aleatório.
+Como observado  na \autoref{eq:aregressivo}, é  um modelo útil se  for razoável
+assumir que o valor atual depende somente de seus antecessores imediatos.
 
 \subsubsection{MA --- Processo de médias móveis}
 
@@ -560,8 +560,19 @@ um erro aleatório.
 
 Segundo \citeonline{timeseriesExample} o processo de  médias móveis é dado como
 a média  dos termos passados  e correntes  e pode ser  descrito matematicamente
-segunda a \autoref{eq:pmediasmoveis}. Sendo os valores $\epsilon$ a defasagem
-da série.
+segunda a \autoref{eq:pmediasmoveis}. Sendo os  valores $\epsilon$ o passo dado
+no passeio aleatório, já que  podemos considerar a série gerada recursivamente.
+Como   exemplo   temos   a  \autoref{eq:passeioAleatorio}   onde   considerando
+$\epsilon_0 = 0$ e somente um coeficiente $\theta$.
+
+\begin{equation} \label{eq:passeioAleatorio}
+    \begin{split}
+        & \epsilon_1 = X_1 \\
+        & \epsilon_2 = X_2 + \theta \epsilon_1 \\
+        & \vdots \\
+        & \epsilon_t = X_t + \theta \epsilon_{t-1}
+    \end{split}
+\end{equation}
 
 \begin{equation}
     \label{eq:pmediasmoveis}
@@ -1049,10 +1060,12 @@ matematicamente pode ser representado  como visto na \autoref{eq:minmaxscaler},
 sendo $MAX$ e  $MIN$ o maior e  menor valor respectivamente no  conjunto após o
 procedimento.
 
-\begin{align}\label{eq:minmaxscaler}
-    &X_{std} = \frac{X - \min X}{\max X-\min X}\\
-    &X_{scaled} = X_{std} * (MAX-MIN)+MIN
-\end{align}
+\begin{equation}
+    \begin{split}\label{eq:minmaxscaler}
+        &X_{std} = \frac{X - \min X}{\max X-\min X}\\
+        &X_{scaled} = X_{std} * (MAX-MIN)+MIN
+    \end{split}
+\end{equation}
 
 Na \autoref{tab:gridsearch} observamos todos os parâmetros testados na busca em
 largura.
@@ -1142,6 +1155,46 @@ ordem de $0,6\%$.
 \end{figure}
 
 \chapter{Conclusões}\label{chap:concl}
+
+Objetivo deste trabalho  foi produzir e avaliar modelos  preditivos para series
+temporais utilizando  algorítimos estatísticos e  de aprendizado de  máquina. É
+comum  em  trabalhos  a  utilização  de métodos  probabilísticos  quando  se  é
+realizada a tarefa de previsão de séries, mais especificamente o modelo hibrido
+ARIMA proposto por \citeonline{box}. No entanto modelos baseados em algorítimos
+de aprendizado  de máquina  tomaram notoriedade nos  últimos anos,  logo, neste
+trabalho  foi comparado  estes  modelos  para entender  os  suas capacidades  e
+observar os seus desafios particulares.
+
+Para  permitir a  avaliação  foi  necessária a  compreensão  da construção  dos
+modelos. Enquanto  o proposto por \citeonline{box}  apresentou uma complexidade
+muito  superior na  etapa de  análise da  série, já  que esse  modelo pode  ser
+entendido como dependente de  diversas intervenções para melhor parametrização,
+o  modelo  de  aprendizado,  utilizando redes  neurais  de  múltiplas  camadas,
+apresentou  uma  necessidade minima  de  compreensão  dos dados  estudados,  no
+entanto, sua complexidade se apresentou durante a etapa de treinamento.
+
+Quanto aos resultados,  podemos concluir que os modelos  utilizados foram muito
+similar em seu desempenho. Vale notar que possivelmente os resultados não foram
+expressivas  na conclusão  de superioridade  de  um modelo,  devido a  aparente
+simplicidade da série utilizada para comparação, como também pode se discutir a
+semelhança matemática  entre os modelos  utilizados. Quanto a métrica  de erros
+quadrados  médios utilizada  para a  avaliação, o  modelo ARIMA  teve resultado
+superior em uma ordem ínfima, 0,6\% em relação ao modelo de redes neurais.
+
+O  modelo probabilísticos  obtido foi  um modelo  hibrido ARMA,  de ordem  1 do
+processo autorregressivo e  ordem 1 para o processo de  medias móveis, e também
+foi realizado uma  diferenciação já que a série apresentou  tendencia durante a
+análise, e  se faz necessária a  diferenciação para para obtenção  de uma série
+estacionaria, característica requerido  pelo modelo. Durante a  análise não foi
+identificada sazonalidade.
+
+Para  obtenção do  modelo de  redes neurais  a mudança  dos dados  se resumiram
+a  realizar  uma  escala  para  valores,  sem  necessária  maior  avaliação  do
+comportamento, já  que segundo  \citeonline{haykin} algorítimos  de aprendizado
+são ditos  dirigido por dados.  No entanto durante  a etapa de  treinamento foi
+necessária a realização de varios testes exaustivos para encontrar o modelo que
+melhor se adequava, além da aplicação de validação cruzada e regularização para
+diminuir a ocorrência de \textit{overfit}.
 
 \section{Trabalhos futuros}
 
