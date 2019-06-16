@@ -668,11 +668,11 @@ tempo parcimonioso e representativo para a série analisada.
 
 \subsection{Determinação dos coeficientes}
 
-Por fim, para completa construção do modelo apresentado na \autoref{eq:arima} é
-necessária  a  obtenção  dos  coeficientes tanto  do  processo  autorregressivo
-tanto  do de  médias móveis.  Para essa  tarefa segundo \citeonline{yinay} é
-comum a utilização do estimador de \textit{likelihood}, ou mais precisamente a
-maximação da função de \textit{likelihood}.
+Por fim, para completa construção  do modelo apresentado na \autoref{eq:arma} é
+necessária a obtenção dos coeficientes  do processo autorregressivo e de médias
+móveis. Para  essa tarefa  segundo \citeonline{yinay} é  comum a  utilização do
+estimador de \textit{likelihood}, ou mais precisamente a maximação da função de
+\textit{likelihood}.
 
 Essa  maximização   é  descrita   por  \citeonline{statiticalML}   da  seguinte
 forma.  Considerando  uma função  $q(x;\theta)$  que  nos retorna  a  densidade
@@ -683,6 +683,8 @@ que nos retorna a capacidade dos parâmetros em aproximar a série.
 \begin{equation}\label{eq:likelihood}
     L(\theta) = \prod_{i=1}^{n}{q(x_i;\theta)}
 \end{equation}
+
+% TODO Descrever superficialmente o método de Yule Walker
 
 \section{Aprendizado de Máquina}
 
@@ -930,6 +932,32 @@ parâmetros definidos na grade.
 
 \chapter{Trabalhos relacionados}
 
+Com objetivo de entender e analisar como os modelos estudados se comportavam,
+foram analisados diversos trabalhos. Sendo inicialmente avaliados os estudos
+com foco na utilização dos modelos estatísticos e após isso a busca por textos
+que observaram o comportamento de modelos de aprendizado de máquina. Além
+desses casos, foi buscados trabalhos que utilizam ambos modelos em formato de
+comparação, semelhante ao objetivo deste trabalho.
+
+\citeonline{vinay}   utilizou  modelos   ARIMA  e   suas  variações   SARIMA  e
+ARIMA-GARCH, para  previsão de trafego em  rodovias. Um de seus  desafios foi a
+necessidade de predição em tempo real, ou seja, o modelo tinha de ser obtido ao
+mesmo tempo  que os dados eram  gerados. Ele identificou que  modelos ARIMA tem
+uma alta complexidade para serem encontrados,  já que ele usou uma abordagem de
+busca em  grade para  identificar o  modelo adequado,  utilizando a  métrica de
+média das somas quadradas dos erros para avaliação.
+
+\citeonline{reza}  propôs um  modelo  ARIMA modificado  acrescentando ao  valor
+previsto a  soma das medias dos  erros para encontrar um  modelo mais adequado.
+Sua  abordagem obtive  resultados  melhores que  aqueles observados  utilizando
+somente ARIMA\@.
+
+Já \citeonline{matias} comparou ARIMA com outros modelos de base estatística, e
+propôs  um modelo  hibrido entre  eles, para  previsão de  demanda de  táxis na
+cidade de Porto em Portugal, com objetivo de melhorar a distribuição dos táxis.
+Um de seus  desafios foi combinar a informação de  geolocalização com as séries
+das  demandas por  corridas. Como  resultado  ele foi  capaz de  obter um  erro
+inferior a 26\% na previsão de corridas utilizando modelo proposto.
 
 \chapter{Desenvolvimento}\label{chap:desenv}
 Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries
