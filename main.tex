@@ -1192,11 +1192,34 @@ Para  obtenção do  modelo de  redes neurais  a mudança  dos dados  se resumir
 a  realizar  uma  escala  para  valores,  sem  necessária  maior  avaliação  do
 comportamento, já  que segundo  \citeonline{haykin} algorítimos  de aprendizado
 são ditos  dirigido por dados.  No entanto durante  a etapa de  treinamento foi
-necessária a realização de varios testes exaustivos para encontrar o modelo que
-melhor se adequava, além da aplicação de validação cruzada e regularização para
-diminuir a ocorrência de \textit{overfit}.
+necessária  a  realização  de  diversos  testes para  encontrar  o  modelo  que
+melhor  se adequava,  além da  aplicação de  validação cruzada  e regularização
+para  diminuir a  ocorrência de  \textit{overfit}. Por  meio desse  processo se
+identificou uma rede neural de duas camadas,  sendo a de entrada com 9 unidades
+de processamento, \textit{perceptron}, e a segunda com um único neurônio, sendo
+essa camada a de saída e representando a previsão um passo a diante.
+
+Conclui-se que os  modelos são suficientes para a tarefa,  no entanto, temos de
+observar que o modelo estatísticos torna  a parametrização uma etapa muito mais
+complexa que o modelo de aprendizado. Assim  a escolha do modelo pode ser feita
+analisando capacidade de  análise de quem constrói o modelo,  ou o entendimento
+de  como os  dados poderão  se  comportar, já  que  o modelo  de aprendizado  é
+dirigido pelos dados, logo, sua capacidade de se adaptar a novos comportamentos
+é superior ao modelo probabilístico.
 
 \section{Trabalhos futuros}
+
+Um  possível trabalho  futuro é  a  avaliação de  diferentes modelos  hibridos,
+se  aproveitando  da  capacidade   do  modelo  probabilísticos  em  representar
+comportamento linear e também a capacidade  de modelos de aprendizado em séries
+não  lineares, como  feito por  \citeonline{oCaraLaDoModeloHibrido}. Uma  outra
+possibilidade é a  utilização de redes neurais recorrentes,  que se diferenciam
+de modelos \textit{feedforward}  por possuir memorio, uma  arquitetura de redes
+neurais  que  tem  apresentado  bons  resultados é  a  LSTM,  alguns  trabalhos
+como  \citeonline{oDoCaraQueComparaArimaComLSTM}  demonstram   que  é  possível
+obter  resultados superiores  com sua  aplicação. Podemos  ainda estudar  essas
+comparações com séries de  comportamento diferente, e consequentemente utilizar
+modelos estatísticos mais completos, como o SARIMA ou SARIMAX\@.
 
 \postextual
 
