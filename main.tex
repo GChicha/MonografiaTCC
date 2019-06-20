@@ -16,6 +16,7 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{csquotes}
+\usepackage{subcaption}
 
 \usepackage{tikz}
 \usetikzlibrary{positioning}
@@ -492,10 +493,8 @@ são relevantes e  quais não. De forma que todas  as correlações relevante es
 fora desse  intervalo de  confiança. Assim, se  todas as  correlações estiverem
 dentro do  limite a série  é caracterizada como um  ruído branco, ou  seja, seu
 comportamento não permite  modelagem. Para encontrar o  intervalo de confiança,
-\citeonline{ehlers} recomenda utilizar a seguinte equação $\pm{}1,96/\sqrt{n}$,
+\citeonline{ehlers} recomenda utilizar a seguinte equação $\pm{}2/\sqrt{n}$,
 sendo $n$ o número de observações da série.
-% Encontrei um calculo um pouco diferente para o intervalo de confiança no
-% livro Time Series By Examples, lá está colocado como +-2/sqrt(n)
 
 \begin{figure}[ht]
     \centering
@@ -505,16 +504,11 @@ sendo $n$ o número de observações da série.
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
-Pela \autoref{fig:correlogramaCo2}  podemos concluir que as  leituras do $CO_2$
-apresentam  uma  tendência, e  ainda  por  apresentar todos  valores  positivos
-podemos afirmar que  crescerá ao longo do tempo. Como  a série possui tendência
-temos  de  fazer  uma   diferenciação,  como  disposto  na  \autoref{sec:diff},
-para  remoção  dessa componente,  vemos  a  série  após essa  diferenciação  na
-\autoref{fig:co2diff} e o  correlograma após a diferenciação pode  ser visto na
-\autoref{fig:acfco2diff}, nesse  novo gráfico é  percebido que a  componente da
-tendência foi  realmente removida  após uma  diferenciação, tornando  visível a
-componente sazonal, vemos  isso pela alternância das  correlações observadas no
-correlograma.
+Na \autoref{fig:acfco2diff}  temos a função  de autocorrelação para  a primeira
+diferenciação  da  série de  leituras  de  $CO_2$.  Podemos observar  que  após
+diferenciada conseguimos observar  o comportamento sazonal, já que  a função de
+autocorrelação apresenta correlações positivas e negativas em uma distância que
+pode ser entendida como o período cíclico da série.
 
 \begin{figure}[ht]
     \centering
@@ -524,8 +518,17 @@ correlograma.
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
-% TODO: Citar as seções nas quais o correlograma é apresentada em outros
-%cenários
+\subsubsection{Função de autocorrelação parcial}
+
+Durante a análise outra função que será relevante é a autocorrelação parcial,
+sua definição segundo \citeonline{cryer} é dado em \autoref{eq:facp}, onde
+$r_k$ é a autocorrelação da série $X$ no \textit{lag} $k$ e $\phi_{k,j}$ é dado
+por $\phi_{k-1, j}-\phi_{kk}\phi_{k-1,k-j}$.
+
+\begin{equation}
+    \label{eq:facp}
+    \phi_{kk} = \frac{r_k-\sum_{j=1}^{k-1}{\phi_{k-1,j}r_{k-j}}}{1-\sum_{j=1}^{k-1}{\phi_{k-1,j}r_{j}}}
+\end{equation}
 
 \subsection{ARIMA}
 
@@ -615,25 +618,28 @@ decorrer do desenvolvimento.
 
 \subsection{Seleção do modelo}
 
-De  acordo  com \citeonline{box}  a  identificação  do  modelo pode  ser  feita
-a  partir  da  análise  gráfica  da  FAC e  FACP,  que  foram  apresentados  na
-\autoref{sec:corre}, podendo contar com a ajuda de outros testes para validação
-da estacionariedade da série.
+De  acordo com  \citeonline{box} a  identificação do  modelo pode  ser feita  a
+partir da  análise gráfica  da função  de autocorrelação, FAC,  e da  função de
+autocorrelação parcial,  FACP, que  foram apresentados  na \autoref{sec:corre},
+podendo contar com a ajuda de  outros testes para validação da estacionariedade
+da série.
 
-% FIXME Corrigir inicio
-O método proposto por \citeonline{box} observa o comportamento da correlação de
-forma que  para identificar  a ordem  do AR,  $p$, é  suficiente analisar  se o
-gráfico do FAC  apresenta decaimento exponencial e FACP apresenta  uma quebra a
-partir do elemento $p$  do gráfico. Já a identificação da  ordem do processo de
-médias móveis  é feita de modo  análogo, porem o  $q$ é dado pela  elemento que
-apresenta  a quebra  no gráfico  do FACP  enquanto o  gráfico do  FAC apresenta
-decaimento exponencial. Para modelos híbridos a  análise é mais complexa e pode
-ser necessária a verificação do FAC residual.
+%  FIXME Corrigir  inicio  O  método proposto  por  \citeonline{box} observa  o
+comportamento da correlação de forma que para identificar a ordem do AR, $p$, é
+suficiente analisar se o gráfico do FAC apresenta decaimento exponencial e FACP
+apresenta uma quebra a partir do elemento $p$ do gráfico. Já a identificação da
+ordem do processo  de médias móveis é  feita de modo semelhante, porem  o $q$ é
+dado pela elemento que apresenta a quebra  no gráfico do FAC enquanto o gráfico
+do FACP  apresenta decaimento  exponencial. Como forma de validação e
+verificação do modelo
 
 Se não for  possível identificar a série a partir  deste procedimento, pode ser
 que a  série apresente  tendencia. No  caso de  existir tendência  é necessária
 a  realização  de  uma  ou  mais diferenciações,  com  essa  nova  série  agora
 estacionaria é refeito as verificações e determinadas as ordens.
+
+
+% FIXME Tem que achar uma referencia coerente para definição do modelo
 
 No caso acima o  modelo obtido ou é da forma $AR(p)$ ou  $MA(q)$ porem em casos
 de modelos híbridos ambas funções  devem apresentar comportamento de decaimento
@@ -647,11 +653,10 @@ esse procedimento de seleção do modelo de forma sumarizada.
     \begin{tabular}{l l l}
         \multicolumn{1}{c}{Modelo} & \multicolumn{1}{c}{FAC} & \multicolumn{1}{c}{FACP} \\
         \toprule
-        Série aleatória  & 0                          & 0                      \\
-        AR (1)           & decaimento exponencial     & 0, $k$ > 2             \\
-        AR (p)           & decaimento para zero       & 0, $k$ > $p$           \\
-        MA (1)           & 0                          & decaimento oscilatório \\
-        ARMA (p, q)      & decaimento a partir de $p$ & decaimento a partir de $q$
+        Série aleatória  & 0                           & 0                        \\
+        AR (p)           & decaimento exponencial      & 0 após $p$ \textit{lags} \\
+        MA (q)           & 0 após $q$ \textit{lags}    & decaimento exponencial   \\
+        ARMA (p, q)      & 0 após $q$ \textit{lags}    & decaimento a partir de $q$
     \end{tabular}
     \source{\citeonline{ehlers}}
 \end{table}
@@ -960,133 +965,36 @@ das  demandas por  corridas. Como  resultado  ele foi  capaz de  obter um  erro
 inferior a 26\% na previsão de corridas utilizando modelo proposto.
 
 \chapter{Desenvolvimento}\label{chap:desenv}
+
 Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries
 temporais tem  grande importância,  e uma  de suas  principais aplicações  é na
-previsão  de indicadores  econômicos, como  o S\&P500,  um índice  mantido pela
-Standard \& Poor's desde 1923, indexando os  valores de 500 ativos em bolsas de
-valores e  servindo como um indicador  geral do comportamento do  mercado. Logo
-foi obtido os dados do S\&P500 para comparar os modelos apresentados e observar
-as previsões que estes foram capazes de realizar considerando essa série.
+previsão de indicadores econômicos. O  S\&P500, um índice mantido pela Standard
+\& Poor's desde  1923, indexa os valores  de 500 ativos em bolsas  de valores e
+servindo como um  indicador geral do comportamento do mercado.  Logo foi obtido
+os dados  do S\&P500  para comparar  os modelos apresentados  e observar  o seu
+desempenho de previsão.
 
-Para   podermos   compreender   o   comportamento  dos   modelos   com   outros
-tipos   de  séries   foi  também   selecionada  a   série  já   apresentado  na
-\autoref{sec:seriesTemporais} que contem os dados  da concentração de $CO_2$ na
-atmosfera. A  importância de  avaliar comportamento  com essa  série se  dá por
-conta do  se diferenciar da  série econômica  por ter sazonalidade  e tendência
-muito mais claras.
-
-Durante  toda  a  etapa  de   desenvolvimento  foi  utilizada  a  linguagem  de
-programação python em conjunto com jupyter  para a análise das séries, produção
-dos modelos  e avaliação. Especificamente  para os modelos  probabilísticos foi
-utilizado a  biblioteca statsmodels\footnote{\url{https://www.statsmodels.org}}
-e  tensorflow\footnote{\url{https://www.tensorflow.org/}}  para os  modelos  de
+Durante   toda  a   etapa  de   desenvolvimento  foi   utilizada  a   linguagem
+de   programação   python\footnote{\url{https://www.python.org}}  em   conjunto
+com   jupyter   para  a   análise   das   séries,   produção  dos   modelos   e
+avaliação.  Especificamente  para  os  modelos  probabilísticos  foi  utilizado
+a    biblioteca    statsmodels\footnote{\url{https://www.statsmodels.org}}    e
+tensorflow\footnote{\url{https://www.tensorflow.org/}}   para  os   modelos  de
 aprendizado de máquina.  Além delas foram utilizadas a  biblioteca seaborn para
 produção  dos gráficos  e  pandas em  conjunto com  numpy  e scikit-learn  para
 importar e realizar as modificações necessárias dos dados.
 
-As observações das séries podem ser obtidas
-online\footnote{\url{https://datahub.io/core/s-and-p-500}}\footnote{\url{https://datahub.io/core/co2-ppm}}.
-Na   \autoref{fig:sp500}  e   \autoref{fig:co2}  observamos   a  plotagem   das
-observações  do   índice  S\&P500  e   as  leituras  do  $CO_2$   na  atmosfera
-respectivamente.
+Os           dados            da           série            podem           ser
+obtidos      online\footnote{\url{https://datahub.io/core/s-and-p-500}}.     Na
+\autoref{fig:sp500} apresenta-se  as observações  do índice  S\&P500 utilizadas
+durante  o   desenvolvimento  deste  trabalho.
 
-\begin{figure}[ht]
-    \centering
-    \caption{Gráfico das observações do índice S\&P500}\label{fig:sp500}
-    \includegraphics[width=.5\linewidth]{images/sp500.png}
-    \source{Elaborado pelo autor}
-\end{figure}
-
-A  divisão do  conjunto  de treino  e  teste  foi realizado  de  maneira a  ser
-utilizado 70\% dos dados durante o treinamento e 30\% durante a validação.
-
-Após a análise da série foi encontrado os modelos que mais se adequem as séries
-apresentadas e validada  a capacidade deste modelo prever um  dia adiante. Para
-tornar a  comparação justa  foi definido algumas  considerações aos  modelos de
-aprendizado, como a quantidade de observações consideradas para a previsão.
-
-\section{Análise da série}
-
-Seguindo as etapas para construção do modelo foi realizada a análise dos dados.
-O  objetivo  era identificar  as  características  da  série,  como se  esta  é
-estacionaria, e quanto  a existência de tendencia e  sazonalidade, sendo também
-já realizada a remoção de \textit{outliers} que possam atrapalhar na construção
-do modelo.
-
-Já   na   análise   dos   gráficos  das   séries   na   \autoref{fig:sp500}   e
-\autoref{fig:co2} fica  evidente o comportamento  não estacionário de  ambas as
-séries, conclui-se  isso segundo  os critérios  definidos anteriormente.  Já se
-aproveita para perceber a existência clara de tendência em ambos conjuntos.
-
-Para  tornar  a  série  estacionaria é  necessário  realizar  inicialmente  uma
-diferenciação.  Na \autoref{fig:co2diff}  temos  a  primeira diferenciação  das
-leituras de $CO_2$, já para  a série financeira temos a \autoref{fig:sp500diff}
-em sua primeira  diferenciação. Pela observação podemos concluir  que uma única
-diferenciação foi suficiente em ambos os casos.
-
-\begin{figure}[ht]
-    \centering
-    \caption{Primeira diferenciação dos dados do SP500}\label{fig:sp500diff}
-    \includegraphics[width=.5\linewidth]{images/sp500diff.png}
-    \source{Elaborado pelo autor}
-\end{figure}
-
-Quanto a sazonalidade é evidente a sua existência nas leituras de $CO_2$, sendo
-esta anual e tendo que as leituras são mensais podemos dizer que a sazonalidade
-se repete a cada  12 leituras, no entanto, tal constatação não  é tão clara nos
-índices da  Standard \&  Poor sendo  necessários outros  métodos que  não foram
-discutidos nesse trabalho para a sua definição.
-
-Tendo sido realizada  a análise pode-se estimar que os  modelos ARMA não seriam
-suficientes  e que  seria a  necessária  utilização do  modelo integrado,  alem
-disso, seria adequado a aplicação do modelo com suporte a sazonalidade, SARIMA,
-à série  contendo leituras  de $CO_2$,  no entanto,  por conta  da complexidade
-adicional este não fez parte do desenvolvimento desse trabalho.
-
-\section{Definição do modelo probabilístico}
-
-%TODO Definição do modelo CO2
-
-Compreendido  o  comportamento  da  série  se definiu  a  correlação  entre  as
-observações para possibilitar a construção  do modelo probabilístico, usando do
-gráfico  da  função  de autocorrelação  apresentado  na  \autoref{fig:sp500acf}
-em   conjunto  com   o  gráfico   da  função   de  autocorrelação   parcial  da
-\autoref{fig:sp500pacf} foi compreendido seguindo  o modelo de \citeonline{box}
-que por conta  de ambos gráficos apresentarem somente um  valor significativo o
-modelo probabilístico escolhido  para representar a série S\&P500  foi o modelo
-ARIMA(1,1,1), sendo este hibrido do modelo AR(1) e MA(1) com uma integração.
-
-\begin{figure}[ht]
-    \centering
-    \caption{Gráfico dos 40 primeiros elementos da função de autocorrelação da
-    série S\&P500}\label{fig:sp500acf}
-    \includegraphics[width=.5\linewidth]{images/sp500acf.png}
-    \source{Elaborado pelo autor}
-\end{figure}
-
-\begin{figure}[ht]
-    \centering
-    \caption{Gráfico  dos 40  primeiros elementos  da função  de autocorrelação
-    parcial da série S\&P500}\label{fig:sp500pacf}
-    \includegraphics[width=.5\linewidth]{images/sp500pacf.png}
-    \source{Elaborado pelo autor}
-\end{figure}
-
-\section{Definição do modelo utilizando aprendizado de máquina}
-
-Já para  o desenvolvimento do modelo  neural não foi necessária  uma observação
-profunda da  série, no entanto,  exigiu uma parametrização muito  mais complexa
-do  modelo,  observando como  o  modelo  convergia considerando  os  parâmetros
-escolhidos e realizando  uma busca em grade extensiva para  encontrar um modelo
-com boa capacidade representativa.
-
-Antes da etapa de parametrização  foram realizadas alguns pré-processamentos, o
-primeiro foi  em vista  de escalar a  série para o  intervalo 0  e 1, já  que a
-função  de  ativação  utilizada  tem  esse  intervalo  como  saída.  Para  isso
-foi  utilizado o  método de  \textit{MinMaxScaler} da  biblioteca sklearn,  que
-matematicamente pode ser representado  como visto na \autoref{eq:minmaxscaler},
-sendo $MAX$ e  $MIN$ o maior e  menor valor respectivamente no  conjunto após o
-procedimento.
+Para simplificar as tarefas realizadas no  decorrer deste trabalho, os dados da
+série foram dimensionados no  intervalo entre 0 e 1. Para  isso foi utilizado o
+método \texttt{MinMaxScaler}  da biblioteca  sklearn, que  matematicamente pode
+ser representado como visto na \autoref{eq:minmaxscaler}, sendo $MAX$ e $MIN$ o
+intervalo  que definimos  para  a série  e  a função  $\min$  e $\max$  capazes
+respectivamente de apresentar o menor e maior elemento do conjunto.
 
 \begin{equation}
     \begin{split}\label{eq:minmaxscaler}
@@ -1095,12 +1003,157 @@ procedimento.
     \end{split}
 \end{equation}
 
-Na \autoref{tab:gridsearch} observamos todos os parâmetros testados na busca em
-largura.
+\begin{figure}[ht]
+    \centering
+    \caption{Gráfico das observações dimensionadas do índice S\&P500}\label{fig:sp500}
+    \includegraphics[width=.5\linewidth]{images/SP500.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+A  divisão do  conjunto  de treino  e  teste  foi realizado  de  maneira a  ser
+utilizado 70\% dos dados durante o treinamento e 30\% durante a validação. Na
+\autoref{fig:traintest} vemos estes conjuntos.
+
+\begin{figure}[ht]
+    \caption{Divisão da série entre os conjuntos de treino e teste}\label{fig:traintest}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.8\linewidth]{images/SP500_train.png}
+        \caption{Conjunto de treino}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=.8\linewidth]{images/SP500_test.png}
+        \caption{Conjunto de teste}
+    \end{subfigure}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+Após a análise foi encontrado os modelos que mais se adequam a série e validada
+a capacidade deste modelo prever um dia adiante. Para tornar a comparação justa
+foi definido que a quantidade de observações utilizadas na camada de entrada do
+modelo de redes neurais fosse semelhante a ordem do processo autorregressivo.
+
+\section{Análise da série}
+
+Seguindo as etapas para construção do modelo foi realizada a análise dos dados.
+O  objetivo  era identificar  as  características  da  série,  como se  esta  é
+estacionaria, e quanto  a existência de tendencia e  sazonalidade. Sendo também
+já realizada a remoção de \textit{outliers} que possam atrapalhar na construção
+do modelo.
+
+Já na análise dos gráficos da  série, na \autoref{fig:sp500}, fica evidente o a
+existência de  tendência, permitindo concluir  que a série não  é estacionaria.
+Conclui-se  isso  também a  partir  da  análise da  \autoref{fig:acfsp500}  que
+demonstra a  existência de um  grande numero  de correlações positivas  fora do
+intervalo de confiança.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Função de autocorrelação para a série S\&P500}\autoref{fig:acfsp500}
+    \includegraphics[width=.5\linewidth]{images/SP500_FAC.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+Para  tornar  a  série  estacionaria é  necessário  realizar  inicialmente  uma
+diferenciação. Temos na \autoref{fig:sp500diff}  a primeira diferenciação. Pela
+observação  da função  autocorrelação  na \autoref{fig:acf_diff_sp500}  podemos
+concluir que uma única diferenciação foi suficiente.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Primeira diferenciação dos dados do S\&P500}\label{fig:sp500diff}
+    \includegraphics[width=.5\linewidth]{images/sp500diff.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \caption{Função de autocorrelação da série S\&P500 diferenciada uma vez}\label{fig:acf_diff_sp500}
+    \includegraphics[width=.5\linewidth]{images/SP500_diff_FAC.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+Quanto a sazonalidade, podemos observar a  existência de um padrão que remete a
+um comportamento na  \autoref{fig:acf_diff_dp500}, no entanto, não  é tão claro
+qual o período.  Para se definir isso seria necessária  a definição de técnicas
+que não fizeram parte desse trabalho.
+
+Tendo  sido  realizada  a  análise  pode-se concluir  que  o  modelo  ARMA  sem
+integração não seria suficiente, assim o  parâmetro $d$ do modelo ARIMA será de
+ordem 1,  devido a ter  sido necessária uma  diferenciação para tornar  a serie
+estacionaria.
+
+\section{Definição do modelo probabilístico}
+
+Compreendido  o  comportamento  da  série  se definiu  a  correlação  entre  as
+observações para possibilitar a construção  do modelo probabilístico, usando do
+gráfico da função de autocorrelação apresentado na \autoref{fig:acf_diff_sp500}
+em   conjunto  com   o  gráfico   da  função   de  autocorrelação   parcial  da
+\autoref{fig:sp500pacf}. Segundo o modelo de \citeonline{box} temos de analisar
+o modelo com $p$  sendo 1, 2 ou 5, e para $q$ sendo 1, 2 ou 7. A seleção do
+melhor modelo foi dado utilizando o critério de informação de Akaike.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Função de autocorrelação parcial da série diferenciada S\&P500}\label{fig:sp500pacf}
+    \includegraphics[width=.5\linewidth]{images/SP500_diff_FACP.png}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+A \autoref{tab:aicarima} apresenta as métricas  AIC para os modelos propostos e
+em  destaque  o modelo  com  melhor  resultado.  Logo o  modelo  probabilístico
+utilizado para comparar o desempenho foi o ARIMA(5,1,7).
 
 \begin{table}[ht]
 \centering
-\caption{Possibilidades dos parâmetros da busca em grade}\label{tab:gridsearch}
+    \caption{Tabela de modelos testados para $p$ e $q$ no modelo ARIMA($p$, 1, $q$)}\label{tab:aicarima}
+\begin{tabular}{l c c c}
+    p\textbackslash{}q  & 1      & 2      & 7               \\
+    \toprule
+    1                   & -15953 & -15952 & -15979          \\
+    2                   & -15965 & -15968 & -15989          \\
+    5                   & -15984 & -15988 & \textbf{-16004} \\
+\end{tabular}
+\source{Elaborado pelo autor}
+\end{table}
+
+Para podermos concluir como um bom modelo, temos ainda que analisar se a função
+de autocorrelação e autocorrelação parcial  dos resíduos apresenta a existência
+de  correlações  significativas.  Na  \autoref{fig:acffigresiduals}  vemos  que
+existem ainda correlações  relevantes, no entanto, são  geradas pela componente
+sazonal da série e como já dito, não fizeram parte do objetivo deste trabalho.
+
+\begin{figure}[ht]
+    \caption{Função de autocorrelação e autocorrelação parcial dos residuos do
+    modelo ARIMA(5,1,7) para a série S\&P500}\label{fig:acffigresiduals}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \caption{Função de autocorrelação dos resíduos}
+        \includegraphics[width=.8\linewidth]{images/residuals_FAC.png}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \caption{Função de autocorrelação parcial dos resíduos}
+        \includegraphics[width=.8\linewidth]{images/residuals_FACP.png}
+    \end{subfigure}
+    \source{Elaborado pelo autor}
+\end{figure}
+
+\section{Definição do modelo utilizando aprendizado de máquina}
+
+Já para  o desenvolvimento do modelo  neural não foi necessária  uma observação
+profunda da  série, no entanto,  exigiu uma parametrização muito  mais complexa
+do  modelo.  Observado  como  o modelo  convergia  considerando  os  parâmetros
+escolhidos, foi realizada uma busca em grade extensiva para encontrar um modelo
+com melhor capacidade representativa.
+
+Na \autoref{tab:gridsearch} observamos todos os parâmetros testados na busca em
+grade.
+
+\begin{table}[ht]
+\centering
+\caption{Parâmetros utilizados da busca em grade}\label{tab:gridsearch}
 \begin{tabular}{l l}
 \multicolumn{1}{c}{Parâmetro}        & \multicolumn{1}{c}{Possibilidades}  \\
     \toprule
@@ -1114,19 +1167,15 @@ largura.
 \source{Elaborado pelo autor}
 \end{table}
 
-Uma característica que foi logo  observada nas primeiras execuções anteriores a
-aplicação  da regularização  foi o  rápido \textit{overfit}  sobre os  dados de
+Uma característica  que foi logo  observada nas primeiras  execuções anteriores
+a  aplicação  da regularização  foi  o  rápido  \textit{overfit} nos  dados  de
 treinamento como  visto na \autoref{fig:sp500_overfit}, mesmo  sendo aplicada a
-validação  cruzada, e  ainda como  visto na  \autoref{fig:iter_sp500_overfit} a
-especialização para o conjunto de treino foi muito rápida, assim foi aplicada a
-regularização e após se tornou frequente  encontrar bons modelos para as séries
-observadas.
+validação  cruzada.  Logo a  aplicação  da  regularização foi  suficiente  para
+diminuir a ocorrência do \textit{overfit}.
 
 \begin{figure}[ht]
     \centering
-    \caption{Gráfico  da  comparação  do  previsto   e  real  para  o  conjunto
-    de   treino   e   teste   para   a   série   de   observações   do   índice
-    S\&P500}\label{fig:sp500_overfit}
+    \caption{Gráfico da comparação dos valores previsto e reais para o conjunto de treino e teste}\label{fig:sp500_overfit}
     \minipage{0.50\linewidth}
         \includegraphics[width=\linewidth]{images/sp500_overfit_train.png}
     \endminipage\hfill
@@ -1144,13 +1193,13 @@ observadas.
     \source{Elaborado pelo autor}
 \end{figure}
 
-Para os dados  da Standard \& Poors  o modelo selecionado a partir  da busca em
-grade  foi com  duas camadas,  sendo a  primeira camada  com 13  neurônios e  a
-segunda com somente um  neurônios já que esta é a camada de  saída. A função de
-ativação de foi a $relu$ e  o $\lambda$ da regularização ficou como $0.000001$.
-A função de  perda selecionada foi $MSE$ e 300  iterações foram suficientes. Já
-que  o modelo  probabilístico  tem AR(1)  foi fixado  em  uma única  observação
-no passado para a realização da previsão.
+O modelo  de redes neurais artificiais  selecionado a partir da  busca em grade
+foi com duas camadas, sendo a primeira  camada com 13 neurônios e a segunda com
+somente um neurônios já  que esta é a camada de saída. A  função de ativação de
+foi a $relu$ e o $\lambda$ da  regularização ficou como $0.000001$. A função de
+perda selecionada foi a função média  dos erros quadrados e 300 iterações foram
+suficientes. Já  que o modelo  probabilístico tem $p$ igual  a 5 foi  fixado em
+cinco observações a realização da previsão.
 
 \chapter{Resultados}\label{chap:result}
 
