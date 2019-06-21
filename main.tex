@@ -675,7 +675,7 @@ tempo parcimonioso e representativo para a série analisada.
 
 Por fim, para completa construção  do modelo apresentado na \autoref{eq:arma} é
 necessária a obtenção dos coeficientes  do processo autorregressivo e de médias
-móveis. Para  essa tarefa  segundo \citeonline{yinay} é  comum a  utilização do
+móveis. Para  essa tarefa  segundo \citeonline{vinay} é  comum a  utilização do
 estimador de \textit{likelihood}, ou mais precisamente a maximação da função de
 \textit{likelihood}.
 
@@ -964,6 +964,15 @@ Um de seus  desafios foi combinar a informação de  geolocalização com as sé
 das  demandas por  corridas. Como  resultado  ele foi  capaz de  obter um  erro
 inferior a 26\% na previsão de corridas utilizando modelo proposto.
 
+Quanto  a  utilização   de  redes  neurais  podemos  observar   o  trabalho  de
+\citeonline{zhangbco}.  Neste trabalho  foi observado  o desempenho  do uso  de
+redes neurais  utilizando o algorítimo de  retro propagação e outro  baseado em
+algorítimos naturais. A série utilizado foi  a do índice S\&P500, foi comparada
+a previsão  entre um e  quinze dias adiante. O  modelo neural utilizado  foi de
+três camadas, com 9  neurônios na camada de entrada, 3 na  camada escondida e 1
+na de  saída. O modelo proposto  utilizando o algorítimo neural  teve resultado
+superior para todas as analises.
+
 \chapter{Desenvolvimento}\label{chap:desenv}
 
 Como colocado na \autoref{sec:seriesTemporais} a capacidade de se prever séries
@@ -1011,7 +1020,7 @@ respectivamente de apresentar o menor e maior elemento do conjunto.
 \end{figure}
 
 A  divisão do  conjunto  de treino  e  teste  foi realizado  de  maneira a  ser
-utilizado 70\% dos dados durante o treinamento e 30\% durante a validação. Na
+utilizado 70\% dos  dados durante o treinamento e 30\%  durante a validação. Na
 \autoref{fig:traintest} vemos estes conjuntos.
 
 \begin{figure}[ht]
@@ -1050,7 +1059,7 @@ intervalo de confiança.
 
 \begin{figure}[ht]
     \centering
-    \caption{Função de autocorrelação para a série S\&P500}\autoref{fig:acfsp500}
+    \caption{Função de autocorrelação para a série S\&P500}\label{fig:acfsp500}
     \includegraphics[width=.5\linewidth]{images/SP500_FAC.png}
     \source{Elaborado pelo autor}
 \end{figure}
@@ -1075,7 +1084,7 @@ concluir que uma única diferenciação foi suficiente.
 \end{figure}
 
 Quanto a sazonalidade, podemos observar a  existência de um padrão que remete a
-um comportamento na  \autoref{fig:acf_diff_dp500}, no entanto, não  é tão claro
+um comportamento na  \autoref{fig:acf_diff_sp500}, no entanto, não  é tão claro
 qual o período.  Para se definir isso seria necessária  a definição de técnicas
 que não fizeram parte desse trabalho.
 
@@ -1224,10 +1233,15 @@ ordem de $0,6\%$.
 \end{table}
 
 \begin{figure}[ht]
-    \centering
-    \caption{Gráfico comparativo entre os modelos obtidos para a série
-    S\&P500}\label{fig:comparesp500}
-    \includegraphics[width=.5\linewidth]{images/sp500_prediction_compare.png}
+    \caption{Comparativos dos resultados}
+    \begin{subfigure}{.5\textwidth}
+        \caption{Gráfico comparativo entre os modelos obtidos}\label{fig:comparesp500}
+        \includegraphics[width=.8\linewidth]{images/sp500_prediction_compare.png}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \caption{Gráfico dos erros acumulados}\label{fig:comparesp500}
+        \includegraphics[width=.8\linewidth]{images/sp500_cumsum.png}
+    \end{subfigure}
     \source{Elaborado pelo autor}
 \end{figure}
 
@@ -1238,51 +1252,47 @@ temporais utilizando  algorítimos estatísticos e  de aprendizado de  máquina.
 comum  em  trabalhos  a  utilização  de métodos  probabilísticos  quando  se  é
 realizada a tarefa de previsão de séries, mais especificamente o modelo hibrido
 ARIMA proposto por \citeonline{box}. No entanto modelos baseados em algorítimos
-de aprendizado  de máquina  tomaram notoriedade nos  últimos anos,  logo, neste
+de aprendizado  de máquina se tornaram  notórios nos últimos anos,  logo, neste
 trabalho  foi comparado  estes  modelos  para entender  os  suas capacidades  e
 observar os seus desafios particulares.
 
 Para  permitir a  avaliação  foi  necessária a  compreensão  da construção  dos
 modelos. Enquanto  o proposto por \citeonline{box}  apresentou uma complexidade
 muito  superior na  etapa de  análise da  série, já  que esse  modelo pode  ser
-entendido como dependente de  diversas intervenções para melhor parametrização,
-o  modelo  de  aprendizado,  utilizando redes  neurais  de  múltiplas  camadas,
+entendido como dependente de  diversas intervenções para melhor parametrização.
+O  modelo  de  aprendizado,  utilizando redes  neurais  de  múltiplas  camadas,
 apresentou  uma  necessidade minima  de  compreensão  dos dados  estudados,  no
 entanto, sua complexidade se apresentou durante a etapa de treinamento.
 
 Quanto aos resultados,  podemos concluir que os modelos  utilizados foram muito
-similar em seu desempenho. Vale notar que possivelmente os resultados não foram
-expressivas  na conclusão  de superioridade  de  um modelo,  devido a  aparente
-simplicidade da série utilizada para comparação, como também pode se discutir a
-semelhança matemática  entre os modelos  utilizados. Quanto a métrica  de erros
-quadrados  médios utilizada  para a  avaliação, o  modelo ARIMA  teve resultado
-superior em uma ordem ínfima, 0,6\% em relação ao modelo de redes neurais.
+similar em seu  desempenho. Vale notar que os resultados  não foram expressivas
+na conclusão de  superioridade de um modelo. Quanto a  métrica utilizada para a
+avaliação, o modelo ARIMA teve resultado superior em uma ordem ínfima, 0,6\% em
+relação ao modelo de redes neurais.
 
-O  modelo probabilísticos  obtido foi  um modelo  hibrido ARMA,  de ordem  1 do
-processo autorregressivo e  ordem 1 para o processo de  medias móveis, e também
-foi realizado uma  diferenciação já que a série apresentou  tendencia durante a
-análise, e  se faz necessária a  diferenciação para para obtenção  de uma série
-estacionaria, característica requerido  pelo modelo. Durante a  análise não foi
-identificada sazonalidade.
+O  modelo probabilísticos  obtido foi  um modelo  hibrido ARMA,  de ordem  5 do
+processo autorregressivo e ordem 7 para o processo de medias móveis. Também foi
+necessária uma diferenciação  já que a série apresentou tendencia,  e por conta
+disso,  foi  necessária  a  diferenciação  para  para  obtenção  de  uma  série
+estacionaria, característica essa requerido pelo modelo ARMA\@.
 
-Para  obtenção do  modelo de  redes neurais  a mudança  dos dados  se resumiram
-a  realizar  uma  escala  para  valores,  sem  necessária  maior  avaliação  do
-comportamento, já  que segundo  \citeonline{haykin} algorítimos  de aprendizado
-são ditos  dirigido por dados.  No entanto durante  a etapa de  treinamento foi
-necessária  a  realização  de  diversos  testes para  encontrar  o  modelo  que
-melhor  se adequava,  além da  aplicação de  validação cruzada  e regularização
-para  diminuir a  ocorrência de  \textit{overfit}. Por  meio desse  processo se
-identificou uma rede neural de duas camadas,  sendo a de entrada com 9 unidades
-de processamento, \textit{perceptron}, e a segunda com um único neurônio, sendo
-essa camada a de saída e representando a previsão um passo a diante.
+Para obtenção  do modelo de  redes neurais a mudança  dos dados se  resumiram a
+realizar  de um  dimensionamento para  um intervalo  de valores,  sem se  fazer
+necessário maior avaliação do comportamento, já que segundo \citeonline{haykin}
+algorítimos de aprendizado  são ditos dirigido por dados. No  entanto durante a
+etapa  de treinamento  foi  necessária  a realização  de  diversos testes  para
+encontrar  o modelo  que melhor  se adequava,  além da  aplicação de  validação
+cruzada e  regularização para  diminuir a  ocorrência de  \textit{overfit}. Por
+meio desse processo se identificou uma rede  neural de duas camadas, sendo a de
+entrada com 13 unidades de  processamento, \textit{perceptron}, e a segunda com
+um único neurônio, sendo  essa camada a de saída e  representando a previsão um
+passo a diante.
 
 Conclui-se que os  modelos são suficientes para a tarefa,  no entanto, temos de
 observar que o modelo estatísticos torna  a parametrização uma etapa muito mais
-complexa que o modelo de aprendizado. Assim  a escolha do modelo pode ser feita
-analisando capacidade de  análise de quem constrói o modelo,  ou o entendimento
-de  como os  dados poderão  se  comportar, já  que  o modelo  de aprendizado  é
-dirigido pelos dados, logo, sua capacidade de se adaptar a novos comportamentos
-é superior ao modelo probabilístico.
+complexa  que o  modelo de  aprendizado.  Assim a  escolha do  modelo pode  ser
+feita  analisando capacidade  de  análise de  quem o  constrói,  ou conforme  o
+comportamento dos  dados no  caso do  uso de  redes neurais  artificiais.
 
 \section{Trabalhos futuros}
 
