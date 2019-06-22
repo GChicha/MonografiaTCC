@@ -571,7 +571,6 @@ passadas.
 
 \subsubsection{Integração}
 
-<<<<<<< Updated upstream
 Em  casos  que a  série  analisada  apresenta  não estacionariedade, segundo  a
 definição dada  na \autoref{sec:estacionaria}, é necessária  a transformação em
 uma série estacionária. Isso pode  ser facilmente realizado utilizando o método
@@ -610,22 +609,6 @@ autocorrelação parcial,  FACP, que  foram apresentados  na \autoref{sec:corre}
 Podendo,  ainda,  contar  com  a  ajuda de  outros  testes  para  validação  da
 estacionariedade da série.
 
-<<<<<<< Updated upstream
-% %% NÃO ESQUECE DE ARRUMAR AQUE!
-%  FIXME Corrigir  inicio  O  método proposto  por  \citeonline{box} observa  o
-comportamento da correlação de forma que para identificar a ordem do AR, $p$, é
-suficiente analisar se o gráfico do FAC apresenta decaimento exponencial e FACP
-apresenta uma quebra a partir do elemento $p$ do gráfico. Já a identificação da
-ordem do processo  de médias móveis é  feita de modo semelhante, porem  o $q$ é
-dado pela elemento que apresenta a quebra  no gráfico do FAC enquanto o gráfico
-do FACP  apresenta decaimento  exponencial. Como forma de validação e
-verificação do modelo
-
-Se não for  possível identificar a série a partir  deste procedimento, pode ser
-que a  série apresente  tendência. No  caso de  existir tendência, é necessária
-a  realização  de  uma  ou  mais diferenciações.  Com  essa  nova  série  agora
-estacionária, são refeitas as verificações e são determinadas as ordens.
-=======
 O método proposto por \citeonline{box} observa o comportamento das correlações.
 Desta forma para identificar  a ordem do AR é suficiente  analisar se o gráfico
 do FAC apresenta decaimento exponencial e FACP apresenta uma quebra a partir do
@@ -638,7 +621,6 @@ Se não for  possível identificar a série a partir  deste procedimento, pode s
 que a  série apresente  tendência. No  caso de  existir tendência  é necessária
 a  realização  de  uma  ou  mais diferenciações,  com  essa  nova  série  agora
 estacionaria é refeito as verificações e determinadas as ordens.
->>>>>>> Stashed changes
 
 % FIXME Tem que achar uma referencia coerente para definição do modelo
 
@@ -693,7 +675,39 @@ que nos retorna a capacidade dos parâmetros em aproximar a série.
     L(\theta) = \prod_{i=1}^{n}{q(x_i;\theta)}
 \end{equation}
 
-% TODO Descrever superficialmente o método de Yule Walker
+\subsubsection{Equação de Yule Walker}
+
+Outra forma de  obter os coeficientes do processo autoregressivo  é através das
+equações  de Yule  Walker. \citeonline{eshel}  descreve como  é realizado  esse
+procedimento. De forma geral os coeficientes podem ser encontrados utilizando a
+\autoref{eq:yulewalker}, sendo $r_k$ as autocorrelações obtidas na FAC da série
+e $\alpha$  os coeficientes do  AR\@. Esta  forma de encontrar  os coeficientes
+torna evidente a relação entre a análise das correlações e o modelo.
+
+\begin{equation}
+    \label{eq:yulewalker}
+    \begin{pmatrix}
+        r_1\\
+        r_2\\
+        \vdots\\
+        r_{p-1}\\
+        r_p
+    \end{pmatrix} =
+    \begin{pmatrix}
+        1 & r_1 & r_3 & \cdots & r_{p-2} & r_{p-1} \\
+        r_1 & 1 & r_1 & \cdots & r_{p-3} & r_{p-2} \\
+        & & \vdots & & \vdots & \\
+        r_{p-2} & r_{p-3} & r_{p-4} & \cdots & 1 & r_1 \\
+        r_{p-1} & r_{p-2} & r_{p-3} & \cdots & r_1 & 1 \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        \alpha_1\\
+        \alpha_2\\
+        \vdots\\
+        \alpha_{p-1}\\
+        \alpha_p
+    \end{pmatrix}
+\end{equation}
 
 \section{Aprendizado de Máquina}
 
@@ -716,27 +730,51 @@ classificarmos esse sistema como inteligente, não é suficiente que o mesmo sej
 capaz de inferir padrões de uma base, precisamos que este, ainda, seja capaz de
 se adaptar a mudanças e aprender com isso.
 
-%Considerando  a definição apresentada e 
-\citeonline{machineLearning} descreve aprendizado de máquina como a habilidade  de algoritmos reconhecer padrões em um conjunto de dados. 
-%VALERIA: As duas atividades que vc descreve são características de AM supervisionado. Vc não falou nada sobre isso. AM supervisionado é o tipo mais comum de AM, mas não é o único. Além deles, temos AM não-supervisionado (que inclui as atividades de associação e agrupamento) e AM por reforço.
-Esse aprendizado de padrões pode ser aplicado, por exemplo, nas seguintes atividades:
+Como forma  de apresentar  os usos  e entender o  funcionamento de  técnicas de
+aprendizado \citeonline{ethem} coloca os seguintes exemplos de aplicação.
 \begin{itemize}
     \item Classificação\\
-        Tarefa de encontrar  o  mapeamento  de  uma   entrada  a  uma  ou mais categorias de um conjunto pré-definido.
-        %VALERIA: Vc não mostrou o exemplo da classificação de números ainda
-        %,  como  no exemplo  na  classificação  dos   números,  apresentada  no  início  da seção.  
-        Um exemplo desse tipo de tarefa seria a classificação de dígitos manuscritos nas classes de 0 a 9. Sendo a classificação uma das tarefas de aprendizado de máquina mais comuns, é possível encontrar  exemplos do seu uso em diversos cenários, desde a classificação de textos até a identificação de riscos em aplicações financeiras.
+        Em aplicações  financeiras a  análise de risco  é parte  fundamental da
+        manutenção  de  uma boa  lucratividade.  Podemos  utilizar técnicas  de
+        aprendizado  de  máquina  para  reconhecer um  padrão  em  um  conjunto
+        pré  existente  já  classificados  de aplicações  problemáticas  e  não
+        problemáticas, e  generalizar a  partir deste conjunto  para aplicações
+        ainda não observadas.
     \item Regressão\\
-        Tarefa de mapear uma entrada, representada por meio de um conjunto  de valores, a uma saída em  $\mathbb{R}$. 
-        %VALERIA: tem certeza que esse trabalho fez regressão? Se o valor previsto não for contínuo, não caracteriza regressão.
-        Como um exemplo desse tipo de tarefa, \citeonline{regressao} utilizou redes  neurais   artificiais para encontrar um modelo que permitisse a previsão da  demanda de  uso de energia elétrica,  mapeando a carga atual e informações climáticas à carga futura.
+        A previsão de custo de um  carro usado, pode exemplificar como técnicas
+        de aprendizado  de máquina são  capazes de partindo  de características
+        desses automóveis,  fornecer uma  boa estimativa  do custo  do veiculo.
+        No  caso  essa  estimativa  é um  valor  continuo,  diferentemente  das
+        tarefas  de  classificação  onde  o objetivo  é  encontrar  uma  classe
+        discreta que  defina a entrada.  De forma semelhante à  classificação é
+        utilizado um conjunto pré existentes para poder ensinar ao algorítimo o
+        comportamento da saída com relação a entrada.
+    \item Aprendizado não supervisionado\\
+        Enquanto os  exemplos anteriores  envolviam um  conjunto de  dados para
+        identificação  do  padrão  do  mapeamento da  entrada  para  uma  saída
+        ,  no  aprendizado  não  supervisionado  o  objetivo  é  reconhecer  na
+        entrada  um  padrão  ainda  desconhecido. No  exemplo  apresentado  por
+        \citeonline{ethem} é  realizado o agrupamento  de clientes com  base em
+        seus  comportamentos, assim  identificando  clientes com  comportamento
+        semelhante e  permitindo criar  estrategias de  venda pontuais  a estes
+        grupos.
+    \item Aprendizado por reforço\\
+        Aplicado em casos onde uma única ação não é suficiente para definir uma
+        solução, como  em jogos  eletrônicos. Definindo  então uma  politica de
+        boas  ações, por  exemplo, um  robô encontrando  um caminho,  este deve
+        fazer varias tentativas até encontrar  um caminho que seja satisfatório
+        e aprender como identificar a sequencia de ações que levam a ele.
 \end{itemize}
 
-%VALERIA: Esse exemplo é bom, mas está mal explicado. Além disso, ele exemplifica apenas a atividade de classificação e vc não disse porque vai explicar essa atividade e não a outra (regressão).
-%Vc tb está emendando o parágrafo todo em uma única frase. Não pode. Um parágrafo é composto de várias frases! Use o ponto final!
-%Deixei o parágrafo abaixo comentado para vc ver como vc tinha feito e veja como eu o separei em frases menores no parágrafo a seguir.
-%Um exemplo de uso de aprendizado de máquina é a identificação de caracteres  numéricos escritos à mão, esse  exemplo  é   apresentado  por \citeonline{machineLearning} é  descrito como  um problema de  classificação na qual uma imagem  de dimensões $28 \times 28$ pixeis é dada como  entrada em um sistema e este deve atribuir uma classificação que descreve qual o número que a figura representa,  um conjunto  de exemplo  dessas imagens  pode ser  visto na \autoref{fig:numeroClassi}.
-Um exemplo de uso de aprendizado de máquina é a identificação de caracteres  numéricos escritos à mão. Apresentado por \citeonline{machineLearning}, esse exemplo é descrito como  um problema de  classificação no qual uma imagem  de dimensões $28 \times 28$ pixeis é dada como  entrada para um sistema que deve atribuir uma categoria que descreve qual o número que a figura representa.  Um conjunto de exemplos de tais imagens  pode ser  visto na \autoref{fig:numeroClassi}.
+Um    exemplo   real    de    uso    de   aprendizado    de    máquina   é    a
+identificação  de   caracteres  numéricos  escritos  à   mão.  Apresentado  por
+\citeonline{machineLearning},  esse  exemplo é  descrito  como  um problema  de
+classificação no qual uma imagem de dimensões $28 \times 28$ pixeis é dada como
+entrada para  um sistema que  deve atribuir uma  categoria que descreve  qual o
+número que  a figura representa. Um  conjunto de exemplos de  tais imagens pode
+ser visto  na \autoref{fig:numeroClassi}. No  caso o algoritimo a  ser aplicado
+tem base  em aprendizado supervisionada, já  que este dispõe de  um conjunto já
+classificado.
 
 \begin{figure}[ht]
     \centering
@@ -746,13 +784,28 @@ Um exemplo de uso de aprendizado de máquina é a identificação de caracteres 
     \source{\citeonline{machineLearning}}
 \end{figure}
 
-No exemplo apresentado na \autoref{fig:numeroClassi}, podemos entender a tarefa como um sistema no qual $x$  é a  entrada  e $\hat{y}$  é a  saída.
-Matematicamente, podemos expressar da  forma vista  na \autoref{eq:sisCla}.  A saída será na forma  de um conjunto de números variando de 0  a 1 expressando a probabilidade  de  $x$ pertencer  à  classe  $\hat{y}_i$  onde  $i$ é o valor expressado na imagem.
+No exemplo apresentado na \autoref{fig:numeroClassi}, podemos entender a tarefa
+como  um sistema  no qual  $x$ é  a entrada  e $\hat{Y}$  é conjunto  de saída.
+Matematicamente,  podemos expressar  da forma  vista na  \autoref{eq:sisCla}. A
+saída será na forma  de um conjunto de números variando de 0  a 1 expressando a
+probabilidade  de  $x$ pertencer  à  classe  $\hat{Y}_i$  onde  $i$ é  o  valor
+expressado na imagem.
 
 \begin{equation}
     \label{eq:sisCla}
-    f(x) = \hat{y}
+    f(x) = \hat{Y}
 \end{equation}
+
+Prever o próximo valor de uma  série pode ser realizado considerando o conjunto
+de entrada  como os valores  anteriores e o de  saída os valores  previstos. Se
+assemelhando  a  tarefa  de  regressão.  Como  exemplo  se  dermos  um  sistema
+$f{(x_{t-1})}  = x_t$  e tendo  um conjunto  de $n$  observações anteriores,  é
+possível obter um modelo com base na identificação de padrões encontrados nesse
+conjunto.
+
+Na  proxíma subseção  é  detalhado  o algoritimos  de  aprendizado de  máquina,
+baseado em redes  neurais aritificais com foco mais especifico  em problemas de
+regressão. Abordadndo também as técnicas de aprendizado utilizdas.
 
 \subsection{Redes Neurais artificiais}
 
@@ -793,14 +846,13 @@ entradas, $x_i$.  Visualmente, o  \textit{perceptron} é representado  segundo a
 \end{figure}
 
 Após a  soma ponderada,  é aplicada  ao resultado $v$  uma função  de ativação.
-Classicamente, essa  função é  dada como uma  função de limiar,  ou seja,  se o
-valor  resultado da  soma  ponderada  for maior  que  um  valor determinado,  o
-resultado  do processamento  do  neurônio  artificial é  1,  caso contrário,  é
-0~\cite{knight}.
+Classicamente, essa função é  dada como uma função degrau, ou  seja, se o valor
+resultante da soma ponderada for maior que um valor determinado, o resultado do
+processamento do neurônio artificial é 1, caso contrário, é 0~\cite{knight}.
 
-Um exemplo  dessa função de limiar  é dada da forma  da \autoref{eq:funLimiar}.
-Nesse exemplo, a  função resulta em 1, quando o  valor do \textit{perceptron} é
-maior que 0; e 0, quando menor.
+Um exemplo dessa função degrau é dada da forma da \autoref{eq:funLimiar}. Nesse
+exemplo, a função  resulta em 1, quando o valor  do \textit{perceptron} é maior
+que 0; e 0, quando menor.
 
 \begin{equation}
     \label{eq:funLimiar}
@@ -817,23 +869,23 @@ pesos e pela definição  do valor da função de ativação,  enquanto o proces
 aprendizagem se caracteriza pela modificação desses pesos e valores.
 
 Porém a  utilização de  sistemas simples com  somente um  \textit{perceptron} é
-insuficiente  na solução  de muitos  problemas. Segundo  \citeonline{knight}, o
-\textit{perceptron} sozinho é incapaz de traçar hiperplanos capazes de resolver
-problemas  não  lineares. No  exemplo  apresentado  por \citeonline{knight},  é
-apresentado  que,  enquanto  um  neurônio  artificial  é  capaz  de  reproduzir
-corretamente o  comportamento de  um porta  logica E ou  OU, este  não consegue
-sintetizar  uma  porta  OU-exclusivo.  Com   isso,  é  definido  um  limite  ao
-\textit{perceptron},  já que  este é  incapaz  de resolver  algumas classes  de
-problemas.
+insuficiente  na  solução  de muitos  problemas.  Segundo  \citeonline{knight},
+o  \textit{perceptron}  sozinho é  incapaz  de  traçar hiperplanos  capazes  de
+resolver problemas  de classificação não  lineares. No exemplo  apresentado por
+\citeonline{knight}, é demonstrado que, enquanto um neurônio artificial é capaz
+de reproduzir corretamente o comportamento de um porta logica E ou OU, este não
+consegue sintetizar uma  porta OU-exclusivo. Com isso, é definido  um limite ao
+\textit{perceptron}.
 
 \subsubsection{Redes neurais \textit{feedforward}}
 
 Ainda considerando  a incapacidade do  \textit{perceptron} de uma  única camada
-modelar  algumas superfícies,  \citeonline{knight} apresenta  que se  empregado
-mais de uma camada seremos capazes,  então, de representar esses problemas mais
-complexos. A essa arquitetura de organização de neurônios se dá o nome de redes
-neurais de múltiplas camadas. Quando a alimentação dela é na direção da entrada
-para a saída será classificada também como \textit{feedforward}.
+modelar  algumas classes  de  problemas, \citeonline{knight}  apresenta que  se
+empregado  mais de  uma camada  seremos  capazes, então,  de representar  esses
+problemas mais  complexos. A  essa arquitetura de  organização de  neurônios se
+dá  o  nome  de  redes  neurais de  múltiplas  camadas.  Quando  a  alimentação
+dela  é na  direção  da entrada  para  a saída  será  classificada também  como
+\textit{feedforward}.
 
 Podemos  entender  uma  rede  neural   de  múltiplas  camadas  em  três  partes
 essenciais: a camada de entrada, a escondida  e, por último, a camada de saída.
@@ -858,10 +910,12 @@ reajustados uma vez a cada passagem do aprendizado.
 
 Para avaliação dos pesos, é necessário  utilizar uma função de cálculo do erro.
 Como este trabalho consiste na realização  de regressão, o cálculo do erro será
-dado pela função de erro absoluto médio conforme \autoref{eq:mae}.
+dado pela função de erro quadrado  médio conforme \autoref{eq:mse}, sendo $Y$ o
+conjunto de treinamento, $\hat{Y}$ o valor previsto e $n$ o tamanho do conjunto
+de treinamento.
 
-\begin{equation}\label{eq:mae}
-    MAE = \frac{1}{n}\sum_{i=1}^{n}{|(Y_i - \hat{Y}_i)|}
+\begin{equation}\label{eq:mse}
+    MSE = \frac{1}{n}\sum_{i=1}^{n}{{(Y_i - \hat{Y}_i)}^2}
 \end{equation}
 
 \subsubsection{Retro propagação}
@@ -880,15 +934,15 @@ valor que serão corrigidos os pesos.
 \subsubsection{Avaliação e seleção do modelo}
 
 Após  o treinamento  do  modelo,  deve-se avaliar  a  capacidade  do modelo  de
-generalização  para  dados ainda  não  apresentados  a  eles. Esse  conceito  é
-descrito por  \citeonline{haykin2009} como  um dos  principais objetivos  de um
-modelo neural.
+generalização para dados ainda não apresentados a ele. Esse conceito é dado por
+\citeonline{haykin2009} como sendo um dos  principais objetivos de um modelo de
+redes neurais.
 
 Para se avaliar a capacidade de generalização, é separada uma porção dos dados,
 normalmente, em uma  proporção de 30\%. Assim, durante a  etapa de treinamento,
 utiliza-se  a  porção maior  dos  dados  e, após  o  modelo  estar treinado,  é
-verificado a  qualidade utilizando a  função de erro já  definida anteriormente
-mas agora no conjunto de teste (porção menor dos dados).
+verificado a qualidade  utilizando a função de erro,  já definida anteriormente
+na \autoref{eq:mse}, mas agora no conjunto de teste (porção menor dos dados).
 
 Já  que, durante  a  etapa  de  aprendizado, o  modelo  só  obterá  informações
 do  conjunto  de   trinamento,  faz-se  necessário   algumas  estratégias  para
@@ -901,7 +955,7 @@ impedir  isto, podemos  realizar   os  seguintes  procedimentos  descritos  por
 \begin{enumerate}
     \item Validação cruzada\\
         O conjunto de  dados é divido em $k$ subconjuntos,  \textit{folds}, e a
-        rede neural  é treinada utilizando  $k-1$ \textit{folds}, e o  modelo é
+        rede neural é  treinada utilizando $k-1$ \textit{folds}.  O modelo será
         validado  no  subconjunto deixado  de  fora  do treinamento.  Ocorrerá,
         ainda,  a  mudança  do  conjunto que  servirá  para  validação.  Assim,
         impede-se  que a  rede se  especialize  em um  conjunto especifico.  Na
@@ -920,7 +974,7 @@ impedir  isto, podemos  realizar   os  seguintes  procedimentos  descritos  por
         \end{figure}
 
     \item Regularização\\
-        Tem  como objetivo  manter os  pesos do  modelo baixos.  O procedimento
+        Tem como objetivo manter os pesos do modelo minimizados. O procedimento
         consiste em  alterar a função do  erro adicionando a ela  os custos dos
         pesos,  isso é  feito conforme  a \autoref{eq:regL1}.  Em que  $L$ é  a
         função de perda  anterior e $L_{reg}$ a regularizada, $w$  são os pesos
@@ -935,11 +989,10 @@ impedir  isto, podemos  realizar   os  seguintes  procedimentos  descritos  por
 \end{enumerate}
 
 Como já foi explicitado, existem diversas  definições a serem realizadas para a
-produção  do modelo  que contemple  os  requisitos do  modelo. Podemos,  então,
-realizar testes nesses diversos modelos  possíveis e escolher aquele que melhor
-se adeque segundo  a função de erro definida. Tal  procedimento é conhecido por
-busca em grade,  realizando a avaliação do modelo para  todas as combinações de
-parâmetros definidos na grade.
+produção do modelo.  Deve-se, então, realizar testes nesses  diversos modelos e
+escolher aquele  que melhor se  adeque segundo a  função de erro  definida. Tal
+procedimento é conhecido  por busca em grade, realizando a  avaliação do modelo
+para todas as combinações de parâmetros definidos na grade.
 
 \chapter{Trabalhos relacionados}\label{chap:trab_relacionados}
 
