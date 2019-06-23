@@ -477,14 +477,7 @@ constitui-se em uma ferramenta importante para  as análises. Como um exemplo, a
 \autoref{fig:correlogramaCo2}  apresenta o  correlograma  com  as 25  primeiras
 defasagens das leituras de concentração  de $CO_2$ na atmosfera. Nesse gráfico,
 também é exibido o intervalo de confiança de 95\% calculado para o correlograma
-(destacado  em  azul).  Segundo   \citeonline{ehlers},  é  preciso  definir  um
-intervalo de  confiança para o  correlograma para se definir  quais correlações
-são relevantes e  quais não. De forma que todas  as correlações relevante estão
-fora desse  intervalo de  confiança. Assim, se  todas as  correlações estiverem
-dentro do  limite a série  é caracterizada como um  ruído branco, ou  seja, seu
-comportamento não permite  modelagem. Para encontrar o  intervalo de confiança,
-\citeonline{ehlers}  recomenda utilizar  a seguinte  equação $\pm{}2/\sqrt{n}$,
-sendo $n$ o número de observações da série.
+(destacado  em  azul).  Segundo   \citeonline{ehlers}, o intervalo de confiança é necessário para se definir quais correlações são relevantes e quais não, pois todas as correlações importantes ficam fora do intervalo de  confiança. Sendo assim, quando todas as  correlações estão dentro do intervalo, a série  é caracterizada como um  ruído branco, ou  seja, seu comportamento não pode ser modelado. Para encontrar o  intervalo de confiança do correlograma, \citeonline{ehlers}  recomenda utilizar a equação $\pm{}2/\sqrt{n}$, sendo $n$ o número de observações da série.
 
 \begin{figure}[ht]
     \centering
@@ -494,10 +487,10 @@ sendo $n$ o número de observações da série.
     \source{Elaborado pelo autor a partir de \citeonline{co2data}}
 \end{figure}
 
-Para exemplificar como podemos utilizar a função de autocorrelação na definição
-do modelo  podemos ver na  \autoref{fig:acfco2diff} a função  de autocorrelação
-para a  primeira diferenciação da série  de leituras de $CO_2$.  Se observa que
-após diferenciada, e removida a tendência, conseguimos observar o comportamento
+Para exemplificar como a função de autocorrelação pode ser utilizada na definição
+do modelo estatístico, a  \autoref{fig:acfco2diff} mostra a função  de autocorrelação
+para a  primeira diferenciação da série  de leituras de $CO_2$.  Se observa que,
+após diferenciada e removida a tendência, é possível observar o comportamento
 sazonal, já  que a função  de autocorrelação apresenta correlações  positivas e
 negativas em  uma distância que  pode ser entendida  como o período  cíclico da
 série.
@@ -512,9 +505,9 @@ série.
 
 \subsubsection{Função de autocorrelação parcial}
 
-Durante  a análise,  outra função  relevante  é a  autocorrelação parcial.  Sua
-definição segundo \citeonline{cryer} é dado  em \autoref{eq:facp}, onde $r_k$ é
-a autocorrelação  da série $X$  no \textit{lag} $k$  e $\phi_{k,j}$ é  dado por
+Durante  a análise,  outra função  relevante  é a de autocorrelação parcial.  Sua
+definição, segundo \citeonline{cryer}, é dada pela \autoref{eq:facp}, na qual $r_k$ é
+a autocorrelação da série $X$  no \textit{lag} $k$  e $\phi_{k,j}$ é  dado por
 $\phi_{k-1, j}-\phi_{kk}\phi_{k-1,k-j}$.
 
 \begin{equation}
@@ -524,13 +517,13 @@ $\phi_{k-1, j}-\phi_{kk}\phi_{k-1,k-j}$.
 
 \subsection{ARIMA}
 
-O  modelo  ARIMA  já  introduzido  na seção  anterior  possui  três  parâmetros
-essenciais $(p,q,d)$. Segundo \citeonline{rob} o modelo se diferencia de outros
+O  modelo  ARIMA,  já  introduzido  na seção  anterior,  possui  três  parâmetros
+essenciais $(p,q,d)$. Segundo \citeonline{rob}, o modelo se diferencia de outros
 por ser baseado na definições das autocorrelações da série.
 
-\subsubsection{AR --- Processo auto regressivo}
+\subsubsection{AR --- Processo autorregressivo}
 
-Segundo  \citeonline{ehlers},  um  processo  $X_t$ é  chamado  auto  regressivo
+Segundo  \citeonline{ehlers},  um  processo  $X_t$ é  chamado  autorregressivo
 de   ordem   $p$,   ou   $AR(p)$,   quando   temos   $X_t$   dado   segundo   a
 \autoref{eq:aregressivo}.  Nesse caso,  $\alpha$  são os  coeficientes a  serem
 calculados. O termo $\epsilon_t$ define  a componente aleatória, sendo definido
@@ -543,10 +536,7 @@ como ruido branco.
 
 \subsubsection{MA --- Processo de médias móveis}
 
-Segundo \citeonline{rob} é de forma  semelhante ao processo autorregressivo uma
-regressão linear, com  coeficiente $\theta$, no entanto, esta  é aplicada sobre
-os erros de  previsão $\epsilon_t$. Sendo associada ao filtro  de médias móveis
-por conta de ser descrito também como um filtro dos os erros de previsão.
+Segundo \citeonline{rob}, assim como o processo autorregressivo, o processo de médias móveis (\textit{Moving Average}) é uma regressão linear, com  coeficiente $\theta$, no entanto, esta é aplicada sobre os erros de  previsão $\epsilon_t$. Dessa forma, o processo é associado ao filtro  de médias móveis por conta de ser descrito também como um filtro dos erros de previsão.
 
 \begin{equation}
     \label{eq:pmediasmoveis}
@@ -555,13 +545,13 @@ por conta de ser descrito também como um filtro dos os erros de previsão.
 
 \subsubsection{ARMA --- Modelo misto}
 
-Combinando os processos AR e MA, podemos obter um modelo extremamente útil para
-descrever  séries temporais.  E a  junção dos  modelos pode  ser expressa  pela
+Combinando os processos AR e MA, se obtém um modelo ARMA, que é extremamente útil para
+descrever séries temporais e cuja junção pode  ser expressa  pela
 \autoref{eq:arma}.
 
 Então, segundo \citeonline{timeseriesExample}, se  considerarmos $X_t$ como uma
-série estacionária, teremos  o processo AR relacionando a  observação atual com
-as  $p$ observações  anteriores; e  o  processo MA  apresentando as  defasagens
+série estacionária, tem-se  o processo AR relacionando à observação atual com
+as  $p$ observações  anteriores e o  processo MA  representando-a com as  defasagens
 passadas.
 
 \begin{equation}
@@ -571,13 +561,13 @@ passadas.
 
 \subsubsection{Integração}
 
-Em  casos  que a  série  analisada  apresenta  não estacionariedade, segundo  a
-definição dada  na \autoref{sec:estacionaria}, é necessária  a transformação em
-uma série estacionária. Isso pode  ser facilmente realizado utilizando o método
+Em  casos  que a  série  analisada  é caracterizada  como não estacionária, segundo  a
+definição dada  na \autoref{sec:estacionaria}, é necessário primeiramente transformá-la em
+uma série estacionária. Essa transformação pode ser realizada utilizando o método
 de  diferenciação  descrito na  \autoref{sec:diff}.
 
-Segundo \citeonline{rob} podemos definir  a diferenciação utilizando o operador
-de \textit{backshift}, $B$, definido na \autoref{eq:backshift}. Assim definimos
+Segundo \citeonline{rob}, a diferenciação pode ser definida utilizando o operador
+de \textit{backshift}, $B$, definido na \autoref{eq:backshift}. Assim, define-se
 a \autoref{eq:diffback}  como a  primeira diferenciação  da série  utilizando o
 operado $B$.
 
@@ -593,7 +583,7 @@ operado $B$.
 
 Diferenciações de maior ordem são definidas por $(1-B)^dy_t$.
 
-Combinando  os  processos apresentados  podemos  descrever  o ARIMA  segundo  a
+Combinando-se  os  processos anteriormente apresentados,  pode-se  descrever  o ARIMA  segundo  a
 \autoref{eq:ARIMA}.
 
 \begin{equation}
@@ -604,31 +594,26 @@ Combinando  os  processos apresentados  podemos  descrever  o ARIMA  segundo  a
 \subsection{Seleção do modelo}
 
 De acordo  com \citeonline{box},  a identificação  do modelo  pode ser  feita a
-partir da  análise gráfica  da função  de autocorrelação, FAC,  e da  função de
-autocorrelação parcial,  FACP, que  foram apresentados  na \autoref{sec:corre}.
-Podendo,  ainda,  contar  com  a  ajuda de  outros  testes  para  validação  da
+partir da  análise gráfica  da função  de autocorrelação (FAC)  e da  função de
+autocorrelação parcial (FACP), que  foram apresentadas  na \autoref{sec:corre}.
+Também é possível se utilizar outros testes para se validar a
 estacionariedade da série.
 
 O método proposto por \citeonline{box} observa o comportamento das correlações.
-Desta forma para identificar  a ordem do AR é suficiente  analisar se o gráfico
-do FAC apresenta decaimento exponencial e FACP apresenta uma quebra a partir do
-$p$-ésimo valor do  gráfico. Já a identificação da ordem  do processo de médias
-móveis  é feita  de modo  semelhante,  porem o  $q$  é dado  pela elemento  que
-apresenta  a quebra  no gráfico  do FAC  enquanto o  gráfico do  FACP apresenta
-decaimento exponencial.
+Desta forma, para se identificar a ordem do processo AR é suficiente  analisar se o gráfico
+da FAC apresenta decaimento exponencial e se o gráfico da FACP apresenta uma quebra a partir do
+$p$-ésimo valor do  gráfico. A identificação da ordem do processo MA é feita  de modo  semelhante,  porém o  $q$  é dado  pelo elemento  que apresenta  a quebra  no gráfico  do FAC,  enquanto o  gráfico do  FACP apresenta decaimento exponencial.
 
-Se não for  possível identificar a série a partir  deste procedimento, pode ser
-que a  série apresente  tendência. No  caso de  existir tendência  é necessária
-a  realização  de  uma  ou  mais diferenciações,  com  essa  nova  série  agora
-estacionaria é refeito as verificações e determinadas as ordens.
+Se não for  possível identificar os parâmetros do modelo a partir  deste procedimento, pode ser
+que a  série apresente  tendência. Nesse caso,  é necessária
+a  realização  de  uma  ou  mais diferenciações na série. Uma vez que tem-se uma nova série estacionária, são refeitas as as verificações e determinadas as ordens  do modelo.
 
 % FIXME Tem que achar uma referencia coerente para definição do modelo
 
-Para os casos descritos  o modelo obtido é da forma  $AR(p)$ ou $MA(q)$, porem,
-em casos  de modelos híbridos  ambas funções devem apresentar  comportamento de
-quebra  a  partir  do  $q$-ésimo  para  o  FAC  e  $p$-ésimo  para  FACP\@.  Na
-\autoref{tab:facpacf} temos  esse procedimento  de seleção  do modelo  de forma
-sumarizada.
+Para os casos descritos acima, o modelo obtido é da forma  $AR(p)$ ou $MA(q)$, porém,
+em casos  de modelos híbridos,  ambas as funções devem apresentar  comportamento de
+quebra  a  partir  do  $q$-ésimo  no gráfico da  FAC  e do $p$-ésimo elemento no gráfico da  FACP\@.  
+A \autoref{tab:facpacf} apresenta, de forma sumarizada, o procedimento para a seleção  dos parâmetros do modelo.
 
 \begin{table}[ht]
     \centering
@@ -644,12 +629,12 @@ sumarizada.
     \source{\citeonline{ehlers}}
 \end{table}
 
-Porem, segundo  \citeonline{vinay} essa  forma nos  fornece modelos  que servem
-somente  como uma  boa aproximação.  Para determinação  de um  modelo realmente
-eficiente  pode  ser necessário  a  execução  de  um  grande número  de  testes
-exaustivos.  E, utilizando-se  de  alguma métrica  selecionar  aquele que  seja
-parcimonioso  e  forneça  bons  resultados.  Segundo  \citeonline{rob}  deve-se
-da  minimizar   o  critério  de   informação  de  Akaike  definido   segundo  a
+Cabe destacar que, segundo  \citeonline{vinay}, esse procedimento fornece modelos
+que servem somente  como uma  boa aproximação da série.  Para determinação  de um  
+modelo realmente eficiente,  pode  ser necessária  a  execução  de  testes exaustivos 
+utilizando-se  alguma métrica para se selecionar um modelo que  seja
+parcimonioso  e  forneça  bons  resultados.  Segundo  \citeonline{rob}, deve-se
+minimizar   o  critério  de   informação  de  Akaike, que é  definido   segundo  a
 \autoref{eq:aic}, sendo $L$ o \textit{likelihood} do modelo.
 
 \begin{equation}
@@ -659,17 +644,17 @@ da  minimizar   o  critério  de   informação  de  Akaike  definido   segundo 
 
 \subsection{Determinação dos coeficientes}
 
-Por fim, para completa construção do modelo apresentado na \autoref{eq:arma}, é
+Por fim, para a completa construção do modelo apresentado na \autoref{eq:arma}, é
 necessária a obtenção dos coeficientes  do processo autorregressivo e de médias
 móveis. Para essa  tarefa, segundo \citeonline{vinay}, é comum  a utilização do
-estimador de \textit{likelihood}, ou mais  precisamente a maximização da função
+estimador de \textit{likelihood} ou, mais  precisamente, a maximização da função
 de \textit{likelihood}.
 
 Essa  maximização   é  descrita   por  \citeonline{statiticalML}   da  seguinte
-forma:  considerando  uma função  $q(x;\theta)$, que  nos retorna  a  densidade
+forma:  considerando  uma função  $q(x;\theta)$, que  retorna  a  densidade
 probabilística de uma entrada $x$ com um conjunto de parâmetros a ser otimizado
 $\theta$ de dimensão $b$, o objetivo é a maximização da \autoref{eq:likelihood}
-que nos retorna a capacidade dos parâmetros em aproximar a série.
+que retorna a capacidade dos parâmetros em aproximar a série.
 
 \begin{equation}\label{eq:likelihood}
     L(\theta) = \prod_{i=1}^{n}{q(x_i;\theta)}
@@ -677,12 +662,12 @@ que nos retorna a capacidade dos parâmetros em aproximar a série.
 
 \subsubsection{Equação de Yule Walker}
 
-Outra forma de  obter os coeficientes do processo autoregressivo  é através das
+Outra forma de se obter os coeficientes do processo autoregressivo  é por meio das
 equações  de Yule  Walker. \citeonline{eshel}  descreve como  é realizado  esse
 procedimento. De forma geral os coeficientes podem ser encontrados utilizando a
 \autoref{eq:yulewalker}, sendo $r_k$ as autocorrelações obtidas na FAC da série
-e $\alpha$  os coeficientes do  AR\@. Esta  forma de encontrar  os coeficientes
-torna evidente a relação entre a análise das correlações e o modelo.
+e $\alpha$  os coeficientes do  AR\@. Essa  forma de se encontrar  os coeficientes
+torna evidente a relação entre a análise das correlações e o modelo de previsão.
 
 \begin{equation}
     \label{eq:yulewalker}
@@ -711,16 +696,16 @@ torna evidente a relação entre a análise das correlações e o modelo.
 
 \section{Aprendizado de Máquina}
 
-Computadores se utilizam de algoritimos  para realizar processamento de dados e
+Computadores utilizam algoritmos  para realizar processamento de dados e
 solucionar  problemas.  Porém,  para  determinados problemas,  não  é  possível
-definir um  algoritmo, seja porque o  seres humanos não conseguem  explicar seu
-conhecimento, ou esse conhecimento é  muito complexo para ser  explicitado, ou,
-ainda, porque  o conhecimento  e a  solução do  problema muda  com o  passar do
+definir um  algoritmo exato, seja porque os seres humanos não conseguem  explicar seu
+conhecimento, esse conhecimento é  muito complexo para ser  explicitado, ou,
+ainda, porque  o conhecimento e a  solução do  problema muda  com o  passar do
 tempo.  Um exemplo  de tal  situação seria  a classificação  de um  e-mail como
 \textit{spam} ou legitimo.  Definir as características que fazem  um e-mail ser
-considerado \textit{spam}  pode se  tornar um problema complexo, especialmente,
-considerando-se que  a definição  de \textit{spam}  pode variar  com o  tempo e
-com o usuário.
+considerado \textit{spam}  pode se  tornar um problema complexo, especialmente
+considerando-se que  a definição  de \textit{spam}  pode variar  com o passar do
+tempo e com as características do usuário.
 
 Conforme \citeonline{ethem}, tarefas como a identificação de \textit{spam}, que
 não apresentam  uma solução  evidente, mas  que podem  ser resolvidas  por meio
@@ -803,35 +788,27 @@ $f{(x_{t-1})}  = x_t$  e tendo  um conjunto  de $n$  observações anteriores,  
 possível obter um modelo com base na identificação de padrões encontrados nesse
 conjunto.
 
-Na  proxíma subseção  é  detalhado  o algoritimos  de  aprendizado de  máquina,
-baseado em redes  neurais aritificais com foco mais especifico  em problemas de
-regressão. Abordadndo também as técnicas de aprendizado utilizdas.
+Na  próxima subseção é  detalhado um modelo específico de  aprendizado de  máquina, as redes neurais artificiais. Tal modelo, bem como as técnicas de aprendizado utilizadas, será abordado com foco no tratamento de problemas de regressão, visto que esse é o tipo de problema tratado neste trabalho. 
 
 \subsection{Redes Neurais artificiais}
 
 Segundo  \citeonline{haykin2009}, a pesquisa  em  redes  neurais artificiais  é
-motivada pelo entendimento que o cérebro  humano realiza o processamento de uma
+motivada pelo entendimento de que o cérebro  humano realiza o processamento de uma
 forma  completamente diferente  dos computadores  convencionais. Essa  forma de
-realizar  o processamento  realizado  pelo cérebro  é  altamente complexa,  não
+processamento  realizado  pelo cérebro  é  altamente complexa,  não
 linear e altamente paralela. A unidade de processamento e organização básica de
 um cérebro são  os neurônios. O autor ainda lhe  confere superior capacidade na
 realização de  tarefas como  reconhecimento de padrões  do que  os computadores
 digitais.
 
-Os animais  já nascem com  o cérebro possuindo  certa estruturas que  estes vão
-precisar  durante sua  vida.  Porém este  é concebido  ainda  de maneira  muito
-plástica, ou seja, possuindo ainda a capacidade de, na fase de aprendizado, ser
-capaz de se adaptar ao contexto em  que vai se desenvolver. Este mesmo conceito
-de  plasticidade  também  foi  utilizado  para a  modelagem  de  redes  neurais
+Os animais nascem com estruturas cerebrais que lhe serão úteis durante toda a vida.  Apesar disso, muitas outras estruturas se desenvolverão ao longo da vida do individuo. O cérebro é concebido de maneira  muito plástica, ou seja, ele possui a capacidade de, na fase de aprendizado, se adaptar ao contexto em  que vai se desenvolver. Esse mesmo conceito de  plasticidade  também  foi  utilizado  para a  modelagem  de  redes  neurais
 artificiais~\cite{haykin2009}.
 
 \subsubsection{\textit{Perceptron}}
 
-Como  já  colocado, as  redes  neurais  possuem  o  neurônio como  elemento  de
-processamento. Isto,  em redes artificiais, associamos  ao \textit{perceptron}.
-Descrito  primeiramente por  Rosenblatt em  1962,  tem sua  função definida  em
-\autoref{eq:perceptron},  sendo  dado  como  a soma  ponderada  por  $w_i$  das
-entradas, $x_i$.  Visualmente, o  \textit{perceptron} é representado  segundo a
+Como  já  colocado, assim como o cérebro, as  redes  neurais artificiais  possuem  o  neurônio como  elemento  de processamento. Um modelo de neurônio usado em redes artificiais é o \textit{perceptron}. Descrito  primeiramente por Rosenblatt em  1962,  tem sua  função definida  pela 
+\autoref{eq:perceptron},  sendo  dada  como  a soma  ponderada  por  $w_i$  das
+entradas $x_i$.  Visualmente, o  \textit{perceptron} é representado  segundo a
 \autoref{fig:perceptron}.
 
 \begin{equation}\label{eq:perceptron}
@@ -845,14 +822,14 @@ entradas, $x_i$.  Visualmente, o  \textit{perceptron} é representado  segundo a
     \source{\citeonline{haykin2009}}
 \end{figure}
 
-Após a  soma ponderada,  é aplicada  ao resultado $v$  uma função  de ativação.
+Após ponderação das entradas, é aplicada  ao resultado $v$  uma função  de ativação.
 Classicamente, essa função é  dada como uma função degrau, ou  seja, se o valor
 resultante da soma ponderada for maior que um valor determinado, o resultado do
 processamento do neurônio artificial é 1, caso contrário, é 0~\cite{knight}.
 
-Um exemplo dessa função degrau é dada da forma da \autoref{eq:funLimiar}. Nesse
+Um exemplo da função degrau é dada da forma da \autoref{eq:funLimiar}. Nesse
 exemplo, a função  resulta em 1, quando o valor  do \textit{perceptron} é maior
-que 0; e 0, quando menor.
+que 0, e 0, quando menor.
 
 \begin{equation}
     \label{eq:funLimiar}
@@ -864,36 +841,28 @@ que 0; e 0, quando menor.
     \right.
 \end{equation}
 
-Ainda segundo  \citeonline{knight}, o \textit{perceptron} se  caracteriza pelos
-pesos e pela definição  do valor da função de ativação,  enquanto o processo de
-aprendizagem se caracteriza pela modificação desses pesos e valores.
+Ainda, segundo  \citeonline{knight}, o \textit{perceptron} se caracteriza pelos
+pesos e pela definição  da função de ativação,  enquanto o processo de
+aprendizagem se caracteriza pela modificação desses pesos.
 
-Porém a  utilização de  sistemas simples com  somente um  \textit{perceptron} é
+Porém, a  utilização de  sistemas simples com  somente um  \textit{perceptron} é
 insuficiente  na  solução  de muitos  problemas.  Segundo  \citeonline{knight},
-o  \textit{perceptron}  sozinho é  incapaz  de  traçar hiperplanos  capazes  de
-resolver problemas  de classificação não  lineares. No exemplo  apresentado por
-\citeonline{knight}, é demonstrado que, enquanto um neurônio artificial é capaz
-de reproduzir corretamente o comportamento de um porta logica E ou OU, este não
-consegue sintetizar uma  porta OU-exclusivo. Com isso, é definido  um limite ao
-\textit{perceptron}.
+o  \textit{perceptron}  sozinho é  incapaz  de  encontrar hiperplanos que resolvam problemas  de classificação não lineares. No exemplo apresentado por
+\citeonline{knight}, é demonstrado que, enquanto um \textit{perceptron} é capaz
+de reproduzir corretamente o comportamento de um porta logica E ou OU, o mesmo não
+consegue aprender o comportamento de uma porta OU-exclusivo. Isso se deve ao limite do \textit{perceptron} resolver apenas problemas linearmente separáveis.
 
 \subsubsection{Redes neurais \textit{feedforward}}
 
-Ainda considerando  a incapacidade do  \textit{perceptron} de uma  única camada
-modelar  algumas classes  de  problemas, \citeonline{knight}  apresenta que  se
-empregado  mais de  uma camada  seremos  capazes, então,  de representar  esses
-problemas mais  complexos. A  essa arquitetura de  organização de  neurônios se
-dá  o  nome  de  redes  neurais de  múltiplas  camadas.  Quando  a  alimentação
-dela  é na  direção  da entrada  para  a saída  será  classificada também  como
-\textit{feedforward}.
+Embora um  \textit{perceptron} sozinho seja incapaz de modelar  algumas 
+classes  de  problemas, eles são capazes de aproximar qualquer tipo de função quando combinados em camadas \citeonline{knight}. A  essa arquitetura de  organização de  neurônios se dá  o  nome  de  redes  neurais de  múltiplas  camadas. Quando  a  alimentação dela  é na  direção  da entrada  para  a saída  será  classificada também  como \textit{feedforward}.
 
-Podemos  entender  uma  rede  neural   de  múltiplas  camadas  em  três  partes
-essenciais: a camada de entrada, a escondida  e, por último, a camada de saída.
-A  camada de  entrada é  aquela que  recebe as  características do  conjunto de
-dados. O nome de \textit{feedforward} é  dado devido à entrada ser apresentada,
-primeiramente, a camada de  entrada e as ativações fluírem até  a saída. Logo o
-resultado da  rede será encontrado  na camada de saída  após passar por  toda a
-rede em  uma única  direção. Visualmente,  pode-se expressar  a rede  segundo a
+Uma  rede  neural   de  múltiplas  camadas pode ser entendida como um conjunto de
+três  partes essenciais: a camada de entrada, a escondida  e, por último, a camada 
+de saída. A  camada de  entrada é  aquela que  recebe as  características do  conjunto de dados. O nome \textit{feedforward} é dado devido à entrada ser apresentada,
+primeiramente, a camada de  entrada e as ativações fluírem até  a camada de saída. 
+Logo, o resultado da  rede é dado pela camada de saída,  após passar por  toda a
+rede em  uma única  direção. Visualmente,  pode-se expressar  a rede de múltiplas camadas segundo a
 \autoref{fig:neuralNetwork}.
 
 \begin{figure}[ht]
@@ -904,28 +873,21 @@ rede em  uma única  direção. Visualmente,  pode-se expressar  a rede  segundo
     \source{\citeonline{haykin2009}}
 \end{figure}
 
-Sendo os  parâmetros a  serem definidos  em uma rede  neural somente  os pesos,
-$w_i$. Define-se que  estes serão inicializados como  valores aleatórios, sendo
-reajustados uma vez a cada passagem do aprendizado.
+Em uma rede neural, os parâmetros a  serem aprendidos são os pesos $w_i$ das conexões entre os neurônios das diferentes camadas. É comum que esses pesos sejam inicializados como valores aleatórios pequenos, que serão ajustados por correção de erro para cada exemplo apresentado à rede.
 
-Para avaliação dos pesos, é necessário  utilizar uma função de cálculo do erro.
-Como este trabalho consiste na realização  de regressão, o cálculo do erro será
-dado pela função de erro quadrado  médio conforme \autoref{eq:mse}, sendo $Y$ o
-conjunto de treinamento, $\hat{Y}$ o valor previsto e $n$ o tamanho do conjunto
+O erro calculado na camada de saída é dado por uma função de cálculo do erro.
+No caso de problemas de regressão, o cálculo do erro é dado pela função de erro quadrado  médio, conforme a \autoref{eq:mse}, na qual $Y$ corresponde ao valor real de treinamento, $\hat{Y}$ ao valor previsto e $n$ ao tamanho do conjunto
 de treinamento.
 
 \begin{equation}\label{eq:mse}
     MSE = \frac{1}{n}\sum_{i=1}^{n}{{(Y_i - \hat{Y}_i)}^2}
 \end{equation}
 
-\subsubsection{Retro propagação}
+\subsubsection{Retropropagação}
 
-A atualização  dos pesos ocorre  a cada iteração  sobre os valores  de entrada.
-Assim,  suas  saídas  são  comparadas  com  os  valores  reais  e  computado  o
-valor  do erro.  Tendo os  valores  dos erros,  $L$,  esse valor  é aplicado  a
-\autoref{eq:backpropagation} e, então, os pesos  da rede neural são atualizados
-para a  nova iteração,  sendo aplicado  uma taxa  de aprendizado,  $\alpha$, ao
-valor que serão corrigidos os pesos.
+A atualização  dos pesos de uma rede neural ocorre  a cada iteração  sobre os valores
+de entrada. Assim,  suas  saídas  são  comparadas  com  os  valores  reais  e é computado  o
+valor do erro de acordo com uma função de erro. Os  valores  dos erros  $L$ são aplicados na \autoref{eq:backpropagation}, na qual $\alpha$ corresponde a uma taxa de aprendizado que regula o tamanho do passo utilizado na correção dos pesos. O erro calculado na camada de saída é retropropagado para as camadas ocultadas até chegar na camada de entrada e os pesos de todas as camadas é atualizado de acordo com erro. Dessa forma, a cada nova iteração, os pesos  da rede neural são atualizados.
 
 \begin{equation}\label{eq:backpropagation}
     w_{n+1} = w_n - \alpha \frac{\partial L(x,w_t)}{\partial w_t}
@@ -933,28 +895,28 @@ valor que serão corrigidos os pesos.
 
 \subsubsection{Avaliação e seleção do modelo}
 
-Após  o treinamento  do  modelo,  deve-se avaliar  a  capacidade  do modelo  de
-generalização para dados ainda não apresentados a ele. Esse conceito é dado por
+Após  o treinamento  da rede neural,  deve-se avaliar  a sua capacidade  de
+generalização para dados ainda não vistos. Esse conceito é dado por
 \citeonline{haykin2009} como sendo um dos  principais objetivos de um modelo de
 redes neurais.
 
 Para se avaliar a capacidade de generalização, é separada uma porção dos dados,
 normalmente, em uma  proporção de 30\%. Assim, durante a  etapa de treinamento,
 utiliza-se  a  porção maior  dos  dados  e, após  o  modelo  estar treinado,  é
-verificado a qualidade  utilizando a função de erro,  já definida anteriormente
+verificada a sua qualidade  utilizando a função de erro,  definida anteriormente
 na \autoref{eq:mse}, mas agora no conjunto de teste (porção menor dos dados).
 
-Já  que, durante  a  etapa  de  aprendizado, o  modelo  só  obterá  informações
-do  conjunto  de   trinamento,  faz-se  necessário   algumas  estratégias  para
-impedir  que  o  modelo  se  especialize no  conjunto.  Essa  especialização  é
+Já  que, durante  a  etapa  de  aprendizado, o  modelo  só  obtém  informações
+do  conjunto  de   treinamento,  faz-se  necessário   algumas  estratégias  para
+impedir  que  o  modelo  se  especialize nesse  conjunto.  Essa  especialização  é
 conhecida por \textit{overfit}, o que pode  causar a incapacidade do  modelo em
-prever  corretamente  os  dados  que  ainda não  lhe foram  apresentados.  Para
-impedir  isto, podemos  realizar   os  seguintes  procedimentos  descritos  por
-\citeonline{deepLearning}:
+prever  corretamente  os  dados  que  ainda não  lhe foram  apresentados. De 
+acordo com \citeonline{deepLearning}, alguns procedimentos podem ser adotados para 
+minimizar o \textit{overfit}, sendo eles:
 
 \begin{enumerate}
     \item Validação cruzada\\
-        O conjunto de  dados é divido em $k$ subconjuntos,  \textit{folds}, e a
+        O conjunto de  dados é divido em $k$ subconjuntos, chamados de \textit{folds}, e a
         rede neural é  treinada utilizando $k-1$ \textit{folds}.  O modelo será
         validado  no  subconjunto deixado  de  fora  do treinamento.  Ocorrerá,
         ainda,  a  mudança  do  conjunto que  servirá  para  validação.  Assim,
@@ -976,9 +938,10 @@ impedir  isto, podemos  realizar   os  seguintes  procedimentos  descritos  por
     \item Regularização\\
         Tem como objetivo manter os pesos do modelo minimizados. O procedimento
         consiste em  alterar a função do  erro adicionando a ela  os custos dos
-        pesos,  isso é  feito conforme  a \autoref{eq:regL1}.  Em que  $L$ é  a
+        pesos,  conforme  a \autoref{eq:regL1}.  Nessa equação, $L$ é  a
         função de perda  anterior e $L_{reg}$ a regularizada, $w$  são os pesos
-        do modelo  e $\lambda$  é a  taxa de  regularização. Se  selecionado um
+        do modelo  e $\lambda$  é a  taxa de  regularização. Sobre a regularização, 
+        cabe destacar que se for selecionado um
         valor muito  alto, os pesos  tenderão a $0$ e  o efeito prático  será o
         contrário ao desejado. Consequentemente, o modelo passará a ser incapaz
         de representar também o conjunto de entrada.
@@ -988,85 +951,79 @@ impedir  isto, podemos  realizar   os  seguintes  procedimentos  descritos  por
         \end{equation}
 \end{enumerate}
 
-Como já foi explicitado, existem diversas  definições a serem realizadas para a
-produção do modelo.  Deve-se, então, realizar testes nesses  diversos modelos e
-escolher aquele  que melhor se  adeque segundo a  função de erro  definida. Tal
-procedimento é conhecido  por busca em grade, realizando a  avaliação do modelo
-para todas as combinações de parâmetros definidos na grade.
+Conforme mencionado, existem diversos parâmetros e procedimentos a serem considerados para a produção do modelo de aprendizado. A seleção do modelo a ser utilizado normalmente se dá por experimentação, de forma a selecionar aquele que melhor se adéque ao problema segundo a  função de erro definida. O procedimento de busca pelo melhor modelo dentro de um limite de parâmetros é por busca em grade, no qual se realiza a indução e avaliação do modelo
+para todas as combinações de parâmetros definidas na grade.
 
 \chapter{Trabalhos relacionados}\label{chap:trab_relacionados}
 
-Com objetivo de  entender e analisar como os modelos  estudados se comportavam,
-foram analisados  diversos trabalhos.  Sendo inicialmente avaliados  os estudos
-com foco  na utilização  dos modelos  estatísticos; e, após  isso, a  busca por
-textos que  observaram o  comportamento de modelos  de aprendizado  de máquina.
-Além  desses casos,  foram buscados  trabalhos  que utilizam  ambos modelos  em
-formato de comparação, semelhante ao objetivo deste trabalho.
+Com objetivo de  entender e analisar como os modelos  estudados se comportavam na solução do problema de previsão de séries temporais,
+foram analisados diversos trabalhos.  Primeiramente, avaliou-se  os estudos
+com foco  na utilização  dos modelos  estatísticos; em um segundo momento, 
+buscou-se por trabalhos que observaram o  comportamento de modelos  de aprendizado  de máquina.
+Além  desses casos,  também foram buscados  trabalhos  que utilizaram  ambos modelos  em
+formato de comparação, assemelhando-se assim ao objetivo deste trabalho.
 
 % TODO: Finalizar esse trabalho relacionado
 
-Em  \citeonline{giebel2011state}  o autor  realiza  a  predição da  geração  de
-energia eólica, a produção é dada  em função da capacidade na região instalada,
-o vento,  no entanto,  é um  elemento volátil e  sendo assim  existirá momentos
-quais o  uso de  outras fontes  será necessária, contudo,  é preciso  ter certo
-conhecimento prévio,  pois, o  ligamento de  uma usina  como aquelas  movidas a
-gasóleo podem levar  até duas horas. Logo  prever duas horas a  frente pode ser
-crucial para garantir o abastecimento de energia a uma região, podendo impactar
+Em \citeonline{giebel2011state}, os autores utilizaram modelos de previsão de séries temporais para prever a  geração  de energia eólica, sendo a produção dada  em função da capacidade na região instalada. O vento,  no entanto,  é um  elemento volátil e,  sendo assim,  existirá momentos nos
+quais o  uso de  outras fontes  será necessária. Contudo,  é preciso  ter certo
+conhecimento prévio,  pois o  ligamento de  uma usina  como aquelas  movidas a
+gasóleo pode levar até duas horas. Logo,  prever duas horas a  frente pode ser
+crucial para garantir o abastecimento de energia para uma região, podendo impactar
 no cotidiano e economia de uma população.
 
-\citeonline{vinay}  utilizou   modelos  ARIMA   e  suas  variações,   SARIMA  e
-ARIMA-GARCH, para  previsão de tráfego em  rodovias. Um de seus  desafios foi a
+\citeonline{vinay}  utilizaram modelos  ARIMA   e  suas  variações, SARIMA  e
+ARIMA-GARCH, para a previsão de tráfego em  rodovias. Um de seus  desafios foi a
 necessidade de predição em tempo real, ou seja, o modelo tinha de ser obtido ao
-mesmo tempo  que os dados eram  gerados. Ele identificou que  modelos ARIMA tem
-uma alta complexidade para serem encontrados,  já que ele usou uma abordagem de
-busca em  grade para  identificar o  modelo adequado,  utilizando a  métrica de
-média das somas quadradas dos erros para avaliação.
+mesmo tempo  que os dados eram  gerados. Os autores identificaram que os modelos 
+ARIMA tiveram uma alta complexidade para serem encontrados, uma vez que foi adotada
+uma abordagem de busca em grade para a identificação do modelo adequado,  sendo 
+utilizada a  métrica de média das somas quadradas dos erros para avaliação.
 
-\citeonline{reza}  propôs um  modelo  ARIMA modificado, acrescentando ao  valor
+\citeonline{reza}  propuseram um  modelo  ARIMA modificado, acrescentando ao  valor
 previsto a  soma das médias dos  erros para encontrar um  modelo mais adequado.
 Sua  abordagem obteve  resultados  melhores que  aqueles observados  utilizando
 somente ARIMA\@.
 
-Já \citeonline{matias} comparou  ARIMA com outros modelos  de base estatística.
-Além disso,  propôs um modelo híbrido  entre eles, para previsão  de demanda de
-táxis na cidade  de Porto em Portugal, com objetivo  de melhorar a distribuição
-dos táxis. Um de seus desafios  foi combinar a informação de geolocalização com
-as séries das demandas por corridas. Como  resultado, ele foi capaz de obter um
-erro inferior a 26\% na previsão de corridas utilizando o modelo proposto.
+Já no estudo de \citeonline{matias}, o  ARIMA foi comparado com outros modelos de base estatística. Além disso, os autores propuseram um modelo híbrido. Os modelos foram construídos para prever a demanda de táxis na cidade  de Porto em Portugal, com objetivo  de melhorar a distribuição dos táxis. Um de seus desafios  foi combinar a informação de geolocalização com as séries das demandas por corridas. Como  resultado, o modelo híbrido proposto pelos autores foi capaz de obter um erro inferior a 26\% na previsão de corridas.
 
-Quanto  à  utilização  de  redes   neurais,  podemos  observar  o  trabalho  de
-\citeonline{zhangbco}. Nesse  trabalho, foi  observado o  desempenho do  uso de
-redes neurais  utilizando o algoritimo de  retro propagação e outro  baseado em
-algoritimos naturais. A série utilizada foi  a do índice S\&P500. Foi comparada
+Com relação à  utilização  de  redes   neurais para a previsão de séries temporais, um exemplo é o trabalho de \citeonline{zhangbco}.
+Nesse  trabalho, foi  observado o  desempenho do  uso de
+redes neurais  utilizando o algoritmo de  retro propagação e outro  baseado em
+algoritmos naturais. A série utilizada foi a do índice S\&P500. Foi comparada
 a previsão  entre um e  quinze dias adiante. O  modelo neural utilizado  foi de
 três camadas, com 9  neurônios na camada de entrada, 3 na  camada escondida e 1
-na de saída.  O modelo proposto utilizando o algoritimo  natural teve resultado
-superior para todas as análises.
+na camada de saída.  O modelo proposto utilizando o algoritmo  natural teve resultados
+superiores para todas as análises.
 
 \chapter{Desenvolvimento}\label{chap:desenv}
 
 Como  colocado  na \autoref{sec:seriesTemporais},  a  capacidade  de se  prever
-séries temporais tem grande importância, e  uma de suas principais aplicações é
-na  previsão de  indicadores  econômicos.  O S\&P500,  um  índice mantido  pela
-Standard \&  Poor's desde 1923,  indexa os valores de  500 ativos em  bolsas de
-valores e  serve como  um indicador  geral do  comportamento do  mercado. Logo,
-foram  obtidos os  dados do  S\&P500 para  comparar os  modelos apresentados  e
-observar o seu desempenho de previsão.
+séries temporais tem grande importância e uma de suas aplicações mais populares
+é na  previsão de  indicadores  econômicos. Desse modo, neste trabalho optou-se por utilizar uma série de caráter econômico.
+Um indicador econômico conhecido é o S\&P500. 
+Mantido  pela Standard \&  Poor's desde 1923, o S\&P500 indexa os valores de  
+500 ativos em  bolsas de valores e  serve como  um indicador  geral do  comportamento do  mercado. 
+Logo, para compor a série a ser modelada neste trabalho, foram  obtidos os dados do S\&P500.
+%%%VALERIA: OS DADOS QUE VC COLETOU DO SP500 SÃO ANUAIS, MENSAIS, DIÁRIOS?
+%%%         QUAL É O PERÍDO DOS DADOS? DE 1923 ATÉ 2019?.
+%%%         PRECISA DAR ESSAS INFORMAÇÕES 
+
+Os           dados            da           série            podem           ser
+obtidos      online\footnote{\url{https://datahub.io/core/s-and-p-500}} e as observações do índice  S\&P500 utilizadas no desenvolvimento deste trabalho podem ser visualizadas na
+\autoref{fig:sp500}.
 
 Durante  toda  a  etapa  de  desenvolvimento,  foi  utilizada  a  linguagem  de
 programação   python\footnote{\url{https://www.python.org}}  em   conjunto  com
 jupyter  para  a  análise  das   séries,  produção  dos  modelos  e  avaliação.
 Especificamente,   para    os   modelos   probabilísticos    foram   utilizadas
-as    biblioteca   statsmodels\footnote{\url{https://www.statsmodels.org}}    e
+as    bibliotecas   statsmodels\footnote{\url{https://www.statsmodels.org}}    e
 tensorflow\footnote{\url{https://www.tensorflow.org/}}   para  os   modelos  de
 aprendizado de  máquina. Além delas,  foram utilizadas as  bibliotecas seaborn,
-para produção dos gráficos, e pandas em conjunto com numpy e scikit-learn, para
-importar e realizar as modificações necessárias dos dados.
+para produção dos gráficos, e Pandas em conjunto com numpy e scikit-learn, para
+importar e realizar as modificações necessárias dos dados da série.
 
-Os           dados            da           série            podem           ser
-obtidos      online\footnote{\url{https://datahub.io/core/s-and-p-500}}.     Na
-\autoref{fig:sp500}, apresenta-se  as observações do índice  S\&P500 utilizadas
-durante o desenvolvimento deste trabalho.
+
 
 Para simplificar as tarefas realizadas no  decorrer deste trabalho, os dados da
 série foram dimensionados no intervalo entre 0  e 1. Para isso, foi utilizado o
@@ -1108,7 +1065,7 @@ utilizado 70\% dos  dados durante o treinamento e 30\%  durante a validação. N
     \source{Elaborado pelo autor}
 \end{figure}
 
-Após a análise, foram encontrados os modelos  que mais se adequam à série e foi
+Após a análise, foram encontrados os modelos  que mais se adéquam à série e foi
 validada  a capacidade  deste  modelo  prever um  dia  adiante.  Para tornar  a
 comparação justa,  foi definido que  a quantidade de observações  utilizadas na
 camada  de entrada  do modelo  de  redes neurais  fosse semelhante  a ordem  do
@@ -1118,8 +1075,7 @@ processo autorregressivo.
 
 Seguindo  as etapas  para construção  do modelo,  foi realizada  a análise  dos
 dados.  O  objetivo  era  identificar  as  características  da  série,  como  a
-estacionariedade, e  quanto a  existência de  tendência e  sazonalidade. Sendo,
-também, já  realizada a remoção  de \textit{outliers} que possam  atrapalhar na
+estacionariedade e possível existência de  tendência e  sazonalidade. Nessa etapa também foi realizada a remoção  de \textit{outliers} que poderiam  atrapalhar na
 construção do modelo.
 
 Já na  análise dos gráficos da  série, na \autoref{fig:sp500}, fica  evidente a
