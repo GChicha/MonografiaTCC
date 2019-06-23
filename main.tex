@@ -998,12 +998,16 @@ superiores para todas as análises.
 
 \chapter{Desenvolvimento}\label{chap:desenv}
 
+O desenvolvimento deste trabalho foi realizado utilizando-se a linguagem  de
+programação  python\footnote{\url{https://www.python.org}}  em   conjunto  com a plataforma Jupyter  tanto para  a  análise  das séries,  quanto para a produção e avaliação  dos  modelos de previsão.
+Especificamente,   para    os   modelos   probabilísticos    utilizou-se
+a    biblioteca   statsmodels\footnote{\url{https://www.statsmodels.org}} e para  os modelos  de aprendizado de  máquina utilizou-se a biblioteca tensorflow\footnote{\url{https://www.tensorflow.org/}}. Além disso,  foram utilizadas as  bibliotecas seaborn, para produção dos gráficos, e Pandas em conjunto com numpy e scikit-learn, para
+importar e realizar as modificações necessárias dos dados da série.
+
 Como  colocado  na \autoref{sec:seriesTemporais},  a  capacidade  de se  prever
 séries temporais tem grande importância e uma de suas aplicações mais populares
-é na  previsão de  indicadores  econômicos. Desse modo, neste trabalho optou-se por utilizar uma série de caráter econômico.
-Um indicador econômico conhecido é o S\&P500. 
-Mantido  pela Standard \&  Poor's desde 1923, o S\&P500 indexa os valores de  
-500 ativos em  bolsas de valores e  serve como  um indicador  geral do  comportamento do  mercado. 
+é a  previsão de  indicadores  econômicos. Desse modo, neste trabalho optou-se por utilizar uma série de caráter econômico.
+Um indicador econômico conhecido é o S\&P500. Mantido  pela Standard \&  Poor's desde 1923, o S\&P500 indexa os valores de 500 ativos em  bolsas de valores e  serve como  um indicador  geral do  comportamento do  mercado. 
 Logo, para compor a série a ser modelada neste trabalho, foram  obtidos os dados do S\&P500.
 %%%VALERIA: OS DADOS QUE VC COLETOU DO SP500 SÃO ANUAIS, MENSAIS, DIÁRIOS?
 %%%         QUAL É O PERÍDO DOS DADOS? DE 1923 ATÉ 2019?.
@@ -1013,24 +1017,11 @@ Os           dados            da           série            podem           ser
 obtidos      online\footnote{\url{https://datahub.io/core/s-and-p-500}} e as observações do índice  S\&P500 utilizadas no desenvolvimento deste trabalho podem ser visualizadas na
 \autoref{fig:sp500}.
 
-Durante  toda  a  etapa  de  desenvolvimento,  foi  utilizada  a  linguagem  de
-programação   python\footnote{\url{https://www.python.org}}  em   conjunto  com
-jupyter  para  a  análise  das   séries,  produção  dos  modelos  e  avaliação.
-Especificamente,   para    os   modelos   probabilísticos    foram   utilizadas
-as    bibliotecas   statsmodels\footnote{\url{https://www.statsmodels.org}}    e
-tensorflow\footnote{\url{https://www.tensorflow.org/}}   para  os   modelos  de
-aprendizado de  máquina. Além delas,  foram utilizadas as  bibliotecas seaborn,
-para produção dos gráficos, e Pandas em conjunto com numpy e scikit-learn, para
-importar e realizar as modificações necessárias dos dados da série.
-
-
-
 Para simplificar as tarefas realizadas no  decorrer deste trabalho, os dados da
 série foram dimensionados no intervalo entre 0  e 1. Para isso, foi utilizado o
 método \texttt{MinMaxScaler}  da biblioteca  sklearn, que  matematicamente pode
 ser representado como visto na \autoref{eq:minmaxscaler}, sendo $MAX$ e $MIN$ o
-intervalo  que definimos  para  a série  e  a função  $\min$  e $\max$  capazes
-respectivamente de apresentar o menor e maior elemento do conjunto.
+intervalo  definido  para  a série  e  $\min$  e $\max$ funções capazes de apresentar, respectivamente, o menor e o maior elemento do conjunto.
 
 \begin{equation}
     \begin{split}\label{eq:minmaxscaler}
@@ -1046,9 +1037,9 @@ respectivamente de apresentar o menor e maior elemento do conjunto.
     \source{Elaborado pelo autor}
 \end{figure}
 
-A  divisão do  conjunto  de treino  e  teste  foi realizado  de  maneira a  ser
-utilizado 70\% dos  dados durante o treinamento e 30\%  durante a validação. Na
-\autoref{fig:traintest} estes conjuntos são descritos.
+A  divisão dos  conjuntos  de treino  e  teste  foi realizada  de  maneira a  se
+utilizar 70\% dos  dados para o treinamento e 30\%  para a validação. Os gráficos referentes às observações dos conjuntos de treino e teste são mostrados na 
+\autoref{fig:traintest}.
 
 \begin{figure}[ht]
     \caption{Divisão da série entre os conjuntos de treino e teste}\label{fig:traintest}
@@ -1066,23 +1057,22 @@ utilizado 70\% dos  dados durante o treinamento e 30\%  durante a validação. N
 \end{figure}
 
 Após a análise, foram encontrados os modelos  que mais se adéquam à série e foi
-validada  a capacidade  deste  modelo  prever um  dia  adiante.  Para tornar  a
-comparação justa,  foi definido que  a quantidade de observações  utilizadas na
-camada  de entrada  do modelo  de  redes neurais  fosse semelhante  a ordem  do
+validada  a capacidade  desses  modelos  prever um  dia  adiante.  Para tornar  a
+comparação justa,  a quantidade de observações  utilizadas na
+camada  de entrada  do modelo  de  redes neurais  foi igual à ordem  do
 processo autorregressivo.
 
-\section{Análise da série}
+\section{Análise da série S\&P500}
 
-Seguindo  as etapas  para construção  do modelo,  foi realizada  a análise  dos
+Seguindo  as etapas  para construção  dos modelos,  foi realizada  a análise  dos
 dados.  O  objetivo  era  identificar  as  características  da  série,  como  a
-estacionariedade e possível existência de  tendência e  sazonalidade. Nessa etapa também foi realizada a remoção  de \textit{outliers} que poderiam  atrapalhar na
-construção do modelo.
+estacionariedade e a possível existência de  tendência e  sazonalidade. Nessa etapa também foi realizada a remoção  de \textit{outliers} que poderiam  atrapalhar na
+construção dos modelos.
 
-Já na  análise dos gráficos da  série, na \autoref{fig:sp500}, fica  evidente a
-existência de  tendência, permitindo concluir  que a série não  é estacionária.
-Conclui-se  isso, também,  a partir  da análise  da \autoref{fig:acfsp500}  que
-demonstra a  existência de um  grande número  de correlações positivas  fora do
+Já no gráfico da \autoref{fig:sp500} percebe-se a existência de  tendência, permitindo concluir que a série não é estacionária. Esse fato também fica evidente a partir da análise do gráfico da FAC (\autoref{fig:acfsp500}),  que
+mostra a existência de um  grande número de correlações positivas fora do
 intervalo de confiança.
+%%% VALERIA: O GRÁFICO DA \autoref{fig:acfsp500} É O CORRELOGRAMA OU GRÁFICO DA FAC?              OU OS DOIS SÃO A MESMA COISA?
 
 \begin{figure}[ht]
     \centering
@@ -1091,10 +1081,10 @@ intervalo de confiança.
     \source{Elaborado pelo autor}
 \end{figure}
 
-Para  tornar  a série  estacionária,  é  necessário realizar  inicialmente  uma
-diferenciação.  Tem-se, na  \autoref{fig:sp500diff}, a  primeira diferenciação.
-Pela  observação  da  função autocorrelação,  na  \autoref{fig:acf_diff_sp500},
-pode-se concluir que uma única diferenciação foi suficiente.
+Para  tornar  a série  estacionária,  inicialmente, realizou-se  uma
+diferenciação.  A \autoref{fig:sp500diff} apresenta os dados da série após a  primeira diferenciação. 
+Pela  observação  da FAC mostrado na  \autoref{fig:acf_diff_sp500},
+pode-se concluir que uma única diferenciação foi suficiente para tornar a série estacionária.
 
 \begin{figure}[ht]
     \centering
@@ -1110,26 +1100,21 @@ pode-se concluir que uma única diferenciação foi suficiente.
     \source{Elaborado pelo autor}
 \end{figure}
 
-Quanto à sazonalidade, pode-se observar a  existência de um padrão que remete a
-um comportamento na  \autoref{fig:acf_diff_sp500}. No entanto, não  é tão claro
-qual o período. Para se definir  isso, seria necessária a definição de técnicas
-que não fizeram parte desse trabalho.
+Quanto à sazonalidade, embora seja possível observar um padrão de comportamento na  \autoref{fig:acf_diff_sp500}, não é tão claro qual é o período. Para se definir isso, seria necessário o uso de outras técnicas estatísticas que fogem ao escopo deste trabalho. Além disso, após uma diferenciação, a série mostrou as características necessárias para se concluir a sua estacionariedade.
 
-Realizada a  análise, pode-se  concluir que  o modelo  ARMA sem  integração não
-seria  suficiente.  Assim, o  parâmetro  $d$  do  modelo  ARIMA será  de  ordem
-1,  devido  a  ter  sido  necessária uma  diferenciação  para  tornar  a  série
+Realizada da análise da série, concluiu-se que  o modelo  ARMA sem  integração não seria  suficiente.  Assim, o  parâmetro  $d$  do  modelo  ARIMA será  de  ordem
+1,  devido  à necessidade de uma  diferenciação  para  tornar  a  série
 estacionária.
 
 \section{Definição do modelo probabilístico}
 
 Compreendido  o  comportamento  da  série, definiu-se  a  correlação  entre  as
 observações  para  possibilitar a  construção  do  modelo probabilístico.  Isso
-foi  feito   usando  do  gráfico   da  função  de   autocorrelação  apresentado
-na  \autoref{fig:acf_diff_sp500}  em  conjunto  com  o  gráfico  da  função  de
-autocorrelação  parcial   da  \autoref{fig:sp500pacf}.  Segundo  o   modelo  de
+foi  feito   usando  do  gráfico   da  FAC  apresentado
+na  \autoref{fig:acf_diff_sp500}  em  conjunto  com  o  gráfico  da  FACP mostrado na  \autoref{fig:sp500pacf}.  Segundo  o   modelo  de
 \citeonline{box}, deve-se analisar o modelo com $p$ sendo 1, 2 ou 5, e para $q$
-sendo 1, 2 ou  7. A seleção do melhor modelo foi dado  utilizando o critério de
-informação de Akaike.
+sendo 1, 2 ou  7. A seleção do melhor modelo foi dado  utilizando-se o critério de
+informação de Akaike (AIC).
 
 \begin{figure}[ht]
     \centering
@@ -1138,13 +1123,13 @@ informação de Akaike.
     \source{Elaborado pelo autor}
 \end{figure}
 
+
 A \autoref{tab:aicarima} apresenta as métricas AIC para os modelos propostos e,
-em  destaque, o  modelo com  melhor  resultado. Logo,  o modelo  probabilístico
-utilizado para comparar o desempenho foi o ARIMA(5,1,7).
+em  destaque, o  modelo com  melhor  resultado. Como a AIC é uma métrica de minimização, quanto menor o seu valor, melhor é o modelo. Logo,  o modelo  probabilístico considerado como o melhor melhor foi o ARIMA(5,1,7), sendo esse o modelo utilizado para a comparação de desempenho com o modelo baseado em aprendizado de máquina.
 
 \begin{table}[ht]
 \centering
-    \caption{Tabela de modelos testados para $p$ e $q$ no modelo ARIMA($p$, 1, $q$)}\label{tab:aicarima}
+    \caption{Valores AIC obtidos com diferentes valores de $p$ e $q$ para o modelo ARIMA($p$, 1, $q$)}\label{tab:aicarima}
 \begin{tabular}{l c c c}
     p\textbackslash{}q  & 1      & 2      & 7               \\
     \toprule
@@ -1155,12 +1140,9 @@ utilizado para comparar o desempenho foi o ARIMA(5,1,7).
 \source{Elaborado pelo autor}
 \end{table}
 
-Para ser  possível concluir o modelo  como bom, deve-se, ainda,  analisar se as
-funções de autocorrelação e de autocorrelação parcial dos resíduos apresentam a
-existência  de  correlações significativas.  Na  \autoref{fig:acffigresiduals},
-vemos que  existem ainda correlações  relevantes. No entanto, são  geradas pela
-componente sazonal  da série  e, como  já dito, não  fizeram parte  do objetivo
-deste trabalho.
+Para ser  possível concluir que o modelo é bom, deve-se, ainda, analisar se as
+funções de autocorrelação e de autocorrelação parcial dos resíduos apresentam correlações significativas.  Na  \autoref{fig:acffigresiduals},
+possível observar que  ainda existem correlações relevantes. No entanto, as mesmas são  geradas pela componente sazonal  da série  e, como  já dito, não fizeram parte  do objetivo deste trabalho.
 
 \begin{figure}[ht]
     \caption{Funções de autocorrelação e de autocorrelação parcial dos resíduos do
@@ -1181,13 +1163,11 @@ deste trabalho.
 \section{Definição do modelo utilizando aprendizado de máquina}
 
 Já para o  desenvolvimento do modelo neural, não foi  necessária uma observação
-profunda da  série. No entanto,  exigiu uma parametrização muito  mais complexa
-do  modelo.  Observado como  o  modelo  convergia, considerando  os  parâmetros
+profunda da  série. No entanto, foi necessária uma parametrização mais complexa
+do  modelo.  Observado como  o  modelo  convergia e considerando-se  os  parâmetros
 escolhidos, foi realizada uma busca em grade extensiva para encontrar um modelo
-com melhor capacidade representativa.
-
-Na \autoref{tab:gridsearch},  observamos todos os parâmetros  testados na busca
-em grade.
+com melhor capacidade de generalização. Os parâmetros testados na busca
+em grade são mostrados na \autoref{tab:gridsearch}.
 
 \begin{table}[ht]
 \centering
@@ -1199,16 +1179,14 @@ em grade.
     Número de unidades por camada    & 1 \ldots 20                         \\
     $\lambda$ regularização          & 0.00001 \ldots 0.0001               \\
     Função de ativação               & $relu$, $sigmoid$                   \\
-    Função de perda                  & MSE, MAE                            \\
+    Função de erro                   & MSE, MAE                            \\
     Iterações                        & 20 \ldots 500
 \end{tabular}
 \source{Elaborado pelo autor}
 \end{table}
 
-Uma característica  que foi logo  observada nas primeiras  execuções anteriores
-da  aplicação da  regularização  foi  o rápido  \textit{overfit}  nos dados  de
-treinamento, como  visto na  \autoref{fig:sp500_overfit}. Apesar de  aplicado a
-validação  cruzada. Logo,  a  aplicação da  regularização  foi suficiente  para
+Uma característica observada nas primeiras execuções anteriores
+à  aplicação da  regularização  foi  o rápido  \textit{overfit}  ao conjunto de treino, mesmo com o uso de validação cruzada, conforme pode ser observado na  \autoref{fig:sp500_overfit}. A aplicação da  regularização  foi suficiente  para
 diminuir a ocorrência do \textit{overfit}.
 
 \begin{figure}[ht]
@@ -1225,33 +1203,26 @@ diminuir a ocorrência do \textit{overfit}.
 
 \begin{figure}[ht]
     \centering
-    \caption{Gráfico da função de perda em  função do números de iterações para
+    \caption{Gráfico da função de erro em  função do números de iterações para
     a série S\&P500}\label{fig:iter_sp500_overfit}
     \includegraphics[width=.5\linewidth]{images/sp500_overfit_iter.png}
     \source{Elaborado pelo autor}
 \end{figure}
 
-O modelo  de redes neurais artificiais  selecionado a partir da  busca em grade
-foi  com duas  camadas. A  primeira camada  com 13  neurônios e  a segunda  com
-somente um neurônio, já que esta é a  camada de saída. A função de ativação foi
-a $relu$  e o  $\lambda$ da  regularização ficou como  $0.000001$. A  função de
-perda selecionada foi a função média  dos erros quadrados e 300 iterações foram
-suficientes. Já que  o modelo probabilístico tem  $p$ igual a 5,  foi fixado em
-cinco observações a realização da previsão.
+O modelo de redes neurais artificiais selecionado a partir da  busca em grade
+possui duas  camadas. A  primeira camada  possui 13  neurônios e  a segunda  possui apenas um neurônio, já que esta é a  camada de saída. A função de ativação escolhida foi a $relu$  e o valor $\lambda$ da  regularização ficou como $0.000001$. A  função de erro selecionada foi a função média dos erros quadrados (MSE) e 300 iterações foram suficientes para que o modelo convergisse. 
+Uma vez que  o modelo probabilístico tem  $p$ igual a 5,  foi fixado em cinco observações a realização da previsão.
 
 \chapter{Resultados}\label{chap:result}
 
-A  partir  dos  modelos  gerados,  foram  obtidos  os  resultados  apresentados
-na   \autoref{tab:resultadosp500}   e  o   gráfico   do   conjunto  de   testes
-comparando  os   resultados  obtidos  com   os  valores  são   apresentados  na
-\autoref{fig:comparesp500}.  Observando  os resultados,  é  claro  que os  dois
-modelos conseguiram êxito  na tarefa de aproximar o comportamento  da série. Em
-termos comparativos,  o modelo  neural obteve resultado  um pouco  inferior, na
-ordem de $0,6\%$.
+A  partir dos melhores modelos obtidos com cada abordagem, um probabilístico e um baseado em rede neural, foram  obtidos  os  resultados  apresentados
+na   \autoref{tab:resultadosp500}. Conforme pode ser observado na tabela, a rede neural (MLP) apresentou erro quadrático médio ligeiramente superior ao apresentado pelo modelo ARIMA.
+
+Conforme fica evidenciado nos gráficos mostrados na \autoref{fig:comparesp500}, os quais compara os valores previstos pelos modelos com os reais (a) e os erros acumulados de cada modelo (b), ambos os modelos conseguiram aproximar com êxito o comportamento da série. Em termos comparativos, o modelo  neural obteve resultados  um pouco inferiores ao modelo estatístico, uma vez que apresentou erros maiores, porém a diferença foi da ordem de $0,6\%$.
 
 \begin{table}[ht]
     \centering
-    \caption{Valores do erro para a série S\&P500}\label{tab:resultadosp500}
+    \caption{Valores do erro quadrático médio para a série S\&P500}\label{tab:resultadosp500}
     \begin{tabular}{ll}
         \multicolumn{1}{c}{Modelo} & \multicolumn{1}{c}{MSE} \\
         \toprule
@@ -1274,13 +1245,13 @@ ordem de $0,6\%$.
     \source{Elaborado pelo autor}
 \end{figure}
 
+%%% VALERIA: VERIFICAR SE O GRÁFICO DOS ERROS ACUMULADOS ESTÁ CORRETO.
+
 \chapter{Conclusões}\label{chap:concl}
 
 O objetivo deste trabalho foi produzir e avaliar modelos preditivos para séries
-temporais utilizando  algoritimos estatísticos e  de aprendizado de  máquina. É
-comum  em  trabalhos, a  utilização  de  métodos  probabilísticos quando  se  é
-realizada  a tarefa  de  previsão  de séries.  Mais  especificamente, o  modelo
-hibrido ARIMA  proposto por \citeonline{box}.  No entanto, modelos  baseados em
+temporais utilizando  algoritmos estatísticos e de aprendizado de  máquina. Como foi mostrado na seção de Trabalhos de Relacionados, é comum o uso de modelos  probabilísticos, em especial o modelo híbrido ARIMA  de \citeonline{box}, quando  se  realiza  a tarefa  de  previsão  de séries.  Mais  especificamente, o  modelo
+híbrido ARIMA  proposto por \citeonline{box}.  No entanto, modelos  baseados em
 algoritimos de  aprendizado de máquina  se tornaram notórios nos  últimos anos.
 Logo,  neste trabalho,  foram comparados  estes modelos  para entender  as suas
 capacidades e observar os seus desafios particulares.
