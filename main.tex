@@ -876,7 +876,7 @@ rede em  uma única  direção. Visualmente,  pode-se expressar  a rede de múlt
 Em uma rede neural, os parâmetros a  serem aprendidos são os pesos $w_i$ das conexões entre os neurônios das diferentes camadas. É comum que esses pesos sejam inicializados como valores aleatórios pequenos, que serão ajustados por correção de erro para cada exemplo apresentado à rede.
 
 O erro calculado na camada de saída é dado por uma função de cálculo do erro.
-No caso de problemas de regressão, o cálculo do erro é dado pela função de erro quadrado  médio, conforme a \autoref{eq:mse}, na qual $Y$ corresponde ao valor real de treinamento, $\hat{Y}$ ao valor previsto e $n$ ao tamanho do conjunto
+No caso de problemas de regressão, o cálculo do erro é dado pela função de erro quadrático  médio, conforme a \autoref{eq:mse}, na qual $Y$ corresponde ao valor real de treinamento, $\hat{Y}$ ao valor previsto e $n$ ao tamanho do conjunto
 de treinamento.
 
 \begin{equation}\label{eq:mse}
@@ -978,7 +978,7 @@ necessidade de predição em tempo real, ou seja, o modelo tinha de ser obtido a
 mesmo tempo  que os dados eram  gerados. Os autores identificaram que os modelos 
 ARIMA tiveram uma alta complexidade para serem encontrados, uma vez que foi adotada
 uma abordagem de busca em grade para a identificação do modelo adequado,  sendo 
-utilizada a  métrica de média das somas quadradas dos erros para avaliação.
+utilizada a  métrica de erro quadrático médio para avaliação.
 
 \citeonline{reza}  propuseram um  modelo  ARIMA modificado, acrescentando ao  valor
 previsto a  soma das médias dos  erros para encontrar um  modelo mais adequado.
@@ -1210,7 +1210,7 @@ diminuir a ocorrência do \textit{overfit}.
 \end{figure}
 
 O modelo de redes neurais artificiais selecionado a partir da  busca em grade
-possui duas  camadas. A  primeira camada  possui 13  neurônios e  a segunda  possui apenas um neurônio, já que esta é a  camada de saída. A função de ativação escolhida foi a $relu$  e o valor $\lambda$ da  regularização ficou como $0.000001$. A  função de erro selecionada foi a função média dos erros quadrados (MSE) e 300 iterações foram suficientes para que o modelo convergisse. 
+possui duas  camadas. A  primeira camada  possui 13  neurônios e  a segunda  possui apenas um neurônio, já que esta é a  camada de saída. A função de ativação escolhida foi a $relu$  e o valor $\lambda$ da  regularização ficou como $0.000001$. A  função de erro selecionada foi a função média dos erros quadráticos (MSE) e 300 iterações foram suficientes para que o modelo convergisse. 
 Uma vez que  o modelo probabilístico tem  $p$ igual a 5,  foi fixado em cinco observações a realização da previsão.
 
 \chapter{Resultados}\label{chap:result}
@@ -1250,36 +1250,24 @@ Conforme fica evidenciado nos gráficos mostrados na \autoref{fig:comparesp500},
 \chapter{Conclusões}\label{chap:concl}
 
 O objetivo deste trabalho foi produzir e avaliar modelos preditivos para séries
-temporais utilizando  algoritmos estatísticos e de aprendizado de  máquina. Como foi mostrado na seção de Trabalhos de Relacionados, é comum o uso de modelos  probabilísticos, em especial o modelo híbrido ARIMA  de \citeonline{box}, quando  se  realiza  a tarefa  de  previsão  de séries.  Mais  especificamente, o  modelo
-híbrido ARIMA  proposto por \citeonline{box}.  No entanto, modelos  baseados em
-algoritimos de  aprendizado de máquina  se tornaram notórios nos  últimos anos.
-Logo,  neste trabalho,  foram comparados  estes modelos  para entender  as suas
-capacidades e observar os seus desafios particulares.
+temporais utilizando  algoritmos estatísticos e de aprendizado de  máquina. Como foi mostrado na Seção \label{chap:trab_relacionados}, é comum o uso de modelos  probabilísticos, em especial o modelo híbrido ARIMA de \citeonline{box}.  No entanto, modelos  baseados em  aprendizado de máquina  se tornaram notórios nos  últimos anos.
+Dessa forma,  neste trabalho,  comparou-se modelos baseados nessas duas abordagens  para entender as suas capacidades e observar os desafios particulares a cada uma.
 
 Para  permitir a  avaliação, foi  necessária  a compreensão  da construção  dos
-modelos.  O proposto  por  \citeonline{box} apresentou  uma complexidade  muito
-superior na etapa  de análise da série,  já que esse modelo  pode ser entendido
-como  dependente  de  diversas  intervenções  para  melhor  parametrização.  Já
-o  modelo  de  aprendizado,  utilizando redes  neurais  de  múltiplas  camadas,
-apresentou  uma  necessidade mínima  de  compreensão  dos dados  estudados.  No
-entanto, sua complexidade se apresentou durante a etapa de treinamento.
+modelos.  O modelo proposto  por  \citeonline{box} apresentou  uma complexidade  muito superior na etapa  de análise da série,  já que esse modelo  pode ser entendido como  dependente  de  diversas  intervenções  para  melhor  parametrização.  Já o  modelo  de  aprendizado,  utilizando redes  neurais  de  múltiplas  camadas, apresentou  uma  necessidade mínima  de  compreensão  dos dados  da série.  No entanto, apresentou uma maior complexidade de parametrização durante a etapa de treinamento.
 
 Quanto aos resultados,  pôde-se concluir que os modelos  utilizados foram muito
 similares  em  seus  desempenhos.  Vale  notar  que  os  resultados  não  foram
 expressivos  na conclusão  de  superioridade  de um  modelo.  Quanto à  métrica
 utilizada para a avaliação, o modelo ARIMA teve resultado superior em uma ordem
-ínfima, 0,6\%, em relação ao modelo de redes neurais.
+muito baixa, 0,6\%, em relação ao modelo de redes neurais.
 
 Os modelos probabilísticos  obtidos foram um modelo hibrido ARMA  de ordem 5 do
 processo autorregressivo e de ordem 7  para o processo de médias móveis. Também
-foi  necessária uma  diferenciação, já  que a  série apresentou  tendência. Por
-conta disso,  foi necessária a  diferenciação para  para obtenção de  uma série
-estacionária, característica requerida pelo modelo ARMA\@.
+foi  necessária a aplicação de uma  diferenciação, já  que a  série apresentou  tendência. A  diferenciação se fez necessária para a obtenção de  uma série estacionária, característica requerida pelo modelo ARMA\@.
 
-Para obtenção do  modelo de redes neurais,  a mudança dos dados  se resumiram a
-realizar de um dimensionamento para um intervalo de valores. Sem ser necessário
-maior  avaliação   do  comportamento,  já  que,   segundo  \citeonline{haykin},
-algoritimos de aprendizado são ditos dirigido  por dados. No entanto, durante a
+Para obtenção do  modelo de redes neurais,  a transformação dos dados  se resumiu ao dimensionamento das entradas para o intervalo 0 e 1, não sendo necessária uma
+maior  avaliação   do  comportamento,  visto  que algoritmos de aprendizado são ditos dirigido  por dados. No entanto, durante a
 etapa  de treinamento  foi  necessária  a realização  de  diversos testes  para
 encontrar  o modelo  que melhor  se adequava,  além da  aplicação de  validação
 cruzada e  regularização para  diminuir a  ocorrência de  \textit{overfit}. Por
@@ -1288,11 +1276,7 @@ entrada com  13 unidades de  processamento, \textit{perceptron}, e a  segunda a
 camada de  saída com  um único  neurônio, representando a  previsão um  passo a
 diante.
 
-Conclui-se, então,  que os modelos são  suficientes para a tarefa.  No entanto,
-deve-se observar que os modelos  estatísticos tornam a parametrização uma etapa
-muito mais  complexa que o  modelo de aprendizado.  Assim, a escolha  do modelo
-pode ser feita analisando capacidade de análise de quem o constrói, ou conforme
-o comportamento dos dados no caso do uso de redes neurais artificiais.
+Conclui-se, então,  que ambos os modelos são  suficientes para a tarefa.  No entanto, deve-se observar que os modelos  estatísticos tornam a parametrização uma etapa muito mais  complexa que o  modelo de aprendizado de máquina.  Assim, a escolha  do modelo pode ser feita analisando-se a capacidade de análise de quem o constrói, bem como o comportamento dos dados no caso do uso de redes neurais artificiais.
 
 \section{Trabalhos futuros}
 
@@ -1301,11 +1285,10 @@ Aproveitando-se  da  capacidade  dos  modelos  probabilísticos  em  representar
 comportamento  linear  e,  também,  a  capacidade  de  modelos  de  aprendizado
 em  séries não  lineares, como  feito por  \citeonline{oCaraLaDoModeloHibrido}.
 Uma  outra possibilidade  é  a  utilização de  redes  neurais recorrentes,  que
-se  diferenciam  de  modelos  \textit{feedforward}  por  possuir  memorio.  Uma
+se  diferenciam  de  modelos  \textit{feedforward}  por  possuir  memória.  Uma
 arquitetura de  redes neurais  que tem  apresentado bons  resultados é  a LSTM.
-Alguns  trabalhos, como  \citeonline{oDoCaraQueComparaArimaComLSTM}, demonstram
-que  é  possível  obter  resultados   superiores  com  sua  aplicação.  Podemos
-ainda  estudar essas  comparações  com séries  de  comportamento diferente,  e,
+Alguns  trabalhos, como o de \citeonline{oDoCaraQueComparaArimaComLSTM}, mostram
+que  é  possível  obter  resultados   superiores  com  sua  aplicação, desde que haja material de treinamento suficiente.  Pode-se, ainda,  estudar essas  comparações  com séries  de  comportamentos diferentes,  e,
 consequentemente, utilizar  modelos estatísticos mais completos,  como o SARIMA
 ou SARIMAX\@.
 
