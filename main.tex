@@ -17,6 +17,7 @@
 \usepackage{amsmath}
 \usepackage{csquotes}
 \usepackage{subcaption}
+\usepackage[table]{xcolor}
 
 \usepackage{tikz}
 \usetikzlibrary{positioning}
@@ -75,7 +76,7 @@
     \begin{flushright}
         \textit{``Rogo a você que me lê\\
         A sua boa vontade\\
-        Não olhe os error, releve,\\
+        Não olhe os erros, releve,\\
         Guarde com sinceridade\\
         E busque o melhor fazer\\
         Lendo cordel de verdade.''\\
@@ -90,7 +91,7 @@
     como  o ARIMA  para realizar  essas  previsões. No  entanto outros  métodos
     com  base em  aprendizado de  máquina, mais  especificamente redes  neurais
     artificiais, tem se demonstrado substitutos a altura. Foi utilizada a série
-    SP500 para  verificação do desempenho  dessas abordagens, e  como resultado
+    S\&P500 para verificação do desempenho  dessas abordagens, e como resultado
     foi concluído  que para previsões de  um dia adiante a  utilização de redes
     neurais  artificiais  apresenta  um  desempenho  ligeiramente  inferior  ao
     ARIMA\@.
@@ -101,10 +102,18 @@
 
 \begin{resumo}[Abstract]
     \begin{otherlanguage*}{english}
-        % TODO: Abstract
 
-        \textbf{Keywords}: time series, arima, machine learning, neural
-        networks.
+    Predicting events  in time  series is  a very  important and  complex task,
+    for  which many  authors  use statistical  methods such  as  ARIMA to  make
+    these predictions.  However other methods  based on machine  learning, more
+    specifically artificial  neural networks,  have obtained good  results. The
+    S\&P500 series was used to verify  the performance of these approaches, and
+    as  a  result it  was  concluded  that for  one-day  forecasts  the use  of
+    artificial  neural  networks presents  a  slightly  lower performance  than
+    ARIMA\@.
+
+    \textbf{Keywords}: time series, arima, machine learning, neural
+    networks.
     \end{otherlanguage*}
 \end{resumo}
 
@@ -639,7 +648,6 @@ sumarizada.
         Série aleatória  & 0                           & 0                        \\
         AR (p)           & decaimento exponencial      & 0 após $p$ \textit{lags} \\
         MA (q)           & 0 após $q$ \textit{lags}    & decaimento exponencial   \\
-        ARMA (p, q)      & 0 após $q$ \textit{lags}    & decaimento a partir de $q$
     \end{tabular}
     \source{\citeonline{ehlers}}
 \end{table}
@@ -863,6 +871,58 @@ que 0; e 0, quando menor.
         \end{array}
     \right.
 \end{equation}
+
+Outras  duas  funções de  ativação  importantes  são  a  logística e  a  linear
+retificada,   respectivamente,   apresentadas   em   \autoref{eq:logistica}   e
+\autoref{eq:relu}. As duas  apresentam a característica de  serem continuas, no
+entanto, a  função logística se limita  ao intervalo de  0 e 1, enquanto  que a
+linear retificada só é limitada inferiormente em 0.
+
+\begin{equation}
+    \label{eq:relu}
+    o(v) = \left\{
+        \begin{array}{lr}
+            v & :se\  v(x) > 0\\
+            0 & :se\  v(x) < 0
+        \end{array}
+    \right.
+\end{equation}
+
+\begin{equation}
+    \label{eq:logistica}
+    o(v) = \frac{1}{1+e^{-x}}
+\end{equation}
+
+Graficamente   podemos  representar   as   funções  de   ativação  conforme   a
+\autoref{fig:ativacao}. 
+
+A  função degrau  embora extremamente  simples só  tem eficacia  em tarefas  de
+classificação, já que  regressões demandam dados contínuos e  esta possui saída
+discretizada.
+
+Se a aplicada  a função logística na saída é  necessário dimensionar o conjunto
+de treinamento para o intervalo 0 e 1.
+
+\begin{figure}[ht]
+    \centering
+    \caption{Funções de ativação}\label{fig:ativacao}
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \caption{Função linear retificada}
+        \includegraphics[width=.9\linewidth]{images/relu.png}
+    \end{subfigure}
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \caption{Função logística}
+        \includegraphics[width=.9\linewidth]{images/sigmoid.png}
+    \end{subfigure}
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \caption{Função degrau}
+        \includegraphics[width=.9\linewidth]{images/degrau.png}
+    \end{subfigure}
+    \source{Elaborado pelo autor}
+\end{figure}
 
 Ainda segundo  \citeonline{knight}, o \textit{perceptron} se  caracteriza pelos
 pesos e pela definição  do valor da função de ativação,  enquanto o processo de
@@ -1190,11 +1250,12 @@ utilizado para comparar o desempenho foi o ARIMA(5,1,7).
 \centering
     \caption{Tabela de modelos testados para $p$ e $q$ no modelo ARIMA($p$, 1, $q$)}\label{tab:aicarima}
 \begin{tabular}{l c c c}
-    p\textbackslash{}q  & 1      & 2      & 7               \\
+                        & \multicolumn{3}{c}{$q$}           \\
+    $p$                 & 1      & 2      & 7               \\
     \toprule
     1                   & -15953 & -15952 & -15979          \\
     2                   & -15965 & -15968 & -15989          \\
-    5                   & -15984 & -15988 & \textbf{-16004} \\
+    5                   & -15984 & -15988 & \cellcolor[HTML]{AAAAAA}\textbf{-16004} \\
 \end{tabular}
 \source{Elaborado pelo autor}
 \end{table}
@@ -1285,13 +1346,19 @@ cinco observações a realização da previsão.
 
 \chapter{Resultados}\label{chap:result}
 
-A  partir  dos  modelos  gerados,  foram  obtidos  os  resultados  apresentados
-na   \autoref{tab:resultadosp500}   e  o   gráfico   do   conjunto  de   testes
-comparando  os   resultados  obtidos  com   os  valores  são   apresentados  na
-\autoref{fig:comparesp500}.  Observando  os resultados,  é  claro  que os  dois
-modelos conseguiram êxito  na tarefa de aproximar o comportamento  da série. Em
-termos comparativos,  o modelo  neural obteve resultado  um pouco  inferior, na
-ordem de $0,6\%$.
+A  partir dos  modelos gerados,  foram  obtidos os  resultados apresentados  na
+\autoref{tab:resultadosp500},  e o  gráfico  do conjunto  de testes  comparando
+os   resultados  obtidos   com  os   valores  previstos   estão  dispostos   na
+\autoref{fig:comparesp500}.  Considerando  que  as linhas  se  sobrepuseram  em
+praticamente todo o gráfico, foi gerado  também o gráfico dos erros de previsão
+acumulados, na  \autoref{fig:cumsumsp500}. Utilizando  o gráfico de  erros fica
+mais claro  como os dois modelos  progridem na previsão da  série, demonstrando
+que as duas se mantiveram coerentes durante todo o conjunto, sem demonstrar uma
+perda desempenho em momentos de maior variação das observações.
+
+A partir dos os resultados, fica claro que os dois modelos conseguiram êxito na
+tarefa de aproximar o comportamento da  série. Em termos comparativos, o modelo
+neural obteve resultado um pouco inferior, na ordem de $0,6\%$.
 
 \begin{table}[ht]
     \centering
@@ -1306,17 +1373,38 @@ ordem de $0,6\%$.
 \end{table}
 
 \begin{figure}[ht]
-    \caption{Comparativos dos resultados}
+    \caption{Comparativos dos resultados}\label{fig:comparesp500}
     \begin{subfigure}{.5\textwidth}
-        \caption{Gráfico comparativo entre os modelos obtidos}\label{fig:comparesp500}
+        \caption{Gráfico comparativo entre os modelos obtidos}\label{fig:comprealsp500}
         \includegraphics[width=.8\linewidth]{images/sp500_prediction_compare.png}
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
-        \caption{Gráfico dos erros acumulados}\label{fig:comparesp500}
+        \caption{Gráfico dos erros acumulados}\label{fig:cumsumsp500}
         \includegraphics[width=.8\linewidth]{images/sp500_cumsum.png}
     \end{subfigure}
     \source{Elaborado pelo autor}
 \end{figure}
+
+Uma possível  explicação para  a semelhança dos  resultados pode  ser explicada
+pela aparente semelhante entre um  \textit{perceptron}, utilizado em uma tarefa
+de aprendizado,  e um regressor que  é base tanto do  processo autoregressivo e
+do  de  médias  móveis.  Mais  claramente  ainda  se  observarmos  um  processo
+autoregressivo  de  ordem 1,  dado  matematicamente  $X_t =  \alpha_1X_{t-1}  +
+\epsilon_t$, é bastante semlhante a  um \textit{perceptron}, $X_t = o(X_{t-1} *
+w_1 + w_0)$,  permitindo até mesmo traçar equivalências, como  os pesos da rede
+neural, $w$, serem equivalentes aos coeficientes $\alpha$.
+
+Outra  forma  que  podemos  compreender  os modelos  é  a  simplicidade  de  se
+obtê-los. Para o ARIMA, foi necessária diversas observações do comportamento da
+série,  e embora  não tenha  sido  o caso,  este  modelo é  muito suscetível  a
+observações falhas, \textit{outliers}, que  podem demandar etapas anteriores de
+pré processamento. Enquanto  que modelos utilizando redes  neurais não demandam
+do usuário um grande conhecimento do comportamento ou pré processamento, já que
+sua natureza  não linear é  capaz de aprender  por reconhecimento de  padrões o
+comportamento  da série.  Uma  característica  inerente aos  dois  modelos é  a
+complexidade do ajuste dos parâmetros, enquanto para o modelo probabilístico se
+dá por da analise da serie, no modelo neural ocorre seguindo o comportamento da
+etapa de aprendizado.
 
 \chapter{Conclusões}\label{chap:concl}
 
