@@ -1118,6 +1118,23 @@ neural utilizado foi de  três camadas, com 9 neurônios na  camada de entrada, 
 na camada  escondida e  1 na camada  de saída. O  modelo proposto  utilizando o
 algoritmo natural teve resultados superiores para todas as análises.
 
+Como  forma de  reconhecer  o estado  da  arte  do uso  de  redes neurais  para
+previsões  de  seires temporais,  \citeonline{zhang}  compilou  uma coleção  de
+diversos  artigos  fazendo  uso  da  técnica. Concluindo  que  não  é  clara  a
+superioridade do uso de redes neurais.
+
+\citeonline{silva_2018}  realizou  comparações  semelhantes ao  objetivo  deste
+trabalho  em   séries  econômicas.  Concluindo   que  a  utilização   de  redes
+neurais   artificiais   é  capaz   de   produzir   resultados  mais   precisos.
+\citeonline{jacobs_2014}  também realizou  tais  comparações,  com objetivo  de
+prever a demanda de um produto, concluindo que redes neurais tiveram resultados
+superiores.
+
+Utilizando \textit{Long  Short Term Memory} (LSTM),  uma organização recorrente
+de  redes  neurais,  \citeonline{zhang2017}   foi  capaz  de  obter  resultados
+consistentes  quanto  a  melhora  de   seu  modelo  proposto  sobre  os  demais
+utilizados.
+
 \chapter{Desenvolvimento}\label{chap:desenv}
 
 O   desenvolvimento    deste   trabalho    foi   realizado    utilizando-se   a
@@ -1379,6 +1396,14 @@ o  comportamento da  série.  Em  termos comparativos,  o  modelo neural  obteve
 resultados um  pouco inferiores ao  modelo estatístico, uma vez  que apresentou
 erros maiores, porém a diferença foi da ordem de $0,6\%$.
 
+Na \autoref{fig:cumsumsp500} são  exibidos os 50 últimos  acumulados dos erros.
+Como é  possível observar o modelo  utilizando redes neurais obtive  a soma dos
+erros inferior  a do modelo  probabilístico, no  entanto, por conta  da métrica
+utilizada na  comparação exponenciar  o erro ao  quadrado, acaba  por penalizar
+erros  pontuais  elevados.  Assim  pode-se  afirmar  que  embora  o  modelo  de
+aprendizado  de  máquina  seja  acurado,  sua precisão  em  relação  ao  modelo
+estatístico é menor.
+
 \begin{table}[ht]
     \centering
     \caption{Valores do erro quadrático médio para a série S\&P500}\label{tab:resultadosp500}
@@ -1404,26 +1429,26 @@ erros maiores, porém a diferença foi da ordem de $0,6\%$.
     \source{Elaborado pelo autor}
 \end{figure}
 
-Uma possível  explicação para  a semelhança dos  resultados pode  ser explicada
-pela aparente semelhante entre um  \textit{perceptron}, utilizado em uma tarefa
-de aprendizado,  e um regressor que  é base tanto do  processo autoregressivo e
-do  de  médias  móveis.  Mais  claramente  ainda  se  observarmos  um  processo
-autoregressivo  de  ordem 1,  dado  matematicamente  $X_t =  \alpha_1X_{t-1}  +
-\epsilon_t$, é bastante semlhante a  um \textit{perceptron}, $X_t = o(X_{t-1} *
-w_1 + w_0)$,  permitindo até mesmo traçar equivalências, como  os pesos da rede
-neural, $w$, serem equivalentes aos coeficientes $\alpha$.
+Uma possível  explicação para a  equivalência dos resultados obtidos,  pode ser
+explicada pela  aparente semelhança  entre o \textit{perceptron},  utilizado em
+uma  tarefa  de aprendizado,  e  um  regressor que  é  base  tanto do  processo
+autoregressivo e do  de médias móveis. Se observado  um processo autoregressivo
+de  ordem 1,  dado  matematicamente  $X_t =  \alpha_1X_{t-1}  + \epsilon_t$,  é
+bastante similar  a um  \textit{perceptron}, $X_t  = o(X_{t-1}  * w_1  + w_0)$,
+permitindo até mesmo  traçar equivalências, como os pesos da  rede neural, $w$,
+serem equivalentes aos coeficientes $\alpha$.
 
-Outra  forma  que  podemos  compreender  os modelos  é  a  simplicidade  de  se
-obtê-los. Para o ARIMA, foi necessária diversas observações do comportamento da
-série,  e embora  não tenha  sido  o caso,  este  modelo é  muito suscetível  a
-observações falhas, \textit{outliers}, que  podem demandar etapas anteriores de
-pré processamento. Enquanto  que modelos utilizando redes  neurais não demandam
-do usuário um grande conhecimento do comportamento ou pré processamento, já que
-sua natureza  não linear é  capaz de aprender  por reconhecimento de  padrões o
-comportamento  da série.  Uma  característica  inerente aos  dois  modelos é  a
-complexidade do ajuste dos parâmetros, enquanto para o modelo probabilístico se
-dá por da analise da serie, no modelo neural ocorre seguindo o comportamento da
-etapa de aprendizado.
+Outra forma que podemos compreender as  diferenças dos modelos é a simplicidade
+de  se  obtê-los.  Para  o   ARIMA,  foi  necessária  diversas  observações  do
+comportamento da  série, e embora  não tenha sido o  caso, este modelo  é muito
+suscetível a  observações falhas, \textit{outliers}, que  podem demandar etapas
+anteriores de pré processamento. Enquanto  que modelos utilizando redes neurais
+não  demandam  do  usuário  um  grande conhecimento  do  comportamento  ou  pré
+processamento,  já  que  sua  natureza  não linear  é  capaz  de  aprender  por
+reconhecimento de padrões o comportamento da série. Uma característica inerente
+aos dois  modelos é a  complexidade do ajuste  dos parâmetros, enquanto  para o
+modelo probabilístico  se dá por da  analise da serie, no  modelo neural ocorre
+segundo o comportamento na etapa de aprendizado.
 
 \chapter{Conclusões}\label{chap:concl}
 
@@ -1480,15 +1505,15 @@ artificiais.
 Um  possível trabalho  futuro é  a  avaliação de  diferentes modelos  híbridos.
 Aproveitando-se  da  capacidade  dos  modelos  probabilísticos  em  representar
 comportamento  linear  e,  também,  a  capacidade  de  modelos  de  aprendizado
-em  séries não  lineares, como  feito por  \citeonline{oCaraLaDoModeloHibrido}.
-Uma  outra possibilidade  é  a  utilização de  redes  neurais recorrentes,  que
-se  diferenciam  de  modelos  \textit{feedforward}  por  possuir  memória.  Uma
-arquitetura de  redes neurais  que tem  apresentado bons  resultados é  a LSTM.
-Alguns trabalhos, como o de \citeonline{oDoCaraQueComparaArimaComLSTM}, mostram
-que é  possível obter resultados superiores  com sua aplicação, desde  que haja
-material de  treinamento suficiente. Pode-se, ainda,  estudar essas comparações
-com séries de comportamentos  diferentes, e, consequentemente, utilizar modelos
-estatísticos mais completos, como o SARIMA ou SARIMAX\@.
+em  séries  não lineares,  como  feito  por \citeonline{ZHANG2003}.  Uma  outra
+possibilidade é a  utilização de redes neurais recorrentes,  que se diferenciam
+de modelos \textit{feedforward}  por possuir memória. Uma  arquitetura de redes
+neurais que tem apresentado bons resultados  é a LSTM\@. Alguns trabalhos, como
+o de \citeonline{zhang2017}, mostram que é possível obter resultados superiores
+com sua aplicação, desde que  haja material de treinamento suficiente. Pode-se,
+ainda, estudar  essas comparações com  séries de comportamentos  diferentes, e,
+consequentemente, utilizar  modelos estatísticos mais completos,  como o SARIMA
+ou SARIMAX\@.
 
 \postextual
 
